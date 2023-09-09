@@ -68,9 +68,8 @@ paddle-base = type=http-request,pattern=^https://v3.paddleapi.com/3.2/license,re
 
 The Activation Script currently supports the following activation services:
 
-1. **LemonSqueezy**: A service for licensing software.
-
-2. **Paddle**: An activation service for software licenses.
+- LemonSqueezy
+- Paddle
 
 ## License
 
