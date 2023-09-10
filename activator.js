@@ -21,67 +21,29 @@ const activator = {
       func: paddleVerify
     }
   },
+  craft: {
+    base: "https://api.craft.do/auth/v3",
+    activate: {
+      base: "profile",
+      func: craftActivate
+    }
+  },
 };
 
-function generateScriptConfig() {
-  const MITM = (hostnames) => {
-    return `
-[MITM]
-hostname = ${hostnames.join(', ')}
-`
-  }
-  const Script = (scripts) => {
-    return `
-[Script]
-${scripts.map(script => {
-      return `${script.name} = type=http-request,pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=activator.js \n`
-    })
-        .join('')}
-`
-  }
-  const hostnames = [];
-  const scripts = [];
-  for (let i in activator) {
-    const url = new URL(activator[i].base);
-    const hostname = url.hostname;
-    const parts = hostname.split('.');
-    const mainDomain = parts.slice(-2).join('.');
-    hostnames.push(`*.${mainDomain}`);
-    for (let j in activator[i]) {
-      if (j === 'base') continue;
-      if (typeof activator[i][j] === 'object') {
-        scripts.push({
-          name: `${i}-${j}`,
-          pattern: `${activator[i].base}/${activator[i][j].base}`
-        })
-      } else {
-        scripts.push({
-          name: `${i}-${j}`,
-          pattern: `${activator[i].base}/${j}`
-        })
-      }
-    }
-  }
-  console.log('================ MITM ================');
-  console.log(MITM(hostnames));
-  console.log('================ Script ================');
-  console.log(Script(scripts));
-  return
-}
+function craftActivate() {
+  const originalBody = JSON.parse(body || "{}");
 
-/**
- * @private
- */
-function buildResponse(props) {
-  for (let i in props) {
-    if (typeof props[i] === 'object') {
-      props[i] = JSON.stringify(props[i]);
-    }
-  }
-  $done({
-    response: {
-      ...props
-    }
+  const _body = {}
+  _body["tier"] = "pro";
+  _body["subscriptionActive"] = true;
+  _body["expirationDate"] = 1043198395504;
+  _body["rawSubscriptionType"] = "yearly";
+  _body["productId"] = "com.lukilabs.lukiapp.pro.sub.yearly";
+  _body["subscription"] = true;
+
+  originalBody["subscription"] = _body;
+  buildResponse({
+    body: originalBody
   })
 }
 
@@ -162,6 +124,70 @@ function paddleVerify() {
     },
   });
 }
+
+
+function generateScriptConfig() {
+  const MITM = (hostnames) => {
+    return `
+[MITM]
+hostname = ${hostnames.join(', ')}
+`
+  }
+  const Script = (scripts) => {
+    return `
+[Script]
+${scripts.map(script => {
+      return `${script.name} = type=http-request,pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=activator.js \n`
+    })
+        .join('')}
+`
+  }
+  const hostnames = [];
+  const scripts = [];
+  for (let i in activator) {
+    const url = new URL(activator[i].base);
+    const hostname = url.hostname;
+    const parts = hostname.split('.');
+    const mainDomain = parts.slice(-2).join('.');
+    hostnames.push(`*.${mainDomain}`);
+    for (let j in activator[i]) {
+      if (j === 'base') continue;
+      if (typeof activator[i][j] === 'object') {
+        scripts.push({
+          name: `${i}-${j}`,
+          pattern: `${activator[i].base}/${activator[i][j].base}`
+        })
+      } else {
+        scripts.push({
+          name: `${i}-${j}`,
+          pattern: `${activator[i].base}/${j}`
+        })
+      }
+    }
+  }
+  console.log('================ MITM ================');
+  console.log(MITM(hostnames));
+  console.log('================ Script ================');
+  console.log(Script(scripts));
+  return
+}
+
+/**
+ * @private
+ */
+function buildResponse(props) {
+  for (let i in props) {
+    if (typeof props[i] === 'object') {
+      props[i] = JSON.stringify(props[i]);
+    }
+  }
+  $done({
+    response: {
+      ...props
+    }
+  })
+}
+
 
 /**
  * Automatic execution of the corresponding function according to the URL

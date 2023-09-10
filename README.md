@@ -71,6 +71,12 @@ The Activation Script currently supports the following activation services:
 - LemonSqueezy
 - Paddle
 
+## Supported Activation Applications
+
+The Activation Script currently supports the following applications:
+
+- ~~Craft~~ (invalid now.)
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
