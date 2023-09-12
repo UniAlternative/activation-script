@@ -13,27 +13,37 @@ The Activation Script is a script designed to generate configuration files and a
 ## Installation
 
 1. Ensure you have [Node.js](https://nodejs.org/) installed on your system.
-2. Clone or download this repository to your local machine.
-3. Navigate to the project directory in your terminal.
+
+2. Install [pnpm](https://pnpm.js.org/) globally on your system.
+
+   ```shell
+   npm i -g pnpm
+   ```
+
+3. Clone or download this repository to your local machine.
+
+4. Navigate to the project directory in your terminal.
 
 ## Usage
 
 To use the Activation Script, follow these steps:
 
 1. Open a terminal and navigate to the project directory.
-2. Run the script with the following command:
+2. 
+3. Run the script with the following command:
 
    ```shell
+   pnpm i && pnpm build
    node activator.js generate
    ```
 
    This command generates two important configuration sections: MITM (Man-In-The-Middle) and Script. These sections are used by Surge to intercept and manipulate network requests.
 
-3. Copy the generated MITM and Script sections to your Surge configuration file.
+4. Copy the generated MITM and Script sections to your Surge configuration file.
 
-4. Configure Surge to use the generated configuration file.
+5. Configure Surge to use the generated configuration file.
 
-5. Start Surge with the updated configuration.
+6. Start Surge with the updated configuration.
 
 Now, Surge will intercept specific network requests and execute activation functions when triggered.
 
