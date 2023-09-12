@@ -1,1 +1,3 @@
 *.conf
+dist
+activator.js
