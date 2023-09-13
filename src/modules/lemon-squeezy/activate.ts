@@ -1,6 +1,6 @@
 import { buildResponse } from "../../utils";
 
-export function lemonSqueezyActive($request: any, $done: any) {
+export function lemonSqueezyActive() {
   buildResponse({
     body: {
       activated: true,

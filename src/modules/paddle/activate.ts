@@ -1,18 +1,18 @@
+import { buildResponse } from "../../utils";
+
 /**
  * Paddle activation
  * @url https://v3.paddleapi.com/3.2/license/activate
  */
-export function paddleActivate($request: any, $done: any) {
+export function paddleActivate($request: any) {
   const body = $request.body;
   if (!body) {
-    $done({
-      response: {
-        body: JSON.stringify({
-          success: false,
-          response: {
-            error: "[Surge] Activator: No body found",
-          },
-        }),
+    buildResponse({
+      body: {
+        success: false,
+        response: {
+          error: "[Surge] Activator: No body found",
+        },
       },
     });
     return;
@@ -25,18 +25,16 @@ export function paddleActivate($request: any, $done: any) {
     }
   }
 
-  $done({
-    response: {
-      body: JSON.stringify({
-        success: true,
-        response: {
-          product_id: product_id,
-          activation_id: "QiuChenly",
-          type: "personal",
-          expires: 1,
-          expiry_date: 1999999999999,
-        },
-      }),
+  buildResponse({
+    body: {
+      success: true,
+      response: {
+        product_id: product_id,
+        activation_id: "QiuChenly",
+        type: "personal",
+        expires: 1,
+        expiry_date: 1999999999999,
+      },
     },
   });
 }

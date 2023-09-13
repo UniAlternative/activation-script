@@ -1,6 +1,6 @@
 import { buildResponse } from "../../utils";
 
-export function craftActivate($request: { body: any; }, $done: any) {
+export function craftActivate() {
   const body = $request.body;
   const originalBody = JSON.parse(body || "{}");
 
