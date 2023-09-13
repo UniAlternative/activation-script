@@ -29,21 +29,29 @@ The Activation Script is a script designed to generate configuration files and a
 To use the Activation Script, follow these steps:
 
 1. Open a terminal and navigate to the project directory.
-2. 
-3. Run the script with the following command:
+
+2. Run the script with the following command:
 
    ```shell
-   pnpm i && pnpm build
-   node activator.js generate
+   pnpm i
+   pnpm generate
    ```
 
    This command generates two important configuration sections: MITM (Man-In-The-Middle) and Script. These sections are used by Surge to intercept and manipulate network requests.
 
-4. Copy the generated MITM and Script sections to your Surge configuration file.
+3. Copy the generated MITM and Script sections to your Surge configuration file.
 
-5. Configure Surge to use the generated configuration file.
+4. Configure Surge to use the generated configuration file.
 
-6. Start Surge with the updated configuration.
+5. Run the script to build the activator.
+
+   ```shell
+   pnpm build
+   ```
+
+6. Copy the generated activator to the directory containing your Surge configuration file.
+
+7. Start Surge with the updated configuration and activator.
 
 Now, Surge will intercept specific network requests and execute activation functions when triggered.
 
@@ -58,7 +66,7 @@ Example MITM Section:
 ```shell
 # PLEASE! DO NOT USE THIS CODE. IT IS JUST AN EXAMPLE.
 [MITM]
-hostname = *.lemonsqueezy.com, *.paddleapi.com
+hostname = *.xxxx.com, *.yyyy.com
 ```
 
 ### Script Section
@@ -70,8 +78,8 @@ Example Script Section:
 ```shell
 # PLEASE! DO NOT USE THIS CODE. IT IS JUST AN EXAMPLE.
 [Script]
-lemonSqueezy-base = type=http-request,pattern=^https://api.lemonsqueezy.com/v1/licenses,requires-body=1,max-size=0,debug=1,script-path=activator.js
-paddle-base = type=http-request,pattern=^https://v3.paddleapi.com/3.2/license,requires-body=1,max-size=0,debug=1,script-path=activator.js
+xxxx-base = type=http-request,pattern=^https://api.xxxx.com/v1/licenses,requires-body=1,max-size=0,debug=1,script-path=activator.js
+yyyy-base = type=http-request,pattern=^https://v3.yyyy.com/3.2/license,requires-body=1,max-size=0,debug=1,script-path=activator.js
 ```
 
 ## Supported Activation Services
@@ -86,7 +94,13 @@ The Activation Script currently supports the following activation services:
 The Activation Script currently supports the following applications:
 
 - ~~Craft~~ (invalid now.)
+- Elpass (You should use it with [QiuChenlyOpenSource/InjectLib/](https://github.com/QiuChenlyOpenSource/InjectLib))
 
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## References
+
+- [Surge](https://nssurge.com/)
+- [QiuChenlyOpenSource/InjectLib/](https://github.com/QiuChenlyOpenSource/InjectLib)
