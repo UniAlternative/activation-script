@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "build": "rollup -c && cp dist/main.js activator.js",
-    "generate": "esno src/generator.ts"
+    "generate": "esno src/generator.ts",
+    "generate:file": "esno src/generator.ts --file"
   },
   "keywords": [],
   "dependencies": {
