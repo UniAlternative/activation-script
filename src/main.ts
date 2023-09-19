@@ -5,7 +5,7 @@ const url = $request.url;
 /**
  * Determine whether the URL matches the base
  */
-export function isMatchBase(url: string, base: string | string[]) {
+function isMatchBase(url: string, base: string | string[]) {
   if (Array.isArray(base)) {
     for (let item of base) {
       if (url.includes(item)) {
