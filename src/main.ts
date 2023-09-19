@@ -3,11 +3,26 @@ import { activator } from "./modules";
 const url = $request.url;
 
 /**
+ * Determine whether the URL matches the base
+ */
+export function isMatchBase(url: string, base: string | string[]) {
+  if (Array.isArray(base)) {
+    for (let item of base) {
+      if (url.includes(item)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return url.includes(base);
+}
+
+/**
  * Automatic execution of the corresponding function according to the URL
  */
 function main() {
   for (let module in activator) {
-    if (url.includes(activator[module].base)) {
+    if (isMatchBase(url, activator[module].base)) {
       for (let key in activator[module]) {
         if (key === "base") continue;
         if (Array.isArray((activator[module] as any)[key])) {

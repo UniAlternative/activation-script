@@ -4,11 +4,30 @@ The Activation Script is a script designed to generate configuration files and a
 
 ## Table of Contents
 
+- [Supported Activation Services](#supported-activation-services)
+- [Supported Activation Applications](#supported-activation-applications)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration](#configuration)
-- [Supported Activation Services](#supported-activation-services)
 - [License](#license)
+- [References](#references)
+
+
+## Supported Activation Services
+
+The Activation Script currently supports the following activation services:
+
+- [x] LemonSqueezy
+- [x] Paddle
+
+## Supported Activation Applications
+
+The Activation Script currently supports the following applications:
+
+- [x] ~~Craft~~ (invalid now.)
+- [x] Elpass **(You should use it with [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib))**
+- [x] Spotify (Remove AD audio only. You can block HTML AD by AdBlock, etc.)
+
 
 ## Installation
 
@@ -82,20 +101,6 @@ xxxx-base = type=http-request,pattern=^https://api.xxxx.com/v1/licenses,requires
 yyyy-base = type=http-request,pattern=^https://v3.yyyy.com/3.2/license,requires-body=1,max-size=0,debug=1,script-path=activator.js
 ```
 
-## Supported Activation Services
-
-The Activation Script currently supports the following activation services:
-
-- LemonSqueezy
-- Paddle
-
-## Supported Activation Applications
-
-The Activation Script currently supports the following applications:
-
-- ~~Craft~~ (invalid now.)
-- Elpass (You should use it with [QiuChenlyOpenSource/InjectLib/](https://github.com/QiuChenlyOpenSource/InjectLib))
-
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
@@ -103,4 +108,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## References
 
 - [Surge](https://nssurge.com/)
-- [QiuChenlyOpenSource/InjectLib/](https://github.com/QiuChenlyOpenSource/InjectLib)
+- [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
+- [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)

@@ -6,7 +6,7 @@ type ActivatorObjFunc =
   | ActivatorFunction;
 export interface Activator {
   [key: string]: {
-    base: string;
+    base: string | string[];
     activate?: ActivatorObjFunc;
     validate?: ActivatorObjFunc;
     customs?: ActivatorObjFunc[];

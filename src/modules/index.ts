@@ -46,24 +46,18 @@ export const activator: Activator = {
       },
     ],
   },
-  /**
-   * TODO: Spotify. 
-    Because of the problem of the main function, 
-    it could not verify the Array type,
-    and Activator type also needs to be modified to support Array type.
-   */
-  // spotify: {
-  //   base: [
-  //     "https://audio-ak-spotify-com.akamaized.net",
-  //     "https://audio-akp-quic-spotify-com.akamaized.net",
-  //     "https://audio-fa.scdn.co",
-  //     "https://creativeservice-production.scdn.co",
-  //   ],
-  //   customs: [
-  //     {
-  //       base: "*",
-  //       func: spotifyRemoveAds,
-  //     },
-  //   ]
-  // }
+  spotify: {
+    base: [
+      "https://audio-ak-spotify-com.akamaized.net",
+      "https://audio-akp-quic-spotify-com.akamaized.net",
+      "https://audio-fa.scdn.co",
+      "https://creativeservice-production.scdn.co",
+    ],
+    customs: [
+      {
+        base: "*",
+        func: spotifyRemoveAds,
+      },
+    ]
+  }
 };

@@ -1,3 +1,4 @@
+import { isMatchBase } from "./main";
 import { activator } from "./modules";
 
 function generateScriptConfig() {
@@ -19,36 +20,49 @@ ${scripts
   };
   const hostnames = Array<string>();
   const scripts = Array<{ name: string; pattern: string }>();
-  for (let module in activator) {
-    const url = new URL(activator[module].base);
+
+  function addConfig(module: string, base: string) {
+    const url = new URL(base);
     const hostname = url.hostname;
     const parts = hostname.split(".");
-    const mainDomain = parts.slice(-2).join(".");
+    const mainDomain = parts.slice(-2).join("."); // 拿到根域名
     hostnames.push(`*.${mainDomain}`);
-    for (let key in activator[module]) {
-      if (key === "base") continue;
-      if (key === "customs") {
-        for (let custom of (activator[module] as any)[key]) {
+    // 设一个 afterfix，用于处理 base 为数组的情况，防止 name 重复
+    const afterfix = Array.isArray(activator[module].base) ? `-${hostname}` : "";
+    for (let key in activator[module]) { // 开始遍历 module 内的 key
+      if (key === "base") continue; // 接口 base route 绕过，不需要处理
+      if (key === "customs") { // 面对 Custom 的重写逻辑
+        for (let custom of (activator[module] as any)[key]) { // 遍历 customs
           scripts.push({
-            name: `${module}-${custom.base}`,
-            pattern: `${activator[module].base}/${custom.base}`,
+            name: `${module}-${custom.base}${afterfix}`,
+            pattern: `${base}/${custom.base}`, // 这个地方应该用传入的 base，而不是 activator[module].base
+            // 因为 activator[module].base 可能是数组，而这里只需要一个 base
           });
         }
         continue;
       }
       if (typeof (activator[module] as any)[key] === "object") {
         scripts.push({
-          name: `${module}-${key}`,
-          pattern: `${activator[module].base}/${
+          name: `${module}-${key}${afterfix}`,
+          pattern: `${base}/${
             (activator[module] as any)[key].base
           }`,
         });
       } else {
         scripts.push({
-          name: `${module}-${key}`,
-          pattern: `${activator[module].base}/${key}`,
+          name: `${module}-${key}${afterfix}`,
+          pattern: `${base}/${key}`,
         });
       }
+    }
+  }
+
+  for (let module in activator) {
+    if (!Array.isArray(activator[module].base)) {
+      activator[module].base = [activator[module].base as string];
+    }
+    for (let base of activator[module].base) {
+      addConfig(module, base);
     }
   }
   console.log("================ MITM ================");
