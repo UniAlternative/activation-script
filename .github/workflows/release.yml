@@ -2,8 +2,6 @@ name: Release CI
 
 on:
   push:
-    branches:
-      - main
     tags:
       - v*
 
