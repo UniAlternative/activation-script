@@ -1,3 +1,4 @@
 *.conf
 dist
 activator.js
+node_modules
