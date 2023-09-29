@@ -214,7 +214,9 @@ async function action(str: any, options: any) {
 }
 
 async function inject() {
+  let rootPath = process.cwd();
   let configPath = undefined;
+  console.log("[*] Inject function. You are in ", rootPath);
   await prompts([
     {
       type: "select",
@@ -263,7 +265,7 @@ async function inject() {
 
   console.log("[I] activator.js building...");
   execSync("pnpm build");
-  if (!fs.existsSync(path.join(__dirname, "..", "activator.js"))) {
+  if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
     console.error("[E] activator.js bundle not found. Build failed.");
     return;
   }
@@ -288,7 +290,7 @@ async function inject() {
 
   console.log("[I] Injecting activator.js... to", configPath);
   fs.copyFileSync(
-    path.join(__dirname, "..", "activator.js"),
+    path.join(rootPath, "activator.js"),
     path.join(configPath as unknown as string, "activator.js")
   );
   console.log("[I] Injected activator.js.");

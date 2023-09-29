@@ -2,3 +2,4 @@
 dist
 activator.js
 node_modules
+generator.js
