@@ -4,7 +4,7 @@ import { buildResponse } from "../../utils";
  * Paddle activation
  * @url https://v3.paddleapi.com/3.2/license/activate
  */
-export function paddleActivate($request: any) {
+export function paddleActivate() {
   const body = $request.body;
   if (!body) {
     buildResponse({
