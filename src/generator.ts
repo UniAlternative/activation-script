@@ -90,7 +90,10 @@ async function action(str: any, options: any) {
   generateScriptConfig(Object.keys(str).length === 0);
   if (str.out) {
     console.log("Generating config file...");
-    fs.writeFileSync(path.join(str.out, "activator.conf"), MITM(hostnames) + Script(scripts));
+    fs.writeFileSync(
+      path.join(str.out, "activator.conf"),
+      MITM(hostnames) + Script(scripts)
+    );
     console.log("Config file generated.");
   }
   if (str.fix) {
@@ -267,11 +270,21 @@ async function inject() {
     return;
   }
 
-  console.log("[I] activator.js building...");
-  execSync("pnpm build");
-  if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
-    console.error("[E] activator.js bundle not found. Build failed.");
-    return;
+  if (!fs.existsSync(path.join(rootPath, "package.json"))) {
+    if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
+      console.error("[E] activator.js not found. Please download it first.");
+      return;
+    }
+  } else {
+    console.log(
+      "[I] package.json found. You are using generator in source code."
+    );
+    console.log("[I] activator.js building...");
+    execSync("pnpm build");
+    if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
+      console.error("[E] activator.js bundle not found. Build failed.");
+      return;
+    }
   }
 
   if (
