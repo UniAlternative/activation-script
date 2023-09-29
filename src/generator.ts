@@ -88,7 +88,11 @@ function generateScriptConfig(echo = false) {
 
 async function action(str: any, options: any) {
   generateScriptConfig(Object.keys(str).length === 0);
-
+  if (str.out) {
+    console.log("Generating config file...");
+    fs.writeFileSync(path.join(str.out, "activator.conf"), MITM(hostnames) + Script(scripts));
+    console.log("Config file generated.");
+  }
   if (str.fix) {
     let configPath = process.cwd();
     // 询问配置文件所在位置。1. 当前目录 2. /Users/<username>/Library/Application Support/Surge/Profiles 3. 自定义

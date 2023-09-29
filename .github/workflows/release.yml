@@ -28,21 +28,30 @@ jobs:
       - name: Build
         run: |
           nr build
-          nr generate:file
+          nr generate gen -o .
           cp activator.conf dist/activator.conf
 
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-          name: activation-script-dist.zip
-          path: dist
-      - name: Zip
-        run: zip -r activation-script-dist.zip dist
+      - name: Rename
+        run: |
+          mv dist/main.js dist/activator.js
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: activation-script-dist.zip
-          path: activation-script-dist.zip
+          name: activator.js
+          path: dist/activator.js
+      
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: activator.conf
+          path: dist/activator.conf
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: generator.js
+          path: dist/generator.js
 
       - name: Create Release
         id: create_release
@@ -56,13 +65,35 @@ jobs:
         uses: bruceadams/get-release@v1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Upload Release Asset
-        id: upload-release-asset
+      - name: Upload Release Asset (activator.js)
+        id: upload-release-asset-activator.js
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: activation-script-dist.zip
-          asset_name: activation-script-dist.zip
-          asset_content_type: application/zip
+          asset_path: dist/activator.js
+          asset_name: activator.js
+          asset_content_type: application/javascript
+
+      - name: Upload Release Asset (activator.conf)
+        id: upload-release-asset-activator.conf
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: dist/activator.conf
+          asset_name: activator.conf
+          asset_content_type: application/javascript
+
+      - name: Upload Release Asset (generator.js)
+        id: upload-release-asset-generator.js
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
+          asset_path: dist/generator.js
+          asset_name: generator.js
+          asset_content_type: application/javascript
