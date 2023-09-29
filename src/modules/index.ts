@@ -52,6 +52,7 @@ export const activator: Activator = {
       "https://audio-akp-quic-spotify-com.akamaized.net",
       "https://audio-fa.scdn.co",
       "https://creativeservice-production.scdn.co",
+      "https://audio4-fa.scdn.co"
     ],
     customs: [
       {

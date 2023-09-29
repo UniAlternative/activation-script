@@ -1,6 +1,9 @@
 import path from "node:path";
 import fs from "node:fs";
+import prompts from "prompts";
 import { activator } from "./modules";
+import { Command } from "commander";
+import toml from "toml";
 
 const hostnames = Array<string>();
 const scripts = Array<{ name: string; pattern: string }>();
@@ -27,7 +30,10 @@ function addConfig(module: string, base: string) {
   const hostname = url.hostname;
   const parts = hostname.split(".");
   const mainDomain = parts.slice(-2).join("."); // 拿到根域名
-  hostnames.push(`*.${mainDomain}`);
+  // 检查一下 hostnames 里面有没有这个根域名，没有的话就加进去
+  if (!hostnames.includes(`*.${mainDomain}`)) {
+    hostnames.push(`*.${mainDomain}`);
+  }
   // 设一个 afterfix，用于处理 base 为数组的情况，防止 name 重复
   const afterfix = Array.isArray(activator[module].base) ? `-${hostname}` : "";
   for (let key in activator[module]) {
@@ -78,13 +84,85 @@ function generateScriptConfig() {
   return;
 }
 
-generateScriptConfig();
+function action(str: any, options: any) {
+  generateScriptConfig();
+  let configFiles = Array<string>();
+  fs.readdirSync(process.cwd()).forEach((file) => {
+    if (file.endsWith(".conf")) {
+      configFiles.push(file);
+    }
+  });
+  if (configFiles.length === 0) {
+    console.log("No config file found.");
+    return;
+  }
+  
+  if (str.fix) {
+    prompts([
+      {
+        type: "select",
+        name: "config",
+        message: "Which config file do you want to use?",
+        choices: configFiles.map((file) => {
+          return { title: file, value: file };
+        }),
+      },
+    ]).then((res) => {
+      let newConfig = "";
+      const config = fs.readFileSync(path.join(process.cwd(), res.config), "utf-8");
+      const regexMITM = /\[MITM\]/g;
+      const regexScript = /\[Script\]/g;
 
-if (process.argv.includes("--file")) {
-  let config = MITM(hostnames) + Script(scripts);
-  config = config.replace(/^\s*\n/gm, "");
-  config = config.replace(/\n\s*$/gm, "");
-  const configPath = path.join(process.cwd(), "activator.conf");
-  fs.writeFileSync(configPath, config);
-  console.log("Generate config file successfully!");
+      if (!regexMITM.test(config)) {
+        console.error("❌ MITM not found. You should config MITM in Surge first.");
+        return;
+      }
+      const regexMITMHostnames = /hostname = (.*)/g;
+      const oldHostnames = regexMITMHostnames.exec(config) as RegExpExecArray;
+      const newHostnames = Array.from(new Set([...oldHostnames, ...hostnames]));
+      console.log(newHostnames);
+      
+      newConfig = config.replace(regexMITMHostnames, `${newHostnames.join(", ")}`);
+
+      fs.writeFileSync(path.join(process.cwd(), res.config), newConfig);
+      if (!regexScript.test(config)) {
+        // 在最后加一行 [Script]
+        newConfig = config + "\n[Script]";
+      }
+      
+      // 读取 [Script] 到下一个 [ 开始的距离（如果有的话）接着就缓存原本有的 Script，再把整一段给替换掉，再把缓存的 Script 写进去
+      const regexScriptContent = /\[Script\]([\s\S]*?)\[/g;
+      const oldScriptContent = regexScriptContent.exec(newConfig) as RegExpExecArray | null;
+      const newScriptContent = Script(scripts);
+      console.log(newScriptContent);
+      
+      if (oldScriptContent) {
+        newConfig = newConfig.replace(regexScriptContent, newScriptContent);
+      } else {
+        newConfig = newConfig + newScriptContent;
+      }
+
+      
+      
+      fs.writeFileSync(path.join(process.cwd(), res.config), newConfig);
+      console.log("Config file fixed.");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }
 }
+
+const program = new Command();
+
+program
+  .name("Activator")
+  .version("0.0.1")
+
+program.command("gen")
+  .description("generate config")
+  .option("-o, --out <path>", "output path")
+  .option("-f, --fix", "fix config file")
+  .action(action);
+
+program.parse();
