@@ -42,9 +42,9 @@ function addConfig(module: string, base: string) {
     if (key === "customs") {
       // 面对 Custom 的重写逻辑
       for (let custom of (activator[module] as any)[key]) {
-        if (custom.base === "*") {
-          custom.base = "all"; // 为了防止 * 出错，改成 all
-        }
+        // if (custom.base === "*") {
+        //   custom.base = "all"; // 为了防止 * 出错，改成 all
+        // }
         // 遍历 customs
         scripts.push({
           name: `${module}-${custom.base}${afterfix}`,
