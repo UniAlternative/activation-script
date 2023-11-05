@@ -6,6 +6,7 @@ import { lemonSqueezyActive } from "./lemon-squeezy/activate";
 import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
 import { paddleVerify } from "./paddle/validate";
+import { raycastActivate } from "./raycast/activate";
 import { spotifyRemoveAds } from "./spotify/custom";
 
 export const activator: Activator = {
@@ -60,5 +61,12 @@ export const activator: Activator = {
         func: spotifyRemoveAds,
       },
     ]
+  },
+  raycast: {
+    base: "https://backend.raycast.com/api/v1",
+    activate: {
+      base: "me",
+      func: raycastActivate,
+    }
   }
 };
