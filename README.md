@@ -27,6 +27,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 - [x] ~~Craft~~ (invalid now.)
 - [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告)
+- [x] Raycast (WIP.) `注：即使你使用了激活脚本，Raycast 的 Pro 功能还是无法使用的，如 AI 功能，需要后续转接接口，不使用 Raycast 的 API。`
 
 
 ## 安装
