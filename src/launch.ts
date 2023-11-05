@@ -1,4 +1,5 @@
 import { activator } from "./modules";
+import { buildResponse, httpClient } from "./utils";
 const url = $request.url;
 
 /**
@@ -48,6 +49,30 @@ export function launch() {
       }
     }
   }
-  console.log(`[activator] ${url}`);
+  console.log(`[activator] ${url} is not matched`);
+  returnDefaultResponse();
   $done();
+  return;
+}
+
+function returnDefaultResponse() {
+  console.log(`[activator] returnDefaultResponse: ${url} - ${$request.method.toLowerCase()}`)
+  // @ts-expect-error
+  httpClient[$request.method.toLowerCase()]({
+    url: $request.url,
+    headers: $request.headers
+  }, (err: any, response: any, _data: any) => {
+    if (!_data) {
+      console.log("returnDefaultResponse: _data is null", err);
+      buildResponse({
+        status: 500,
+        body: {}
+      })
+    }
+    buildResponse({
+      status: response.status,
+      headers: response.headers,
+      body: _data
+    })
+  })
 }
