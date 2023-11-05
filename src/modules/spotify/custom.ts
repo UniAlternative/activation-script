@@ -21,7 +21,10 @@ export function spotifyRemoveAds() {
   httpClient.get({ url: mp3 }, (error, response, data) => {
     if (error) {
       sendNotification("Spotify Remove Ads", "MP3 请求失败", error);
-      return buildResponse({ error });
+      return buildResponse({ 
+        status: 500,
+        body: error
+      });
     }
     buildResponse({
       status: response.status,
