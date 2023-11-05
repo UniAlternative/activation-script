@@ -4,13 +4,7 @@ import { buildResponse, sendNotification } from "../../utils";
  * @url https://backend.raycast.com/api/v1/me
  */
 export function raycastActivate() {
-  const body = $request.body;
-  if (!body) {
-    buildResponse({
-      header: $request.headers,
-      body: $request.body
-    })
-  }
+  const body = $request.body || "{}";
   const data = JSON.parse(body);
   data["eligible_for_pro_features"] = true;
   data["has_active_subscription"] = true;
