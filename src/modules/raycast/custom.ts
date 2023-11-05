@@ -6,6 +6,7 @@ import { buildResponse } from "../../utils";
 export function raycastTrialStatus() {
   const body = $request.body || "{}";
   const data = JSON.parse(body);
+  data["organizations"] = [];
   data["trial_limits"] = {
     "commands_limit": 999,
     "quicklinks_limit": 999,
@@ -13,7 +14,6 @@ export function raycastTrialStatus() {
   };
 
   buildResponse({
-    header: $request.headers,
     body: data
   })
 }
