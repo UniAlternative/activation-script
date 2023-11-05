@@ -1,6 +1,6 @@
 # Activation Script
 
-The Activation Script is a script designed to generate configuration files and activate software licenses for the [Surge](https://nssurge.com/) proxy tool. These configuration files are used to intercept and manipulate network requests made by various applications, allowing you to automate the activation of software licenses through different services.
+Activation Script 是一个旨在生成配置文件和激活软件许可证的脚本。这些配置文件和脚本用于拦截和操作各种应用程序提出的网络请求，允许您通过不同服务自动激活软件许可证。基于 [Surge]（https://nssurge.com/）
 
 ## Table of Contents
 
@@ -10,66 +10,54 @@ The Activation Script is a script designed to generate configuration files and a
 - [Usage](#usage)
 - [Configuration](#configuration)
 - [License](#license)
-- [References](#references)
+- [Credits](#credits)
 
 
 ## Supported Activation Services
 
-The Activation Script currently supports the following activation services:
+目前支持以下激活服务：
 
 - [x] LemonSqueezy
 - [x] Paddle
 
 ## Supported Activation Applications
 
-The Activation Script currently supports the following applications:
+目前支持以下应用程序：
 
 - [x] ~~Craft~~ (invalid now.)
-- [x] Elpass **(You should use it with [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib))**
-- [x] Spotify (Remove AD audio only. You can block HTML AD by AdBlock, etc.)
+- [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
+- [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告)
 
 
-## Installation
+## 安装
 
-### Release
+Activation Script 不提供已编译的脚本和配置文件，您需要自行构建。
 
-1. Download all files from the latest release.
+### 构建 Activator
 
-```shell
-node generator.js gen -f # Inject configures to your Surge configures.
-node generator.js inject # Copy activator.js to your Surge configures.
-```
+1. 打开终端并导航到项目目录。
 
-#### Build the Activator
+2. 使用以下命令运行脚本：
 
-To use the Activation Script, follow these steps:
-
-1. Open a terminal and navigate to the project directory.
-
-2. Run the script with the following command:
 
    ```shell
    pnpm i
-   pnpm generate:file
+   pnpm generate gen
    ```
 
-   This command generates two important configuration sections: MITM (Man-In-The-Middle) and Script (in `activator.conf` file). These sections are used by Surge to intercept and manipulate network requests.
+   这个命令会生成两个重要的配置部分：MITM（中间人）和 Script（在 `activator.conf` 文件中）。这些部分由 Surge 用于拦截和操作网络请求。
 
-3. Copy the generated MITM and Script sections to your Surge configuration file. ( MITI Section is only needed modify the `hostname`)
+3. 复制生成的 MITM 和 Script 部分到 Surge 配置文件中。（MITM 部分只需要修改 `hostname`）
 
-4. Configure Surge to use the generated configuration file.
+4. 配置 Surge 使用经过修改的配置文件。
 
-5. Run the script to build the activator.
+5. 使用以下命令构建 Activator 并将其复制到 Surge 配置文件所在的目录中：
 
    ```shell
-   pnpm build
+   pnpm generate inject
    ```
 
-6. Copy the generated activator to the directory containing your Surge configuration file.
-
-7. Start Surge with the updated configuration and activator.
-
-Now, Surge will intercept specific network requests and execute activation functions when triggered.
+现在，Surge 将拦截特定的网络请求，并在触发时执行激活函数。
 
 ## Configuration
 
@@ -103,7 +91,7 @@ yyyy-base = type=http-request,pattern=^https://v3.yyyy.com/3.2/license,requires-
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-## References
+## Credits
 
 - [Surge](https://nssurge.com/)
 - [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
