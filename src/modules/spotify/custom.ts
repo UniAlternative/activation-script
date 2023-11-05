@@ -15,6 +15,7 @@ import { buildResponse, httpClient, sendNotification } from "../../utils";
  * @redirect https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3
  */
 export function spotifyRemoveAds() {
+  sendNotification("Spotify Remove Ads", "请求 MP3", "");
   const mp3 = "https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3";
 
   httpClient.get({ url: mp3 }, (error, response, data) => {

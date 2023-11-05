@@ -48,7 +48,7 @@ export const activator: Activator = {
   },
   spotify: {
     base: [
-      "https://audio-ak-spotify-com.akamaized.net",
+      // "https://audio-ak-spotify-com.akamaized.net", // 这个好像是真正的音乐获取地址...
       "https://audio-akp-quic-spotify-com.akamaized.net",
       "https://audio-fa.scdn.co",
       "https://creativeservice-production.scdn.co",
