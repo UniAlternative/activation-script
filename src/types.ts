@@ -25,7 +25,10 @@ export interface IHttpClientProps {
 
 export type IHttpClientCallback = (
   error: string,
-  response: Record<string, any>,
+  response: {
+    status: number,
+    headers: Record<string, string>,
+  },
   data: string
 ) => any;
 
