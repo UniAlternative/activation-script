@@ -24,13 +24,13 @@ export const activator: Activator = {
       func: paddleVerify,
     },
   },
-  craft: {
-    base: "https://api.craft.do/auth/v3",
-    activate: {
-      base: "profile",
-      func: craftActivate,
-    },
-  },
+  // craft: {
+  //   base: "https://api.craft.do/auth/v3",
+  //   activate: {
+  //     base: "profile",
+  //     func: craftActivate,
+  //   },
+  // },
   elpass: {
     base: "https://api.elpass.app/device",
     activate: {
