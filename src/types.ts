@@ -2,6 +2,7 @@ type ActivatorObjFunc =
   | {
       base: string;
       func: ActivatorFunction;
+      type?: "http-request" | "http-response";
     }
   | ActivatorFunction;
 export interface Activator {

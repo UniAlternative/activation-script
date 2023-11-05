@@ -6,7 +6,7 @@ import { Command } from "commander";
 import { execSync } from "node:child_process";
 
 const hostnames = Array<string>();
-const scripts = Array<{ name: string; pattern: string }>();
+const scripts = Array<{ name: string; pattern: string; type: string }>();
 
 const MITM = (hostnames: any[]) => {
   return `
@@ -14,12 +14,12 @@ const MITM = (hostnames: any[]) => {
 hostname = ${hostnames.join(", ")}
 `;
 };
-const Script = (scripts: any[]) => {
+const Script = (_scripts: typeof scripts) => {
   return `
 [Script]
-${scripts
-  .map((script: { name: any; pattern: any }) => {
-    return `${script.name} = type=http-request,pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=activator.js \n`;
+${_scripts
+  .map((script) => {
+    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=activator.js \n`;
   })
   .join("")}
 `;
@@ -50,6 +50,7 @@ function addConfig(module: string, base: string) {
           name: `${module}-${custom.base}${afterfix}`,
           pattern: `${base}/${custom.base}`, // 这个地方应该用传入的 base，而不是 activator[module].base
           // 因为 activator[module].base 可能是数组，而这里只需要一个 base
+          type: custom.type || "http-request",
         });
       }
       continue;
@@ -58,11 +59,13 @@ function addConfig(module: string, base: string) {
       scripts.push({
         name: `${module}-${key}${afterfix}`,
         pattern: `${base}/${(activator[module] as any)[key].base}`,
+        type: (activator[module] as any)[key].type || "http-request",
       });
     } else {
       scripts.push({
         name: `${module}-${key}${afterfix}`,
         pattern: `${base}/${key}`,
+        type: "http-request",
       });
     }
   }

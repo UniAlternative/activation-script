@@ -8,6 +8,10 @@ declare global {
   var $done: (props?: any) => void;
   var $notification: any;
   var $httpClient: any;
+  var $response: {
+    headers: any;
+    body: string;
+  };
 }
 
 export { }
