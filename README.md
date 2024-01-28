@@ -41,7 +41,7 @@ Activation Script 不提供已编译的脚本和配置文件，您需要自行�
 
 ### 构建 Activator
 
-1. 打开终端并导航到项目目录。
+1. 打开终端并克隆此项目至某一目录。
 
 2. 使用以下命令运行脚本：
 
@@ -65,33 +65,16 @@ Activation Script 不提供已编译的脚本和配置文件，您需要自行�
 
 现在，Surge 将拦截特定的网络请求，并在触发时执行激活函数。
 
-## Configuration
+### 进阶
 
-### MITM Section
-
-The MITM (Man-In-The-Middle) section specifies the hostnames for which you want to intercept network traffic. The script generates wildcard entries for the main domain of each supported activation service.
-
-Example MITM Section:
+你可以使用以下命令快速修补 Surge 配置文件：
 
 ```shell
-# PLEASE! DO NOT USE THIS CODE. IT IS JUST AN EXAMPLE.
-[MITM]
-# You should only modify the hostname.
-hostname = *.xxxx.com, *.yyyy.com
+pnpm generate patch
 ```
 
-### Script Section
-
-The Script section contains rules for intercepting and executing activation functions based on URL patterns. Each activation service has associated activation and validation functions that are executed when specific URLs are matched.
-
-Example Script Section:
-
-```shell
-# PLEASE! DO NOT USE THIS CODE. IT IS JUST AN EXAMPLE.
-[Script]
-xxxx-base = type=http-request,pattern=^https://api.xxxx.com/v1/licenses,requires-body=1,max-size=0,debug=1,script-path=activator.js
-yyyy-base = type=http-request,pattern=^https://v3.yyyy.com/3.2/license,requires-body=1,max-size=0,debug=1,script-path=activator.js
-```
+> [!WARNING]
+> 此命令会直接覆盖 Surge 配置文件中的 Script 部分，如果你先前已经修改过 Script 部分，请先备份 Surge 配置文件。
 
 ## License
 
