@@ -1,7 +1,7 @@
 {
   "name": "activation-scripts",
   "author": "wibus-wee <wibus@qq.com>",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "scripts": {
     "build:main": "rollup -c && cp dist/main.js activator.js",
