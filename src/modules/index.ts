@@ -68,6 +68,7 @@ export const activator: Activator = {
     activate: {
       base: "me",
       func: raycastActivate,
+      type: "http-response",
     },
     customs: [
       {

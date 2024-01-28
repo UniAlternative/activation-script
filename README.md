@@ -2,6 +2,10 @@
 
 Activation Script 是一个旨在生成配置文件和激活软件许可证的脚本。这些配置文件和脚本用于拦截和操作各种应用程序提出的网络请求，允许您通过不同服务自动激活软件许可证。基于 [Surge](https://nssurge.com/)
 
+<pre align="center">
+🧪 Working in Progress
+</pre>
+
 ## Table of Contents
 
 - [Supported Activation Services](#supported-activation-services)

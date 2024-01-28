@@ -26,12 +26,14 @@ ${_scripts
 };
 
 function addConfig(module: string, base: string) {
+  console.log(`[I] Generating config for ${module}... Base: ${base}`);
+  
   const url = new URL(base);
   const hostname = url.hostname;
   const parts = hostname.split(".");
   const mainDomain = parts.slice(-2).join("."); // 拿到根域名
   // 检查一下 hostnames 里面有没有这个根域名，没有的话就加进去
-  if (!hostnames.includes(`*.${mainDomain}`)) {
+  if (!hostnames.includes(`${mainDomain}`)) {
     hostnames.push(`*.${mainDomain}`);
   }
   // 设一个 afterfix，用于处理 base 为数组的情况，防止 name 重复
@@ -223,6 +225,11 @@ async function action(str: any, options: any) {
   return;
 }
 
+/**
+ * Injects the activator.js file into the specified config directory.
+ * The user is prompted to select the config directory or provide a custom path.
+ * If the activator.js file already exists in the config directory, the user is prompted to overwrite it.
+ */
 async function inject() {
   let rootPath = process.cwd();
   let configPath = undefined;
