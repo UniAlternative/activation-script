@@ -1,4 +1,10 @@
-export function lemonsqueezyValidate($request: any) {
-  const url = $request.url;
-  if (url !== "https://api.lemonsqueezy.com/v1/licenses/validate") return;
+import { buildResponse } from "../../utils";
+
+export function lemonsqueezyValidate() {
+  buildResponse({
+    body: {
+      valid: true,
+      error: null,
+    },
+  });
 }
