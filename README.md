@@ -31,7 +31,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 - [x] Screen Studio (LemonSqueezy) `🪄 Stable`
 - [x] AlDente Pro (Paddle) `🪄 Stable`
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
-- [x] Raycast （注：即使你使用了激活脚本，Raycast 的 Pro 功能还是无法使用的，如 AI 功能，需要后续转接接口，不使用 Raycast 的 API。）`🪓 WIP`
+- [x] Raycast Pro Plan **(With Pro plan features)** `🧪 Beta` - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
 - [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
 
 
@@ -75,6 +75,14 @@ pnpm generate patch
 
 > [!WARNING]
 > 此命令会直接覆盖 Surge 配置文件中的 Script 部分，如果你先前已经修改过 Script 部分，请先备份 Surge 配置文件。
+
+## 特殊说明
+
+### Raycast Pro Plan
+
+> Thanks to @zhuozhiyongde.
+
+为了可以正常使用 Raycast Pro Plan，你需要在 `Surge -> HTTP -> 捕获 -> 捕获 MITM 覆写` 中修改 MITM 主机名，将最后一行 `*` 取消勾选。
 
 ## License
 
