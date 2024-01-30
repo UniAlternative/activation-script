@@ -1,6 +1,7 @@
 import path, { parse } from "node:path";
 import fs from "node:fs";
 import prompts from "prompts";
+import { SurgeConfigParser } from "../parser";
 
 /**
  * AI Manager
@@ -78,8 +79,14 @@ export async function aiManager() {
       }),
     },
   ]).then((res: { config: string }) => {
-    const _configPath = path.join(configPath, res.config);
-    // const aiConfig = parseAIConfig(_configPath);
-    // console.log(aiConfig);
+    const _config = fs.readFileSync(path.join(configPath, res.config), "utf-8");
+    const config = new SurgeConfigParser(_config);
+    const aiConfig = config.getSection("AI");
+    if (aiConfig) {
+      console.log("AI config found.");
+      console.log(aiConfig);
+    } else {
+      console.log("No AI config found.");
+    }
   });
 }
