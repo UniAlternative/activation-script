@@ -93,3 +93,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Surge](https://nssurge.com/)
 - [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
 - [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
+- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy/tree/main)
