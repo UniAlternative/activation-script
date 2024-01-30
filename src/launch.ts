@@ -51,7 +51,7 @@ export function launch() {
   }
   console.log(`[activator] ${url} is not matched`);
   returnDefaultResponse();
-  $done();
+  // $done();
   return;
 }
 
@@ -69,10 +69,11 @@ function returnDefaultResponse() {
         body: {}
       })
     }
-    buildResponse({
+    const res = {
       status: response.status,
       headers: response.headers,
       body: _data
-    })
+    }
+    buildResponse(res);
   })
 }
