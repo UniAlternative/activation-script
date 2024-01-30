@@ -42,6 +42,7 @@ export class SurgeConfigParser {
   }
 
   private parseValue(value: string): any {
+    value = value.split('#')[0].trim();
     if (value.includes(',')) {
       return value.split(',').map((item) => item.trim());
     } else if (value.toLowerCase() === 'true' || value.toLowerCase() === 'false') {
