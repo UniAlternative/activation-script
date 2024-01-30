@@ -84,6 +84,23 @@ pnpm generate patch
 
 为了可以正常使用 Raycast Pro Plan，你需要在 `Surge -> HTTP -> 捕获 -> 捕获 MITM 覆写` 中修改 MITM 主机名，将最后一行 `*` 取消勾选。
 
+### Raycast AI
+
+Raycast AI 功能是 Pro Plan 的一部分，但必然的，Raycast 有自己的后端验证机制，因此此处的实现将会是一个不完美的解决方案。
+
+我们转接了 Raycast 的 API 请求，但是由于 Surge 自身的限制，我们无法实现 SSE（Server-Sent Events）的转接，这将导致最终无法实现流式输出。
+
+目前提供了 3 种转接方式：
+
+- Official Endpoint
+- Custom OpenAI Endpoint (Azure)
+- Gemini Pro
+
+> [!WARNING]
+> 由于 Surge 限制，我们无法实现 SSE 的转接，因此无法实现流式输出。
+
+
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
