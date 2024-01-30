@@ -5,6 +5,7 @@ import { activator } from "./modules";
 import { Command } from "commander";
 import { execSync } from "node:child_process";
 import { aiManager } from "./generator/aiManager";
+import { inject } from "./generator/inject";
 
 const hostnames = Array<string>();
 const scripts = Array<{ name: string; pattern: string; type: string }>();
@@ -252,104 +253,6 @@ async function action(str: any, options: any) {
     console.log("Config file generated.");
   }
   return;
-}
-
-/**
- * Injects the activator.js file into the specified config directory.
- * The user is prompted to select the config directory or provide a custom path.
- * If the activator.js file already exists in the config directory, the user is prompted to overwrite it.
- */
-async function inject() {
-  let rootPath = process.cwd();
-  let configPath = undefined;
-  console.log("[*] Inject function. You are in ", rootPath);
-  await prompts([
-    {
-      type: "select",
-      name: "config",
-      message: "Where is your config file?",
-      choices: [
-        { title: "Current directory", value: "current" },
-        {
-          title: "Surge config directory",
-          value: "surge",
-        },
-        { title: "Custom", value: "custom" },
-      ],
-    },
-  ])
-    .then(async (res: { config: string }) => {
-      if (res.config === "current") {
-        configPath = process.cwd();
-      } else if (res.config === "surge") {
-        configPath = path.join(
-          process.env.HOME as string,
-          "Library/Application Support/Surge/Profiles"
-        );
-      } else {
-        await prompts([
-          {
-            type: "text",
-            name: "config",
-            message: "Please input your config file path",
-          },
-        ])
-          .then((res: { config: string }) => {
-            configPath = res.config;
-          })
-          .catch((err: any) => {
-            console.log(err);
-          });
-      }
-    })
-    .catch((err: any) => {
-      console.log(err);
-    });
-  if (!configPath) {
-    return;
-  }
-
-  if (!fs.existsSync(path.join(rootPath, "package.json"))) {
-    if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
-      console.error("[E] activator.js not found. Please download it first.");
-      return;
-    }
-  } else {
-    console.log(
-      "[I] package.json found. You are using generator in source code."
-    );
-    console.log("[I] activator.js building...");
-    execSync("pnpm build");
-    if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
-      console.error("[E] activator.js bundle not found. Build failed.");
-      return;
-    }
-  }
-
-  if (
-    fs.existsSync(path.join(configPath as unknown as string, "activator.js"))
-  ) {
-    const answer = await prompts([
-      {
-        type: "text",
-        name: "answer",
-        message: "activator.js already exists. Overwrite? (y/n)",
-      },
-    ]);
-    if (answer.answer === "n") {
-      console.log("[I] Cancelled.");
-      return;
-    } else {
-      fs.rmSync(path.join(configPath as unknown as string, "activator.js"));
-    }
-  }
-
-  console.log("[I] Injecting activator.js... to", configPath);
-  fs.copyFileSync(
-    path.join(rootPath, "activator.js"),
-    path.join(configPath as unknown as string, "activator.js")
-  );
-  console.log("[I] Injected activator.js.");
 }
 
 const program = new Command();

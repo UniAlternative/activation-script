@@ -1,3 +1,5 @@
+import { AIConfig } from "./src/types";
+
 declare global {
   var $request: {
     url: string;
@@ -12,6 +14,9 @@ declare global {
     headers: any;
     body: string;
   };
+  var config: {
+    ai: AIConfig;
+  }
 }
 
 export { }

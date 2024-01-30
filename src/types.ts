@@ -16,7 +16,6 @@ export interface Activator {
 
 type ActivatorFunction = Function;
 
-
 export interface IHttpClientProps {
   url: string;
   headers?: Record<string, string>;
@@ -26,8 +25,8 @@ export interface IHttpClientProps {
 export type IHttpClientCallback = (
   error: string,
   response: {
-    status: number,
-    headers: Record<string, string>,
+    status: number;
+    headers: Record<string, string>;
   },
   data: string
 ) => any;
@@ -37,4 +36,12 @@ export type IHttpClient = {
     props: IHttpClientProps,
     callback: IHttpClientCallback
   ) => void;
+};
+
+type AIType = "openai" | "custom" | "gemini"
+export type AIConfig = {
+  type: AIType | AIType[];
+  openAIKey?: string;
+  geminiKey?: string;
+  endpoint?: string;
 };
