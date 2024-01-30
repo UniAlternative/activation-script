@@ -13,23 +13,23 @@ function transformToString(obj: any) {
  * @param props 响应体属性
  * @description 该函数将会自动将对象转换为 JSON 字符串，因此你可以直接传入对象
  */
-export function buildResponse(props: { 
+export function buildResponse(props: {
   headers?: Record<string, string>;
   body?: Record<string, any> | string;
   status?: number;
-  response?: {
-    status?: number;
-    headers?: Record<string, string>;
-    body?: Record<string, string> | string;
-  };
+  // response?: {
+  //   status?: number;
+  //   headers?: Record<string, string>;
+  //   body?: Record<string, string> | string;
+  // };
  }) {
   if (props.body) {
     props.body = transformToString(props.body);
   }
   $done({
-    response: {
+    // response: {
       ...props,
-    },
+    // },
   });
 }
 
