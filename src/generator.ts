@@ -4,6 +4,7 @@ import prompts from "prompts";
 import { activator } from "./modules";
 import { Command } from "commander";
 import { execSync } from "node:child_process";
+import { aiManager } from "./generator/aiManager";
 
 const hostnames = Array<string>();
 const scripts = Array<{ name: string; pattern: string; type: string }>();
@@ -361,9 +362,8 @@ program
   .option("-o, --out <path>", "output path")
   .option("-f, --fix", "fix config file")
   .action(action);
-
 program.command("inject").description("inject activator").action(inject);
-
 program.command("patch").description("patch config").action(patch);
 
+program.command("ai").description("ai manager").action(aiManager);
 program.parse();
