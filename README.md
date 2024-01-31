@@ -6,17 +6,6 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 🧪 Working in Progress
 </pre>
 
-## Table of Contents
-
-- [Supported Activation Services](#supported-activation-services)
-- [Supported Activation Applications](#supported-activation-applications)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [License](#license)
-- [Credits](#credits)
-
-
 ## Supported Activation Services
 
 目前支持以下激活服务：
@@ -31,7 +20,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 - [x] Screen Studio (LemonSqueezy) `🪄 Stable`
 - [x] AlDente Pro (Paddle) `🪄 Stable`
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
-- [x] Raycast Pro Plan **(With Pro plan features)** `🧪 Beta` - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
+- [x] Raycast Pro Plan **(Without Pro plan features)** `🧪 Beta` - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
 - [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
 
 
@@ -83,6 +72,8 @@ pnpm generate patch
 > Thanks to @zhuozhiyongde.
 
 为了可以正常使用 Raycast Pro Plan，你需要在 `Surge -> HTTP -> 捕获 -> 捕获 MITM 覆写` 中修改 MITM 主机名，将最后一行 `*` 取消勾选。
+
+另外，这仅仅是获得了 Pro Plan 的标识，Pro Plan 的功能如 Quick AI 等依旧是不可用的（ Raycast 后端验证）需要后续开发出 alternatives 来实现。
 
 ## License
 
