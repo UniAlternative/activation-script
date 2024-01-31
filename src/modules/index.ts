@@ -7,7 +7,7 @@ import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
 import { paddleVerify } from "./paddle/validate";
 import { raycastActivate } from "./raycast/activate";
-import { raycastTrialStatus } from "./raycast/custom";
+import { raycastAiModels, raycastTrialStatus } from "./raycast/custom";
 import { spotifyRemoveAds } from "./spotify/custom";
 
 export const activator: Activator = {
@@ -74,6 +74,10 @@ export const activator: Activator = {
       {
         base: "me/trial_status",
         func: raycastTrialStatus,
+      },
+      {
+        base: "ai/models",
+        func: raycastAiModels,
       }
     ]
   }

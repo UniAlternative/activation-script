@@ -25,7 +25,7 @@ function activeWithResponse() {
       eligible_for_ai_citations: true,
       eligible_for_developer_hub: true,
       eligible_for_application_settings: true,
-      publishing_bot: true,
+      // publishing_bot: true,
       has_pro_features: true,
       has_better_ai: true,
       can_upgrade_to_pro: false,
