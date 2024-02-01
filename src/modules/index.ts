@@ -78,6 +78,7 @@ export const activator: Activator = {
       {
         base: "ai/models",
         func: raycastAiModels,
+        type: "http-response"
       }
     ]
   }
