@@ -79,11 +79,11 @@ export const activator: Activator = {
         base: "ai/chat_completions",
         func: raycastAICompletionsRequest,
       },
-      // {
-      //   base: "ai/chat_completions",
-      //   func: raycastAICompletionsResponse,
-      //   type: "http-response"
-      // }
+      {
+        base: "ai/chat_completions",
+        func: raycastAICompletionsResponse,
+        type: "http-response"
+      }
     ]
   }
 };

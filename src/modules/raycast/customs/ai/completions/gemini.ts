@@ -6,6 +6,10 @@ import { GEMINI_OFFICIAL_ENDPOINT } from "../../../constants";
  * @description For Gemini
  */
 export function raycastAICompletionsWithGemini() {
+  if ($script.name = "raycast-ai/chat_completions-backend.raycast.com/response")  {
+    raycastAICompletionsResponseWithGemini();
+    return;
+  }
   let body = JSON.parse($request.body);
   body = {
     ...body,
@@ -32,31 +36,51 @@ export function raycastAICompletionsWithGemini() {
     }
   });
   body = {
-    contents: [{
-      parts: [{
-        text: google_message,
-      }]
-    }]
+    contents: [
+      {
+        parts: [
+          {
+            text: google_message,
+          },
+        ],
+      },
+    ],
   };
   body = JSON.stringify(body);
-  httpClient.post({
-    url: $request.url,
-    body,
-  }, (error, _, data) => {
-    if (error) {
-      buildResponse({
-        body: {
-          text: "",
-          finish_reason: error,
-        },
-        status: 500,
-      })
-      return;
-    }
-    buildResponse({
-      body: {
-        text: data
+  console.log(body);
+  httpClient.post(
+    {
+      url: $request.url,
+      body,
+    },
+    (error, _, data) => {
+      let res = {};
+      const dataJson = JSON.parse(data);
+      if (dataJson.error || error) {
+        res = {
+          body: {
+            text: "",
+            finish_reason: dataJson.error ? dataJson.error.message : error,
+          },
+          status: dataJson.error ? dataJson.error.code : 500,
+        };
+        $done();
+        return;
       }
-    })
-  })
+      res = {
+        body: {
+          text: data,
+        },
+      };
+      $done();
+      $persistentStore.write(JSON.stringify(res), "raycast_ai_completions_gemini_response");
+    }
+  );
+}
+
+export function raycastAICompletionsResponseWithGemini() {
+  const geminiRes = JSON.parse($persistentStore.read("raycast_ai_completions_gemini_response"));
+  if (geminiRes) {
+    buildResponse(geminiRes);
+  }
 }
