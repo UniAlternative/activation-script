@@ -49,3 +49,6 @@ export const RAYCAST_GEMINI_PRO_ONLY_MODELS = {
   "commands": "gemini-pro",
   "api": "gemini-pros",
 }
+
+export const OPENAI_OFFICIAL_ENDPOINT = "https://api.openai.com/v1/chat/completions";
+export const GEMINI_OFFICIAL_ENDPOINT = "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent"

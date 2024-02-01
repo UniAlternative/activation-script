@@ -1,5 +1,4 @@
 import { Activator } from "../types";
-import { craftActivate } from "./craft/activate";
 import { elpassActivateWithKey } from "./elpass/activate";
 import { elpassInit, elpassManagement } from "./elpass/custom";
 import { lemonSqueezyActive } from "./lemon-squeezy/activate";
@@ -7,7 +6,10 @@ import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
 import { paddleVerify } from "./paddle/validate";
 import { raycastActivate } from "./raycast/activate";
-import { raycastAiModels, raycastTrialStatus } from "./raycast/custom";
+import { raycastAICompletionsRequest, raycastAICompletionsResponse } from "./raycast/customs/ai/completions";
+
+import { raycastAiModels } from "./raycast/customs/ai/models";
+import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from "./spotify/custom";
 
 export const activator: Activator = {
@@ -24,13 +26,6 @@ export const activator: Activator = {
       func: paddleVerify,
     },
   },
-  // craft: {
-  //   base: "https://api.craft.do/auth/v3",
-  //   activate: {
-  //     base: "profile",
-  //     func: craftActivate,
-  //   },
-  // },
   elpass: {
     base: "https://api.elpass.app/device",
     activate: {
@@ -79,7 +74,16 @@ export const activator: Activator = {
         base: "ai/models",
         func: raycastAiModels,
         type: "http-response"
-      }
+      },
+      {
+        base: "ai/chat_completions",
+        func: raycastAICompletionsRequest,
+      },
+      // {
+      //   base: "ai/chat_completions",
+      //   func: raycastAICompletionsResponse,
+      //   type: "http-response"
+      // }
     ]
   }
 };
