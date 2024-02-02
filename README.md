@@ -79,16 +79,10 @@ pnpm generate patch
 
 Raycast AI 功能是 Pro Plan 的一部分，但必然的，Raycast 有自己的后端验证机制，因此此处的实现将会是一个不完美的解决方案。
 
-我们转接了 Raycast 的 API 请求，但是由于 Surge 自身的限制，我们无法实现 SSE（Server-Sent Events）的转接，这将导致最终无法实现流式输出。
-
-目前提供了 3 种转接方式：
-
-- Official Endpoint
-- Custom OpenAI Endpoint (Azure)
-- Gemini Pro
-
 > [!WARNING]
-> 由于 Surge 限制，我们无法实现 SSE 的转接，因此无法实现流式输出。
+> 由于 Surge 限制，在 Surge 内的 runtime 做脚本无法实现 SSE，这对体验有很大很大的影响，以及还有一些实现上的问题，因此我打算不做内置的 AI 支持了
+>
+> 如果想使用此功能，建议参考 [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge) 搭建自己的后端服务。同时，这个项目也实现了 Raycast Pro Plan 的其他功能。
 
 ## License
 
