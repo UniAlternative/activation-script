@@ -75,6 +75,15 @@ pnpm generate patch
 
 另外，这仅仅是获得了 Pro Plan 的标识，Pro Plan 的功能如 Quick AI 等依旧是不可用的（ Raycast 后端验证）需要后续开发出 alternatives 来实现。
 
+### Raycast AI
+
+Raycast AI 功能是 Pro Plan 的一部分，但必然的，Raycast 有自己的后端验证机制，因此此处的实现将会是一个不完美的解决方案。
+
+> [!WARNING]
+> 由于 Surge 限制，在 Surge 内的 runtime 做脚本无法实现 SSE，这对体验有很大很大的影响，以及还有一些实现上的问题，因此我打算不做内置的 AI 支持了
+>
+> 如果想使用此功能，建议参考 [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge) 搭建自己的后端服务。同时，这个项目也实现了 Raycast Pro Plan 的其他功能。
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
@@ -84,3 +93,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Surge](https://nssurge.com/)
 - [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
 - [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
+- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy/tree/main)
