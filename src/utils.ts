@@ -14,7 +14,6 @@ function transformToString(obj: any) {
  * @description 该函数将会自动将对象转换为 JSON 字符串，因此你可以直接传入对象
  */
 export function buildResponse(props: {
-  url?: string;
   headers?: Record<string, string>;
   body?: Record<string, any> | string;
   status?: number;
