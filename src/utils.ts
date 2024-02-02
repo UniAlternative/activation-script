@@ -11,25 +11,46 @@ function transformToString(obj: any) {
  * 构建 Surge 响应体
  *
  * @param props 响应体属性
- * @description 该函数将会自动将对象转换为 JSON 字符串，因此你可以直接传入对象
+ * @description Surge 会直接返回 HTTP 响应，而不进行真实的网络操作
  */
 export function buildResponse(props: {
   headers?: Record<string, string>;
   body?: Record<string, any> | string;
   status?: number;
-  // response?: {
-  //   status?: number;
-  //   headers?: Record<string, string>;
-  //   body?: Record<string, string> | string;
-  // };
- }) {
+}) {
   if (props.body) {
     props.body = transformToString(props.body);
   }
   $done({
-    // response: {
+    response: {
       ...props,
-    // },
+    },
+  });
+}
+
+export function modifyRequest(props: {
+  url: string;
+  headers: Record<string, string>;
+  body?: Record<string, any> | string;
+  response?: {
+    status?: number;
+    headers?: Record<string, string>;
+    body?: Record<string, string> | string;
+  };
+}) {
+  if (props.body) {
+    props.body = transformToString(props.body);
+  }
+  if (props.response?.body) {
+    props.response.body = transformToString(props.response.body);
+  }
+  $done({
+    ...props,
+  });
+}
+export function modifyResponse(props: typeof $response & { status: number }) {
+  $done({
+    ...props,
   });
 }
 
@@ -63,5 +84,5 @@ for (let method of methods) {
     callback: IHttpClientCallback
   ) => {
     $httpClient[method](props, callback);
-  }
+  };
 }
