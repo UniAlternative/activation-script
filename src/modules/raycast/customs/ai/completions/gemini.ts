@@ -6,10 +6,6 @@ import { GEMINI_OFFICIAL_ENDPOINT } from "../../../constants";
  * @description For Gemini
  */
 export function raycastAICompletionsWithGemini() {
-  if ($script.name = "raycast-ai/chat_completions-backend.raycast.com/response")  {
-    raycastAICompletionsResponseWithGemini();
-    return;
-  }
   let body = JSON.parse($request.body);
   body = {
     ...body,
@@ -64,7 +60,6 @@ export function raycastAICompletionsWithGemini() {
           },
           status: dataJson.error ? dataJson.error.code : 500,
         };
-        $done();
         return;
       }
       res = {
@@ -72,15 +67,7 @@ export function raycastAICompletionsWithGemini() {
           text: data,
         },
       };
-      $done();
-      $persistentStore.write(JSON.stringify(res), "raycast_ai_completions_gemini_response");
+      buildResponse(res);
     }
   );
-}
-
-export function raycastAICompletionsResponseWithGemini() {
-  const geminiRes = JSON.parse($persistentStore.read("raycast_ai_completions_gemini_response"));
-  if (geminiRes) {
-    buildResponse(geminiRes);
-  }
 }

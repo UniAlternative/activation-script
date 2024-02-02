@@ -1,4 +1,4 @@
-import { raycastAICompletionsResponseWithGemini, raycastAICompletionsWithGemini } from "./gemini";
+import { raycastAICompletionsWithGemini } from "./gemini";
 import { raycastAICompletionsWithOpenAI } from "./openai";
 
 export function raycastAICompletionsRequest() {
@@ -7,17 +7,6 @@ export function raycastAICompletionsRequest() {
       return raycastAICompletionsWithOpenAI();
     case "gemini":
       return raycastAICompletionsWithGemini();
-    default:
-      return raycastAICompletionsWithOpenAI();
-  }
-}
-
-export function raycastAICompletionsResponse() {
-  switch (config.ai.type) {
-    case "openai":
-      return raycastAICompletionsWithOpenAI();
-    case "gemini":
-      return raycastAICompletionsResponseWithGemini();
     default:
       return raycastAICompletionsWithOpenAI();
   }
