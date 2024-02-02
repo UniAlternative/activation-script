@@ -9,7 +9,7 @@ export function raycastAICompletionsWithGemini() {
   let body = JSON.parse($request.body);
   body = {
     ...body,
-    stream: false,
+    // stream: false,
   };
   const endpoint = config.ai.endpoint || GEMINI_OFFICIAL_ENDPOINT;
   $request.url = `${endpoint}?key=${config.ai.geminiKey}`;
@@ -43,11 +43,14 @@ export function raycastAICompletionsWithGemini() {
     ],
   };
   body = JSON.stringify(body);
-  console.log(body);
+  console.log("[Gemini] Request Body: ", body);
   httpClient.post(
     {
       url: $request.url,
       body,
+      headers: {
+        'Content-Type': 'application/json'
+      }
     },
     (error, _, data) => {
       let res = {};
@@ -55,18 +58,23 @@ export function raycastAICompletionsWithGemini() {
       if (dataJson.error || error) {
         res = {
           body: {
-            text: "",
-            finish_reason: dataJson.error ? dataJson.error.message : error,
+            // data: {
+              text: "",
+              finish_reason: dataJson.error ? dataJson.error.message : error,
+            // }
           },
           status: dataJson.error ? dataJson.error.code : 500,
         };
-        return;
+      } else {
+        const model_output = dataJson.candidates[0].content.parts[0].text;
+        res = {
+          body: {
+            // data: {
+              text: model_output,
+            // }
+          },
+        };
       }
-      res = {
-        body: {
-          text: data,
-        },
-      };
       buildResponse(res);
     }
   );

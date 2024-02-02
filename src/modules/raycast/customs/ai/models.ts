@@ -1,4 +1,4 @@
-import { buildResponse } from "../../../../utils";
+import { buildResponse, modifyResponse } from "../../../../utils";
 import { RAYCAST_DEFAULT_MODELS, RAYCAST_AI_SERVICE_PROVIDERS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from "../../constants";
 
 /**
@@ -18,7 +18,7 @@ export function raycastAiModels() {
       default_models = RAYCAST_DEFAULT_MODELS;
       break;
   }
-  buildResponse({
+  modifyResponse({
     headers: $response.headers,
     body: {
       ...data,

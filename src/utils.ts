@@ -48,7 +48,14 @@ export function modifyRequest(props: {
     ...props,
   });
 }
-export function modifyResponse(props: typeof $response & { status: number }) {
+export function modifyResponse(props: {
+  status?: number;
+  headers?: Record<string, string>;
+  body?: string;
+}) {
+  if (props.body) {
+    props.body = transformToString(props.body);
+  }
   $done({
     ...props,
   });

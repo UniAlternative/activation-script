@@ -6,7 +6,7 @@ import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
 import { paddleVerify } from "./paddle/validate";
 import { raycastActivate } from "./raycast/activate";
-import { raycastAICompletionsRequest, raycastAICompletionsResponse } from "./raycast/customs/ai/completions";
+import { raycastAICompletionsRequest } from "./raycast/customs/ai/completions";
 
 import { raycastAiModels } from "./raycast/customs/ai/models";
 import { raycastTrialStatus } from "./raycast/customs/custom";
@@ -79,11 +79,6 @@ export const activator: Activator = {
         base: "ai/chat_completions",
         func: raycastAICompletionsRequest,
       },
-      {
-        base: "ai/chat_completions",
-        func: raycastAICompletionsResponse,
-        type: "http-response"
-      }
     ]
   }
 };

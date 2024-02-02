@@ -1,4 +1,4 @@
-import { buildResponse, httpClient, sendNotification } from "../../utils";
+import { buildResponse, httpClient, modifyResponse, sendNotification } from "../../utils";
 
 /**
  * @url https://backend.raycast.com/api/v1/me
@@ -11,7 +11,7 @@ function activeWithResponse() {
   // sendNotification("Raycast", "Activate Inject", "Catched - Response Pattern");
   let body = JSON.parse($response.body);
   console.log("raycastActivate: body", body);
-  buildResponse({
+  modifyResponse({
     headers: {
       ...$response.headers
     },
