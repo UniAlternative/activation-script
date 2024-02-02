@@ -6,9 +6,8 @@ import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
 import { paddleVerify } from "./paddle/validate";
 import { raycastActivate } from "./raycast/activate";
-import { raycastAICompletionsRequest } from "./raycast/customs/ai/completions";
-
-import { raycastAiModels } from "./raycast/customs/ai/models";
+// import { raycastAICompletionsRequest } from "./raycast/customs/ai/completions";
+// import { raycastAiModels } from "./raycast/customs/ai/models";
 import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from "./spotify/custom";
 
@@ -49,14 +48,14 @@ export const activator: Activator = {
       "https://audio-akp-quic-spotify-com.akamaized.net",
       "https://audio-fa.scdn.co",
       "https://creativeservice-production.scdn.co",
-      "https://audio4-fa.scdn.co"
+      "https://audio4-fa.scdn.co",
     ],
     customs: [
       {
         base: "*",
         func: spotifyRemoveAds,
       },
-    ]
+    ],
   },
   raycast: {
     base: "https://backend.raycast.com/api/v1",
@@ -70,15 +69,15 @@ export const activator: Activator = {
         base: "me/trial_status",
         func: raycastTrialStatus,
       },
-      {
-        base: "ai/models",
-        func: raycastAiModels,
-        type: "http-response"
-      },
-      {
-        base: "ai/chat_completions",
-        func: raycastAICompletionsRequest,
-      },
-    ]
-  }
+      // {
+      //   base: "ai/models",
+      //   func: raycastAiModels,
+      //   type: "http-response"
+      // },
+      // {
+      //   base: "ai/chat_completions",
+      //   func: raycastAICompletionsRequest,
+      // },
+    ],
+  },
 };
