@@ -58,7 +58,7 @@ export const activator: Activator = {
     ],
   },
   raycast: {
-    base: "https://backend.raycast.com",
+    base: "https://backend.raycast.com/api/v1",
     // activate: {
     //   base: "me",
     //   func: raycastActivate,
@@ -67,11 +67,24 @@ export const activator: Activator = {
     activate: {
       base: "*",
       func: () => {
+        if ($request.headers["x-raycast-unblock"]) {
+          console.log('Raycast Unblock request');
+          $done({
+            headers: {
+              ...$request.headers,
+              "x-raycast-unblock": undefined,
+            },
+          });
+          return;
+        }
         $done({
-          url: $request.url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000'),
+          url: $request.url.replace(
+            "https://backend.raycast.com",
+            "http://127.0.0.1:3000"
+          ),
           headers: $request.headers,
           body: $request.body,
-      });
+        });
       },
     },
     customs: [
