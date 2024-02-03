@@ -58,7 +58,7 @@ export const activator: Activator = {
     ],
   },
   raycast: {
-    base: "https://backend.raycast.com/api/v1",
+    base: "https://backend.raycast.com",
     // activate: {
     //   base: "me",
     //   func: raycastActivate,

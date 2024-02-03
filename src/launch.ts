@@ -27,13 +27,22 @@ export function launch() {
         if (key === "base") continue;
         if (Array.isArray((activator[module] as any)[key])) {
           for (let custom of (activator[module] as any)[key]) {
-            if (url === `${activator[module].base}/${custom.base}`) {
+            if (
+              custom.base === "*" &&
+              url.startsWith((activator[module] as any).base)
+            ) {
+              return custom.func();
+            } else if (url === `${activator[module].base}/${custom.base}`) {
               return custom.func();
             }
           }
           continue;
         }
         if (typeof (activator[module] as any)[key] === "object") {
+          // *
+          if ((activator[module] as any)[key].base === "*") {
+            return (activator[module] as any)[key].func();
+          }
           if (
             url ===
             `${activator[module].base}/${(activator[module] as any)[key].base}`
@@ -56,24 +65,29 @@ export function launch() {
 }
 
 function returnDefaultResponse() {
-  console.log(`[activator] returnDefaultResponse: ${url} - ${$request.method.toLowerCase()}`)
+  console.log(
+    `[activator] returnDefaultResponse: ${url} - ${$request.method.toLowerCase()}`
+  );
   // @ts-expect-error
-  httpClient[$request.method.toLowerCase()]({
-    url: $request.url,
-    headers: $request.headers
-  }, (err: any, response: any, _data: any) => {
-    if (!_data) {
-      console.log("returnDefaultResponse: _data is null", err);
-      buildResponse({
-        status: 500,
-        body: {}
-      })
+  httpClient[$request.method.toLowerCase()](
+    {
+      url: $request.url,
+      headers: $request.headers,
+    },
+    (err: any, response: any, _data: any) => {
+      if (!_data) {
+        console.log("returnDefaultResponse: _data is null", err);
+        buildResponse({
+          status: 500,
+          body: {},
+        });
+      }
+      const res = {
+        status: response.status,
+        headers: response.headers,
+        body: _data,
+      };
+      buildResponse(res);
     }
-    const res = {
-      status: response.status,
-      headers: response.headers,
-      body: _data
-    }
-    buildResponse(res);
-  })
+  );
 }
