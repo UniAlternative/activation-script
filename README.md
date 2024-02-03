@@ -86,6 +86,8 @@ pnpm generate patch
 
 > [!WARNING]
 > 请不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
+>
+> 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
 
 ## License
 
