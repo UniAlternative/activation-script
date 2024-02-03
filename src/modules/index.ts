@@ -59,16 +59,26 @@ export const activator: Activator = {
   },
   raycast: {
     base: "https://backend.raycast.com/api/v1",
+    // activate: {
+    //   base: "me",
+    //   func: raycastActivate,
+    //   type: "http-response",
+    // },
     activate: {
-      base: "me",
-      func: raycastActivate,
-      type: "http-response",
+      base: "*",
+      func: () => {
+        $done({
+          url: $request.url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000'),
+          headers: $request.headers,
+          body: $request.body,
+      });
+      },
     },
     customs: [
-      {
-        base: "me/trial_status",
-        func: raycastTrialStatus,
-      },
+      // {
+      //   base: "me/trial_status",
+      //   func: raycastTrialStatus,
+      // },
       // {
       //   base: "ai/models",
       //   func: raycastAiModels,

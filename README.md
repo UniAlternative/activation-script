@@ -20,7 +20,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 - [x] Screen Studio (LemonSqueezy) `🪄 Stable`
 - [x] AlDente Pro (Paddle) `🪄 Stable`
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
-- [x] Raycast Pro Plan **(Without Pro plan features)** `🧪 Beta` - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
+- [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
 - [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
 
 
@@ -73,16 +73,19 @@ pnpm generate patch
 
 为了可以正常使用 Raycast Pro Plan，你需要在 `Surge -> HTTP -> 捕获 -> 捕获 MITM 覆写` 中修改 MITM 主机名，将最后一行 `*` 取消勾选。
 
-另外，这仅仅是获得了 Pro Plan 的标识，Pro Plan 的功能如 Quick AI 等依旧是不可用的（ Raycast 后端验证）需要后续开发出 alternatives 来实现。
-
-### Raycast AI
-
-Raycast AI 功能是 Pro Plan 的一部分，但必然的，Raycast 有自己的后端验证机制，因此此处的实现将会是一个不完美的解决方案。
-
 > [!WARNING]
 > 由于 Surge 限制，在 Surge 内的 runtime 做脚本无法实现 SSE，这对体验有很大很大的影响，以及还有一些实现上的问题，因此我打算不做内置的 AI 支持了
->
-> 如果想使用此功能，建议参考 [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge) 搭建自己的后端服务。同时，这个项目也实现了 Raycast Pro Plan 的其他功能。
+
+如果想使用此功能，建议参考以下项目搭建自己的后端服务进行体验：
+
+- [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
+- [wibus-wee/raycast-unblock](https://github.com/wibus-wee/raycast-unblock)
+- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
+
+另外，你可能还需要前往 [./src/modules/index.ts#L71](./src/modules/index.ts#L71) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+
+> [!WARNING]
+> 请不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
 
 ## License
 
@@ -93,4 +96,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 - [Surge](https://nssurge.com/)
 - [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
 - [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
-- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy/tree/main)
+- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
