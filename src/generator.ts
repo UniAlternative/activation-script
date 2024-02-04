@@ -94,6 +94,7 @@ function generateScriptConfig(echo = false) {
 }
 
 async function patch() {
+  generateScriptConfig();
   let configPath = process.cwd();
   // 询问配置文件所在位置。1. 当前目录 2. /Users/<username>/Library/Application Support/Surge/Profiles 3. 自定义
   await prompts([
@@ -175,11 +176,12 @@ async function patch() {
         return;
       }
       const regexMITMHostnames = /hostname = (.*)/g;
-      const oldHostnames = regexMITMHostnames.exec(config) as RegExpExecArray;
-      console.log("[*] OldHostnames", oldHostnames[1]);
+      const oldHostnames = regexMITMHostnames.exec(config) as RegExpExecArray | null;
+      console.log("[*] OldHostnames", oldHostnames?.[1]);
       // 去重，合并
       const newHostnames = Array.from(
-        new Set([...oldHostnames[1].split(", "), ...hostnames])
+        // new Set([...oldHostnames[1].split(", "), ...hostnames])
+        new Set([...(oldHostnames?.[1] || "").split(", "), ...hostnames])
       );
       console.log("[*] NewHostnames", newHostnames);
 
