@@ -17,7 +17,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 
 目前支持以下应用程序：
 
-- [x] Screen Studio (LemonSqueezy) `🪄 Stable`
+- [x] Screen Studio (LemonSqueezy) `🪄 Stable` - [特殊说明 - Screen Studio](#screen-studio)
 - [x] AlDente Pro (Paddle) `🪄 Stable`
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
 - [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
@@ -66,6 +66,46 @@ pnpm generate patch
 > 此命令会直接覆盖 Surge 配置文件中的 Script 部分，如果你先前已经修改过 Script 部分，请先备份 Surge 配置文件。
 
 ## 特殊说明
+
+### Screen Studio
+
+许可证格式为：`XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`，你甚至可以直接复制这个格式的许可证到剪贴板，然后打开 Screen Studio，它是可以激活的。
+
+但是这里还是给几个乱算的激活码吧：
+
+```
+2032cb31-c7ff-477e-a96b-35b0db7cb546
+05242e4d-8e31-42db-9934-0683809c5a2a
+33b47128-e803-460a-8efe-293bbf1f6ce5
+fa98d84a-99d4-49e8-9840-2a3511970529
+285e1e11-d9c6-417c-b0ee-6f3c4853f8d8
+```
+
+<details>
+  <summary>Algorithm</summary>
+
+```js
+function generateUUID() {
+  const characters = '0123456789abcdef';
+  let uuid = '';
+
+  for (let i = 0; i < 36; i++) {
+    if (i === 8 || i === 13 || i === 18 || i === 23) {
+      uuid += '-';
+    } else if (i === 14) {
+      uuid += '4';
+    } else if (i === 19) {
+      uuid += characters[(Math.floor(Math.random() * 4) + 8)];
+    } else {
+      uuid += characters[Math.floor(Math.random() * 16)];
+    }
+  }
+
+  return uuid;
+}
+```
+  
+</details>
 
 ### Raycast Pro Plan
 
