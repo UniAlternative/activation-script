@@ -122,7 +122,7 @@ function generateUUID() {
 - [wibus-wee/raycast-unblock](https://github.com/wibus-wee/raycast-unblock)
 - [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
-另外，你可能还需要前往 [./src/modules/index.ts#L71](./src/modules/index.ts#L71) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+另外，你可能还需要前往 [./src/modules/index.ts#L83](./src/modules/index.ts#L83) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
 
 > [!WARNING]
 > 请不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
