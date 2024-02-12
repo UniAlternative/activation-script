@@ -9,19 +9,21 @@ import { inject } from "./generator/inject";
 
 const hostnames = Array<string>();
 const scripts = Array<{ name: string; pattern: string; type: string }>();
+const externalUrl = `https://github.com/wibus-wee/activation-script/raw/gh-page`
 
-const MITM = (hostnames: any[]) => {
+const MITM = (hostnames: any[], external = false) => {
   return `
 [MITM]
-hostname = ${hostnames.join(", ")}
+hostname = ${external ? `%APPEND% ` : ""}${hostnames.join(", ")}
 `;
 };
-const Script = (_scripts: typeof scripts) => {
+const Script = (_scripts: typeof scripts, external = false) => {
+  const scriptPath = external ? `${externalUrl}/activator.js` : `activator.js`
   return `
 [Script]
 ${_scripts
   .map((script) => {
-    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=activator.js \n`;
+    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=${scriptPath} \n`;
   })
   .join("")}
 `;
@@ -33,10 +35,10 @@ function addConfig(module: string, base: string) {
   const url = new URL(base);
   const hostname = url.hostname;
   const parts = hostname.split(".");
-  const mainDomain = parts.slice(-2).join("."); // 拿到根域名
+  const mainDomain = parts.slice(-3).join("."); // 拿到根域名
   // 检查一下 hostnames 里面有没有这个根域名，没有的话就加进去
   if (!hostnames.includes(`${mainDomain}`)) {
-    hostnames.push(`*.${mainDomain}`);
+    hostnames.push(`${mainDomain}`);
   }
   // 设一个 afterfix，用于处理 base 为数组的情况，防止 name 重复
   const afterfix = Array.isArray(activator[module].base) ? `-${hostname}` : "";
@@ -254,6 +256,16 @@ async function action(str: any, options: any) {
     );
     console.log("Config file generated.");
   }
+  if (str.fix) {
+    await patch();
+  }
+  if (str.module) {
+    console.log("Generating .sgmodule file...");
+    let content = fs.readFileSync(path.join(process.cwd(), "./src/template.sgmodule"), "utf-8");
+    content += `\n\n${MITM(hostnames, str.external)}\n\n${Script(scripts, str.external)}`;
+    fs.writeFileSync(path.join(process.cwd(), "activator.sgmodule"), `${content}`);
+    console.log(".sgmodule file generated.");
+  }
   return;
 }
 
@@ -266,9 +278,11 @@ program
   .description("generate config")
   .option("-o, --out <path>", "output path")
   .option("-f, --fix", "fix config file")
+  .option("-m, --module", "generate .sgmodule")
+  .option("-e, --external", "use external source url")
   .action(action);
 program.command("inject").description("inject activator").action(inject);
 program.command("patch").description("patch config").action(patch);
 
-program.command("ai").description("ai manager").action(aiManager);
+// program.command("ai").description("ai manager").action(aiManager);
 program.parse();
