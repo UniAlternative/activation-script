@@ -2,8 +2,8 @@ name: Publish CI
 
 on:
   push:
-    tags:
-      - v*
+    branches:
+      - main
 
 permissions: 
   write-all
