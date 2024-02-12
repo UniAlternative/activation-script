@@ -59,31 +59,31 @@ export async function inject() {
     return;
   }
 
-  let configFiles = Array<string>();
-  fs.readdirSync(configPath).forEach((file) => {
-    if (file.endsWith(".conf")) {
-      configFiles.push(file);
-    }
-  });
-  if (configFiles.length === 0) {
-    console.log("No config file found.");
-    return;
-  }
-  const EMPTY = "I Don't Want to use AI Feature";
-  configFiles.push(EMPTY);
-  let aiConfigSourceFile = "";
-  await prompts([
-    {
-      type: "select",
-      name: "config",
-      message: "Which config file do you want to use (AI Feature)?",
-      choices: configFiles.map((file) => {
-        return { title: file, value: file };
-      }),
-    },
-  ]).then((res: { config: string }) => {
-    aiConfigSourceFile = res.config;
-  });
+  // let configFiles = Array<string>();
+  // fs.readdirSync(configPath).forEach((file) => {
+  //   if (file.endsWith(".conf")) {
+  //     configFiles.push(file);
+  //   }
+  // });
+  // if (configFiles.length === 0) {
+  //   console.log("No config file found.");
+  //   return;
+  // }
+  // const EMPTY = "I Don't Want to use AI Feature";
+  // configFiles.push(EMPTY);
+  // let aiConfigSourceFile = "";
+  // await prompts([
+  //   {
+  //     type: "select",
+  //     name: "config",
+  //     message: "Which config file do you want to use (AI Feature)?",
+  //     choices: configFiles.map((file) => {
+  //       return { title: file, value: file };
+  //     }),
+  //   },
+  // ]).then((res: { config: string }) => {
+  //   aiConfigSourceFile = res.config;
+  // });
 
   if (!fs.existsSync(path.join(rootPath, "package.json"))) {
     if (!fs.existsSync(path.join(rootPath, "activator.js"))) {
@@ -125,28 +125,28 @@ export async function inject() {
     path.join(rootPath, "activator.js"),
     path.join(configPath as unknown as string, "activator.js")
   );
-  if (aiConfigSourceFile !== EMPTY) {
-    console.log("[I] Injecting AI Config...");
-    const config = new SurgeConfigParser(
-      fs.readFileSync(path.join(configPath, aiConfigSourceFile), "utf-8")
-    );
-    const aiConfig = config.getSection("AI");
-    const injectCode = `
-globalThis.config = {
-  ai: {
-    type: ${JSON.stringify(aiConfig?.type)},
-    openAIKey: ${JSON.stringify(aiConfig?.openai_api_key)},
-    geminiKey: ${JSON.stringify(aiConfig?.gemini_api_key)},
-    endpoint: ${JSON.stringify(aiConfig?.openai_api_endpoint)},
-  }
-}
-`
-    const configContent = fs.readFileSync(path.join(configPath, "activator.js"), "utf-8");
-    const lines = configContent.split("\n");
-    lines.splice(1, 0, injectCode);
-    fs.writeFileSync(path.join(configPath, "activator.js"), lines.join("\n"));
+//   if (aiConfigSourceFile !== EMPTY) {
+//     console.log("[I] Injecting AI Config...");
+//     const config = new SurgeConfigParser(
+//       fs.readFileSync(path.join(configPath, aiConfigSourceFile), "utf-8")
+//     );
+//     const aiConfig = config.getSection("AI");
+//     const injectCode = `
+// globalThis.config = {
+//   ai: {
+//     type: ${JSON.stringify(aiConfig?.type)},
+//     openAIKey: ${JSON.stringify(aiConfig?.openai_api_key)},
+//     geminiKey: ${JSON.stringify(aiConfig?.gemini_api_key)},
+//     endpoint: ${JSON.stringify(aiConfig?.openai_api_endpoint)},
+//   }
+// }
+// `
+//     const configContent = fs.readFileSync(path.join(configPath, "activator.js"), "utf-8");
+//     const lines = configContent.split("\n");
+//     lines.splice(1, 0, injectCode);
+//     fs.writeFileSync(path.join(configPath, "activator.js"), lines.join("\n"));
 
-    console.log("[I] Injected AI Config.");
-  }
+//     console.log("[I] Injected AI Config.");
+//   }
   console.log("[I] Injected activator.js.");
 }
