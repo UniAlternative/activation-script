@@ -11,4 +11,5 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
   },
+  "exclude": ["node_modules", "dist", "**/*.js", "**/*.mjs", "**/*.sgmodule"]
 }

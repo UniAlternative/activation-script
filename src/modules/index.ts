@@ -1,15 +1,13 @@
 import { Activator } from "../types";
-import { elpassActivateWithKey } from "./elpass/activate";
-import { elpassInit, elpassManagement } from "./elpass/custom";
 import { GumroadValidate } from "./gumroad/validate";
 import { lemonSqueezyActive } from "./lemon-squeezy/activate";
 import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
 import { paddleVerify } from "./paddle/validate";
-import { raycastActivate } from "./raycast/activate";
+// import { raycastActivate } from "./raycast/activate";
 // import { raycastAICompletionsRequest } from "./raycast/customs/ai/completions";
 // import { raycastAiModels } from "./raycast/customs/ai/models";
-import { raycastTrialStatus } from "./raycast/customs/custom";
+// import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from "./spotify/custom";
 
 export const activator: Activator = {
@@ -25,23 +23,6 @@ export const activator: Activator = {
       base: "verify",
       func: paddleVerify,
     },
-  },
-  elpass: {
-    base: "https://api.elpass.app/device",
-    activate: {
-      base: "activate-with-key",
-      func: elpassActivateWithKey,
-    },
-    customs: [
-      {
-        base: "management",
-        func: elpassManagement,
-      },
-      {
-        base: "init",
-        func: elpassInit,
-      },
-    ],
   },
   spotify: {
     base: [

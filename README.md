@@ -11,19 +11,13 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 目前支持以下激活服务：
 
 - [x] LemonSqueezy
+  - [x] [Screen Studio](#screen-studio)
 - [x] Paddle
+  - [x] AlDente Pro
 - [x] Gumroad
-
-## Supported Activation Applications
-
-目前支持以下应用程序：
-
-- [x] Screen Studio (LemonSqueezy) `🪄 Stable` - [特殊说明 - Screen Studio](#screen-studio)
-- [x] AlDente Pro (Paddle) `🪄 Stable`
-- [x] MediaMate (Gumroad) `🪄 Stable` - [特殊说明 - MediaMate](#mediamate)
+  - [x] [MediaMate](#mediamate) 
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
 - [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
-- [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
 
 
 ## 安装
@@ -75,18 +69,18 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 > [!WARNING]
 > 由于 Surge 限制，在 Surge 内的 runtime 做脚本无法实现 SSE，这对体验有很大很大的影响，以及还有一些实现上的问题，因此我打算不做内置的 AI 支持了
 
-如果想使用此功能，建议参考以下项目搭建自己的后端服务进行体验：
+如果想使用此功能，请以下项目搭建自己的后端服务进行体验： **（它们都是不一样的！）**
 
-- [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 - [wibus-wee/raycast-unblock](https://github.com/wibus-wee/raycast-unblock)
+- [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 - [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
 另外，你可能还需要前往 [./src/modules/index.ts#L83](./src/modules/index.ts#L83) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
 
 > [!WARNING]
-> 请不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
+> 不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
 >
-> 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
+> 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时建议后端服务关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
 
 ## License
 
