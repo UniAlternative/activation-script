@@ -28,7 +28,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 
 ## 安装
 
-前往 Surge 的 `Module` 配置页面，添加外部模块链接：`https://github.com/wibus-wee/activation-script/raw/gh-page/activator.module`
+前往 Surge 的 `Module` 配置页面，添加外部模块链接：`https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule`
 
 ## 特殊说明
 
