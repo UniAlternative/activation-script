@@ -7,7 +7,7 @@ import { inject } from "./generator/inject";
 
 const hostnames = Array<string>();
 const scripts = Array<{ name: string; pattern: string; type: string }>();
-const externalUrl = `https://github.com/wibus-wee/activation-script/raw/gh-pages`
+const externalUrl = `https://raw.githubusercontent.com/wibus-wee/activation-script/gh-pages`
 
 const MITM = (hostnames: any[], external = false) => {
   return `
