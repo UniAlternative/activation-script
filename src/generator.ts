@@ -3,8 +3,6 @@ import fs from "node:fs";
 import prompts from "prompts";
 import { activator } from "./modules";
 import { Command } from "commander";
-import { execSync } from "node:child_process";
-import { aiManager } from "./generator/aiManager";
 import { inject } from "./generator/inject";
 
 const hostnames = Array<string>();
@@ -19,11 +17,12 @@ hostname = ${external ? `%APPEND% ` : ""}${hostnames.join(", ")}
 };
 const Script = (_scripts: typeof scripts, external = false) => {
   const scriptPath = external ? `${externalUrl}/activator.js` : `activator.js`
+  const scriptUpdateInternal = 86400
   return `
 [Script]
 ${_scripts
   .map((script) => {
-    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=${scriptPath} \n`;
+    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=${scriptPath}${external ? `,${scriptUpdateInternal}` : ''}`
   })
   .join("")}
 `;
