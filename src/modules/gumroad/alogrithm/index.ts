@@ -15,3 +15,5 @@ function genKey() {
   }
   return result;
 }
+
+console.log(genKey());

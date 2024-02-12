@@ -71,43 +71,18 @@ pnpm generate patch
 
 ### Screen Studio
 
-许可证格式为：`XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`，你甚至可以直接复制这个格式的许可证到剪贴板，然后打开 Screen Studio，它是可以激活的。
-
-但是这里还是给几个乱算的激活码吧：
-
 ```
-2032cb31-c7ff-477e-a96b-35b0db7cb546
-05242e4d-8e31-42db-9934-0683809c5a2a
-33b47128-e803-460a-8efe-293bbf1f6ce5
-fa98d84a-99d4-49e8-9840-2a3511970529
-285e1e11-d9c6-417c-b0ee-6f3c4853f8d8
+401934ec-0a54-433c-a299-2a363501d4be
+d06ad32e-00c2-43fb-a5a7-9bb44b094831
+0c903cdd-9ee1-4935-8ad3-88de0ecef496
+295aab81-b87e-437c-868a-1f0877216cae
+4dc5cab3-03e0-41ab-827d-90dbe9e076f6
+7a777528-c9b8-4db5-a986-0bd8d4312afd
+d3ce015b-2093-42f5-a049-670edae6e7b4
+f6e63b4e-91d4-4eb4-8dd0-dcb20933495e
+f899ec8c-020b-4f8a-a09d-22a978b716a5
+62c3bf31-428b-4bea-a31f-9a14f0a1a63c
 ```
-
-<details>
-  <summary>Algorithm</summary>
-
-```js
-function generateUUID() {
-  const characters = '0123456789abcdef';
-  let uuid = '';
-
-  for (let i = 0; i < 36; i++) {
-    if (i === 8 || i === 13 || i === 18 || i === 23) {
-      uuid += '-';
-    } else if (i === 14) {
-      uuid += '4';
-    } else if (i === 19) {
-      uuid += characters[(Math.floor(Math.random() * 4) + 8)];
-    } else {
-      uuid += characters[Math.floor(Math.random() * 16)];
-    }
-  }
-
-  return uuid;
-}
-```
-  
-</details>
 
 ### MediaMate
 
