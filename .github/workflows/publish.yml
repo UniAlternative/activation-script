@@ -29,7 +29,7 @@ jobs:
         run: |
           nr build
           nr generate gen -o .
-          nr generate gen -m
+          nr generate gen -m -e
           mv activator.conf dist/activator.conf
           mv activator.sgmodule dist/activator.sgmodule
           mv dist/main.js dist/activator.js
