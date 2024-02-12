@@ -70,49 +70,6 @@ function parseURLParams(url) {
 }
 
 /**
- * @url https://api.elpass.app/device/activate-with-key
- */
-function elpassActivateWithKey() {
-    buildResponse({
-        body: {
-            code: 0,
-            license: "没有密钥 这个注入伪造信息是没有用的",
-        },
-    });
-}
-
-/**
- * @url https://api.elpass.app/device/management
- */
-function elpassManagement() {
-    buildResponse({
-        body: {
-            email: "QiuChenly@52pojie.com",
-            subscriptionBillingPeriod: null,
-            subscriptionEndDate: 99999502400,
-            subscriptionSource: null,
-            autoRenew: true,
-            trial: false,
-        },
-    });
-}
-/**
- * @url https://api.elpass.app/device/init
- */
-function elpassInit() {
-    buildResponse({
-        body: {
-            code: 0,
-            subscriptionBillingPeriod: null,
-            subscriptionEndDate: 99999502400,
-            subscriptionSource: null,
-            autoRenew: true,
-            trial: false,
-        },
-    });
-}
-
-/**
  * @url https://api.gumroad.com/v2/licenses/verify
  */
 function GumroadValidate() {
@@ -278,23 +235,6 @@ const activator = {
             base: "verify",
             func: paddleVerify,
         },
-    },
-    elpass: {
-        base: "https://api.elpass.app/device",
-        activate: {
-            base: "activate-with-key",
-            func: elpassActivateWithKey,
-        },
-        customs: [
-            {
-                base: "management",
-                func: elpassManagement,
-            },
-            {
-                base: "init",
-                func: elpassInit,
-            },
-        ],
     },
     spotify: {
         base: [
