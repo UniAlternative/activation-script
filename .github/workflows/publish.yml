@@ -1,0 +1,42 @@
+name: Publish CI
+
+on:
+  push:
+    tags:
+      - v*
+
+permissions: 
+  write-all
+  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Build
+        run: |
+          nr build
+          nr generate gen -o .
+          nr generate gen -m
+          mv activator.conf dist/activator.conf
+          mv activator.sgmodule dist/activator.sgmodule
+          mv dist/main.js dist/activator.js
+          mv README.md dist/README.md
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
