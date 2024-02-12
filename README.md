@@ -12,6 +12,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 
 - [x] LemonSqueezy
 - [x] Paddle
+- [x] Gumroad
 
 ## Supported Activation Applications
 
@@ -19,6 +20,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 
 - [x] Screen Studio (LemonSqueezy) `🪄 Stable` - [特殊说明 - Screen Studio](#screen-studio)
 - [x] AlDente Pro (Paddle) `🪄 Stable`
+- [x] MediaMate (Gumroad) `🪄 Stable` - [特殊说明 - MediaMate](#mediamate)
 - [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
 - [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
 - [x] Elpass **(你需要与 [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib) 搭配使用)**
@@ -106,6 +108,25 @@ function generateUUID() {
 ```
   
 </details>
+
+### MediaMate
+
+> Thanks to @QiuchenlyOpenSource & @Qiuchenly.
+
+```
+MNBVCXZLK-QWERTYUIO-ASDFHJKLZ-XCVBN
+85DB562A-C11D4B06-A2335A6B-8C079166
+ZTVKHMKYQ-JKDOSLFZU-UIXXTKLBA-HVNEZ
+55277020-CAZNWFKK-97392017-MROIOCVV
+WKMCDMKQS-RKLZHNWTW-OBLLJBZAX-VCEKT
+94389301-ICWINLVW-35507779-OXCCQXLN
+IXNIVXJUC-ZODUBIVHS-XNRCXLQVM-FVDHC
+43378717-DHAMJHWK-86941225-DTMNMZRE
+ZCJJBTBBT-XXTCCSCZT-XMVQQXQXL-ZVOZI
+88079719-BONJCJQC-43235799-SODXFXIZ
+IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
+41389661-TLSYJYTE-32625842-BLCVBKVK
+```
 
 ### Raycast Pro Plan
 

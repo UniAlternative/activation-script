@@ -1,6 +1,7 @@
 import { Activator } from "../types";
 import { elpassActivateWithKey } from "./elpass/activate";
 import { elpassInit, elpassManagement } from "./elpass/custom";
+import { GumroadValidate } from "./gumroad/validate";
 import { lemonSqueezyActive } from "./lemon-squeezy/activate";
 import { lemonsqueezyValidate } from "./lemon-squeezy/validate";
 import { paddleActivate } from "./paddle/activate";
@@ -56,6 +57,13 @@ export const activator: Activator = {
         func: spotifyRemoveAds,
       },
     ],
+  },
+  gumroad: {
+    base: "https://api.gumroad.com/v2/licenses",
+    validate: {
+      base: "verify",
+      func: GumroadValidate,
+    }
   },
   raycast: {
     base: "https://backend.raycast.com/api/v1",

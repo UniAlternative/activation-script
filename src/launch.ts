@@ -1,6 +1,6 @@
 import { activator } from "./modules";
 import { buildResponse, httpClient } from "./utils";
-const url = $request.url;
+const url = $request.url.split("?")[0];
 
 /**
  * Determine whether the URL matches the base
