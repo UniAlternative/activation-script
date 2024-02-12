@@ -22,7 +22,7 @@ const Script = (_scripts: typeof scripts, external = false) => {
 [Script]
 ${_scripts
   .map((script) => {
-    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=${scriptPath}${external ? `,${scriptUpdateInternal}` : ''}`
+    return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=${scriptPath}${external ? `,${scriptUpdateInternal}` : ''}\n`
   })
   .join("")}
 `;
