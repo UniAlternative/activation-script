@@ -21,11 +21,7 @@ export function buildResponse(props: {
   if (props.body) {
     props.body = transformToString(props.body);
   }
-  $done({
-    response: {
-      ...props,
-    },
-  });
+  $done(props);
 }
 
 export function modifyRequest(props: {
