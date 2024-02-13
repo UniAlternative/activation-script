@@ -30,7 +30,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 pnpm i
 
 # 在当前目录下构建 activator.js 脚本
-pnpm build
+pnpm build:main
 
 # 交互式命令
 # 生成 Surge config 应添加的字段
