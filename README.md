@@ -10,19 +10,35 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 
 目前支持以下激活服务：
 
-- [x] LemonSqueezy
-  - [x] [Screen Studio](#screen-studio)
-- [x] Paddle
-  - [x] AlDente Pro
-- [x] Gumroad
-  - [x] [MediaMate](#mediamate) 
-- [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
-- [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
-
+-   [x] LemonSqueezy
+    -   [x] [Screen Studio](#screen-studio)
+-   [x] Paddle
+    -   [x] AlDente Pro
+-   [x] Gumroad
+    -   [x] [MediaMate](#mediamate)
+-   [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
+-   [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
 
 ## 安装
 
 前往 Surge 的 `Module` 配置页面，添加外部模块链接：`https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule`
+
+或者你希望自行修改配置文件与脚本，你可以使用如下指令：
+
+```bash
+# 安装依赖
+pnpm i
+
+# 在当前目录下构建 activator.js 脚本
+pnpm build:main
+
+# 交互式命令
+# 生成 Surge config 应添加的字段
+pnpm generate gen
+
+# 生成并移动 activator.js 到 Surge 配置目录
+pnpm generate inject
+```
 
 ## 特殊说明
 
@@ -71,9 +87,9 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 
 如果想使用此功能，请以下项目搭建自己的后端服务进行体验： **（它们都是不一样的！）**
 
-- [wibus-wee/raycast-unblock](https://github.com/wibus-wee/raycast-unblock)
-- [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
-- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
+-   [wibus-wee/raycast-unblock](https://github.com/wibus-wee/raycast-unblock)
+-   [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
+-   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
 另外，你可能还需要前往 [./src/modules/index.ts#L83](./src/modules/index.ts#L83) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
 
@@ -88,7 +104,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Credits
 
-- [Surge](https://nssurge.com/)
-- [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
-- [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
-- [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
+-   [Surge](https://nssurge.com/)
+-   [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
+-   [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
+-   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)

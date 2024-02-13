@@ -19,7 +19,7 @@ function buildResponse(props) {
     $done({
         response: {
             ...props,
-        },
+        }
     });
 }
 /**
@@ -350,7 +350,7 @@ function launch() {
                     }
                 }
                 else if (!url.includes(`${activator[module].base}/${key}`)) {
-                    return;
+                    continue;
                 }
                 if (typeof activator[module][key] === "function") {
                     return activator[module][key]();
