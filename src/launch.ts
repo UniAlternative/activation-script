@@ -50,7 +50,7 @@ export function launch() {
             return (activator[module] as any)[key].func();
           }
         } else if (!url.includes(`${activator[module].base}/${key}`)) {
-          return;
+          continue;
         }
         if (typeof (activator[module] as any)[key] === "function") {
           return (activator[module] as any)[key]();

@@ -24,7 +24,7 @@ export function buildResponse(props: {
   $done({
     response: {
       ...props,
-    },
+    }
   });
 }
 
