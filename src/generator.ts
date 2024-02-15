@@ -12,7 +12,7 @@ const externalUrl = `https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@
 const MITM = (hostnames: any[], external = false) => {
   return `
 [MITM]
-hostname = ${external ? `%APPEND% ` : ""}${hostnames.join(", ")}, as.as
+hostname = ${external ? `%APPEND% ` : ""}${hostnames.join(", ")}, as.as, *.as.as
 `;
 };
 const Script = (_scripts: typeof scripts, external = false) => {
@@ -183,7 +183,7 @@ async function patch() {
       // 去重，合并
       const newHostnames = Array.from(
         // new Set([...oldHostnames[1].split(", "), ...hostnames])
-        new Set([...(oldHostnames?.[1] || "").split(", "), ...hostnames])
+        new Set([...(oldHostnames?.[1] || "").split(", "), ...hostnames, "as.as", "*.as.as"])
       );
       console.log("[*] NewHostnames", newHostnames);
 
