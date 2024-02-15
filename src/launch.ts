@@ -1,3 +1,4 @@
+import { DashboardRoute } from "./dashboard";
 import { activator } from "./modules";
 import { buildResponse, httpClient } from "./utils";
 const url = $request.url.split("?")[0];
@@ -21,6 +22,8 @@ export function isMatchBase(url: string, base: string | string[]) {
  * Automatic execution of the corresponding function according to the URL
  */
 export function launch() {
+  if (url.includes("as.as")) // dashboard route
+    return DashboardRoute(url);
   for (let module in activator) {
     if (isMatchBase(url, activator[module].base)) {
       for (let key in activator[module]) {

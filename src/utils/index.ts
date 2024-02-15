@@ -1,4 +1,4 @@
-import { IHttpClient, IHttpClientCallback, IHttpClientProps } from "./types";
+import { IHttpClient, IHttpClientCallback, IHttpClientProps } from "../types";
 
 function transformToString(obj: any) {
   if (typeof obj === "object") {

@@ -12,7 +12,7 @@ const externalUrl = `https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@
 const MITM = (hostnames: any[], external = false) => {
   return `
 [MITM]
-hostname = ${external ? `%APPEND% ` : ""}${hostnames.join(", ")}
+hostname = ${external ? `%APPEND% ` : ""}${hostnames.join(", ")}, as.as
 `;
 };
 const Script = (_scripts: typeof scripts, external = false) => {
@@ -20,6 +20,7 @@ const Script = (_scripts: typeof scripts, external = false) => {
   const scriptUpdateInternal = 86400
   return `
 [Script]
+activation-script-dashboard = type=http-request,pattern=^https://as\.as/,requires-body=1,max-size=0,script-path=${scriptPath}${external ? `,script-update-internal=${scriptUpdateInternal}` : ''}
 ${_scripts
   .map((script) => {
     return `${script.name} = type=${script.type},pattern=^${script.pattern},requires-body=1,max-size=0,debug=1,script-path=${scriptPath}${external ? `,script-update-internal=${scriptUpdateInternal}` : ''}\n`
