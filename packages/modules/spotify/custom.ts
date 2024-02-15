@@ -3,7 +3,7 @@
 // *://audio-fa.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
 // *://creativeservice-production.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
 
-import { buildResponse, httpClient, sendNotification } from "../../shared/src/utils";
+import { buildResponse, httpClient, sendNotification } from "@as/shared";
 
 
 /**

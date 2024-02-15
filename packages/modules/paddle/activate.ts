@@ -1,4 +1,4 @@
-import { buildResponse } from "../../shared/src/utils";
+import { buildResponse } from "@as/shared";
 
 /**
  * Paddle activation

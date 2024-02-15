@@ -1,4 +1,4 @@
-import { buildResponse, httpClient, modifyResponse, sendNotification } from "../../shared/src/utils";
+import { buildResponse, httpClient, modifyResponse, sendNotification } from "@as/shared";
 
 /**
  * @url https://backend.raycast.com/api/v1/me

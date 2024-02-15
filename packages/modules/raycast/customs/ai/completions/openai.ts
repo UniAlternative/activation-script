@@ -1,4 +1,4 @@
-import { buildResponse } from "../../../../../shared/src/utils";
+import { buildResponse } from "../../../@as/shared";
 import { OPENAI_OFFICIAL_ENDPOINT } from "../../../constants";
 
 /**

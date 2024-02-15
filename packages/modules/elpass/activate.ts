@@ -1,4 +1,4 @@
-import { buildResponse } from "../../shared/src/utils";
+import { buildResponse } from "@as/shared";
 
 /**
  * @url https://api.elpass.app/device/activate-with-key

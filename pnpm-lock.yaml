@@ -68,7 +68,11 @@ importers:
         specifier: ^2.4.2
         version: 2.4.2
 
-  packages/modules: {}
+  packages/modules:
+    dependencies:
+      '@as/shared':
+        specifier: workspace:^
+        version: link:../shared
 
   packages/shared:
     dependencies:

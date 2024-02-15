@@ -1,4 +1,4 @@
-import { buildResponse } from "../../../shared/src/utils";
+import { buildResponse } from "../@as/shared";
 import { RAYCAST_AI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from "../constants";
 
 /**
