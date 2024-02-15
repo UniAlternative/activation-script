@@ -1,16 +1,22 @@
 {
   "name": "activation-scripts",
-  "author": "wibus-wee <wibus@qq.com>",
+  "type": "module",
   "version": "1.3.0",
   "description": "",
+  "author": "wibus-wee <wibus@qq.com>",
+  "keywords": [],
   "scripts": {
     "build:core": "pnpm -C packages/core run build",
     "build:generator": "pnpm -C packages/generator run build",
-    "build": "npm run build:core && npm run build:generator"
+    "build": "npm run build:core && npm run build:generator",
+    "typecheck": "tsc --noEmit",
+    "prepare": "simple-git-hooks",
+    "lint": "eslint ."
   },
-  "keywords": [],
   "dependencies": {
+    "@antfu/eslint-config": "^2.6.4",
     "commander": "^11.0.0",
+    "eslint": "^8.56.0",
     "typescript": "^5.2.2"
   },
   "devDependencies": {
@@ -19,9 +25,17 @@
     "@rollup/plugin-terser": "^0.4.3",
     "@types/node": "^20.6.0",
     "esno": "^0.17.0",
+    "lint-staged": "^15.2.0",
     "rollup": "^3.29.1",
     "rollup-plugin-esbuild": "^5.0.0",
     "rollup-plugin-ts": "^3.4.5",
+    "simple-git-hooks": "^2.9.0",
     "toml": "^3.0.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
   }
 }
