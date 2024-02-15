@@ -14,6 +14,7 @@
     "prompts": "^2.4.2"
   },
   "dependencies": {
+    "@as/modules": "workspace:^",
     "@as/shared": "workspace:^"
   }
 }

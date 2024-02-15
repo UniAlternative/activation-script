@@ -45,6 +45,12 @@ importers:
 
   packages/core:
     dependencies:
+      '@as/dashboard':
+        specifier: workspace:^
+        version: link:../dashboard
+      '@as/modules':
+        specifier: workspace:^
+        version: link:../modules
       '@as/shared':
         specifier: workspace:^
         version: link:../shared
@@ -57,6 +63,9 @@ importers:
 
   packages/generator:
     dependencies:
+      '@as/modules':
+        specifier: workspace:^
+        version: link:../modules
       '@as/shared':
         specifier: workspace:^
         version: link:../shared

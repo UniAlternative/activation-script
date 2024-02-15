@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 import prompts from "prompts";
-import { activator } from "@as/shared";
+import { activator } from "@as/modules";
 import { Command } from "commander";
 import { inject } from "./functions/inject";
 

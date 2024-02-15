@@ -1,5 +1,4 @@
-import { buildResponse } from "@as/shared";
-import { parseURLParams } from "@as/shared/url";
+import { buildResponse, parseURLParams } from "@as/shared";
 
 /**
  * @url https://api.gumroad.com/v2/licenses/verify

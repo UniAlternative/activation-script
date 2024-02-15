@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@as/dashboard": "workspace:^",
+    "@as/modules": "workspace:^",
     "@as/shared": "workspace:^"
   }
 }
