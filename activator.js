@@ -1,25 +1,35 @@
 'use strict';
 
+function parseURLParams(url) {
+    const urlObj = new URL(url);
+    const searchParams = urlObj.searchParams;
+    const obj = {};
+    for (const [key, value] of searchParams)
+        obj[key] = value;
+    return obj;
+}
+
 function transformToString(obj) {
-    if (typeof obj === "object") {
+    if (typeof obj === 'object')
         return JSON.stringify(obj);
-    }
     return obj;
 }
 /**
  * 构建 Surge 响应体
  *
  * @param props 响应体属性
+ * @param props.headers 响应头
+ * @param props.body 响应体
+ * @param props.status 响应状态码w
  * @description Surge 会直接返回 HTTP 响应，而不进行真实的网络操作
  */
 function buildResponse(props) {
-    if (props.body) {
+    if (props.body)
         props.body = transformToString(props.body);
-    }
     $done({
         response: {
             ...props,
-        }
+        },
     });
 }
 /**
@@ -36,15 +46,15 @@ function sendNotification(title, subtitle, body) {
     body = transformToString(body);
     $notification.post(title, subtitle, body);
 }
-const methods = ["get", "put", "delete", "head", "options", "patch", "post"];
+const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post'];
 /**
  * 发送请求
  * @param props 请求参数
  * @param callback 回调函数
  */
 const httpClient = {};
-for (let method of methods) {
-    // @ts-ignore
+for (const method of methods) {
+    // @ts-expect-error 这个地方无法通过类型检查
     httpClient[method] = (props, callback) => {
         $httpClient[method](props, callback);
     };
@@ -53,20 +63,11 @@ for (let method of methods) {
 function DashboardRoute(url) {
     buildResponse({
         body: {
-            title: "Dashboard",
-            content: "Hello, World!",
-        }
+            title: 'Dashboard',
+            content: 'Hello, World!',
+            url,
+        },
     });
-}
-
-function parseURLParams(url) {
-    const urlObj = new URL(url);
-    const searchParams = urlObj.searchParams;
-    const obj = {};
-    for (const [key, value] of searchParams) {
-        obj[key] = value;
-    }
-    return obj;
 }
 
 /**
@@ -79,35 +80,35 @@ function GumroadValidate() {
         success: true,
         uses: -999,
         purchase: {
-            sellerId: "123",
+            sellerId: '123',
             productId: params.product_permalink,
             productName: params.product_permalink,
             permalink: params.product_permalink,
             productPermalink: params.product_permalink,
-            email: "qiuchenly@outlook.com",
+            email: 'qiuchenly@outlook.com',
             price: 100,
             gumroadFee: 0,
-            currency: "usd",
+            currency: 'usd',
             quantity: 1,
             discoverFeeCharged: false,
             canContact: false,
-            referrer: "none",
+            referrer: 'none',
             orderNumber: 1234,
-            saleId: "1",
-            saleTimestamp: "2099-07-16T19:00:00Z",
+            saleId: '1',
+            saleTimestamp: '2099-07-16T19:00:00Z',
             licenseKey: params.license_key,
             refunded: false,
             disputed: false,
             disputeWon: false,
-            id: "1234",
-            createdAt: "2023-07-16T19:00:00Z",
+            id: '1234',
+            createdAt: '2023-07-16T19:00:00Z',
         },
     };
     return buildResponse({
         headers: {
-            "Content-Type": "application/json; charset=utf-8",
+            'Content-Type': 'application/json; charset=utf-8',
         },
-        body
+        body,
     });
 }
 
@@ -119,7 +120,7 @@ function lemonSqueezyActive() {
         body: {
             activated: true,
             instance: {
-                id: "wibus-wee",
+                id: 'wibus-wee',
             },
             error: null,
         },
@@ -146,26 +147,25 @@ function paddleActivate() {
             body: {
                 success: false,
                 response: {
-                    error: "[Surge] Activator: No body found",
+                    error: '[Surge] Activator: No body found',
                 },
             },
         });
         return;
     }
-    let _body = body.split("&");
-    let product_id = "";
-    for (let k of _body) {
-        if (k.indexOf("product_id") != -1) {
-            product_id = k.split("=")[1];
-        }
+    const _body = body.split('&');
+    let product_id = '';
+    for (const k of _body) {
+        if (k.includes('product_id'))
+            product_id = k.split('=')[1];
     }
     buildResponse({
         body: {
             success: true,
             response: {
-                product_id: product_id,
-                activation_id: "QiuChenly",
-                type: "personal",
+                product_id,
+                activation_id: 'QiuChenly',
+                type: 'personal',
                 expires: 1,
                 expiry_date: 1999999999999,
             },
@@ -178,10 +178,10 @@ function paddleActivate() {
  * @url https://v3.paddleapi.com/3.2/license/verify
  */
 function paddleVerify() {
-    let body = {
+    const body = {
         success: true,
         response: {
-            type: "personal",
+            type: 'personal',
             expires: 1,
             expiry_date: 1999999999999,
         },
@@ -204,14 +204,14 @@ function paddleVerify() {
  * @redirect https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3
  */
 function spotifyRemoveAds() {
-    sendNotification("Spotify Remove Ads", "请求 MP3", "");
-    const mp3 = "https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3";
+    sendNotification('Spotify Remove Ads', '请求 MP3', '');
+    const mp3 = 'https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3';
     httpClient.get({ url: mp3 }, (error, response, data) => {
         if (error) {
-            sendNotification("Spotify Remove Ads", "MP3 请求失败", error);
+            sendNotification('Spotify Remove Ads', 'MP3 请求失败', error);
             return buildResponse({
                 status: 500,
-                body: error
+                body: error,
             });
         }
         buildResponse({
@@ -224,62 +224,62 @@ function spotifyRemoveAds() {
 
 const activator = {
     lemonSqueezy: {
-        base: "https://api.lemonsqueezy.com/v1/licenses",
+        base: 'https://api.lemonsqueezy.com/v1/licenses',
         activate: lemonSqueezyActive,
         validate: lemonsqueezyValidate,
     },
     paddle: {
-        base: "https://v3.paddleapi.com/3.2/license",
+        base: 'https://v3.paddleapi.com/3.2/license',
         activate: paddleActivate,
         validate: {
-            base: "verify",
+            base: 'verify',
             func: paddleVerify,
         },
     },
     spotify: {
         base: [
             // "https://audio-ak-spotify-com.akamaized.net", // 这个好像是真正的音乐获取地址...
-            "https://audio-akp-quic-spotify-com.akamaized.net",
-            "https://audio-fa.scdn.co",
-            "https://creativeservice-production.scdn.co",
-            "https://audio4-fa.scdn.co",
+            'https://audio-akp-quic-spotify-com.akamaized.net',
+            'https://audio-fa.scdn.co',
+            'https://creativeservice-production.scdn.co',
+            'https://audio4-fa.scdn.co',
         ],
         customs: [
             {
-                base: "*",
+                base: '*',
                 func: spotifyRemoveAds,
             },
         ],
     },
     gumroad: {
-        base: "https://api.gumroad.com/v2/licenses",
+        base: 'https://api.gumroad.com/v2/licenses',
         validate: {
-            base: "verify",
+            base: 'verify',
             func: GumroadValidate,
-        }
+        },
     },
     raycast: {
-        base: "https://backend.raycast.com/api/v1",
+        base: 'https://backend.raycast.com/api/v1',
         // activate: {
         //   base: "me",
         //   func: raycastActivate,
         //   type: "http-response",
         // },
         activate: {
-            base: "*",
+            base: '*',
             func: () => {
-                if ($request.headers["x-raycast-unblock"]) {
+                if ($request.headers['x-raycast-unblock']) {
                     console.log('Raycast Unblock request');
                     $done({
                         headers: {
                             ...$request.headers,
-                            "x-raycast-unblock": undefined,
+                            'x-raycast-unblock': undefined,
                         },
                     });
                     return;
                 }
                 $done({
-                    url: $request.url.replace("https://backend.raycast.com", "http://127.0.0.1:3000"),
+                    url: $request.url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000'),
                     headers: $request.headers,
                     body: $request.body,
                 });
@@ -303,16 +303,15 @@ const activator = {
     },
 };
 
-const url = $request.url.split("?")[0];
+const url = $request.url.split('?')[0];
 /**
  * Determine whether the URL matches the base
  */
 function isMatchBase(url, base) {
     if (Array.isArray(base)) {
-        for (let item of base) {
-            if (url.includes(item)) {
+        for (const item of base) {
+            if (url.includes(item))
                 return true;
-            }
         }
         return false;
     }
@@ -322,58 +321,52 @@ function isMatchBase(url, base) {
  * Automatic execution of the corresponding function according to the URL
  */
 function launch() {
-    if (url.includes("as.as")) // dashboard route
-        return DashboardRoute();
-    for (let module in activator) {
+    if (url.includes('as.as')) // dashboard route
+        return DashboardRoute(url);
+    for (const module in activator) {
         if (isMatchBase(url, activator[module].base)) {
-            for (let key in activator[module]) {
-                if (key === "base")
+            for (const key in activator[module]) {
+                if (key === 'base')
                     continue;
                 if (Array.isArray(activator[module][key])) {
-                    for (let custom of activator[module][key]) {
-                        if (custom.base === "*" &&
-                            url.startsWith(activator[module].base)) {
+                    for (const custom of activator[module][key]) {
+                        if (custom.base === '*'
+                            && url.startsWith(activator[module].base))
                             return custom.func();
-                        }
-                        else if (url === `${activator[module].base}/${custom.base}`) {
+                        else if (url === `${activator[module].base}/${custom.base}`)
                             return custom.func();
-                        }
                     }
                     continue;
                 }
-                if (typeof activator[module][key] === "object") {
+                if (typeof activator[module][key] === 'object') {
                     // *
-                    if (activator[module][key].base === "*") {
+                    if (activator[module][key].base === '*')
                         return activator[module][key].func();
-                    }
-                    if (url ===
-                        `${activator[module].base}/${activator[module][key].base}`) {
+                    if (url
+                        === `${activator[module].base}/${activator[module][key].base}`)
                         return activator[module][key].func();
-                    }
                 }
                 else if (!url.includes(`${activator[module].base}/${key}`)) {
                     continue;
                 }
-                if (typeof activator[module][key] === "function") {
+                if (typeof activator[module][key] === 'function')
                     return activator[module][key]();
-                }
             }
         }
     }
     console.log(`[activator] ${url} is not matched`);
     returnDefaultResponse();
     // $done();
-    return;
 }
 function returnDefaultResponse() {
     console.log(`[activator] returnDefaultResponse: ${url} - ${$request.method.toLowerCase()}`);
-    // @ts-expect-error
+    // @ts-expect-error 这个地方无法通过类型检查
     httpClient[$request.method.toLowerCase()]({
         url: $request.url,
         headers: $request.headers,
     }, (err, response, _data) => {
         if (!_data) {
-            console.log("returnDefaultResponse: _data is null", err);
+            console.log('returnDefaultResponse: _data is null', err);
             buildResponse({
                 status: 500,
                 body: {},
