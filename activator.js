@@ -1,5 +1,7 @@
 'use strict';
 
+function DashboardRoute(url) { }
+
 function transformToString(obj) {
     if (typeof obj === "object") {
         return JSON.stringify(obj);
@@ -322,6 +324,8 @@ function isMatchBase(url, base) {
  * Automatic execution of the corresponding function according to the URL
  */
 function launch() {
+    if (url.includes("as.as")) // dashboard route
+        return DashboardRoute();
     for (let module in activator) {
         if (isMatchBase(url, activator[module].base)) {
             for (let key in activator[module]) {
