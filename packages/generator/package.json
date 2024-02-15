@@ -1,0 +1,19 @@
+{
+  "name": "@as/generator",
+  "version": "1.3.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs && mv ../../dist/index.js ../../dist/generator.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/prompts": "^2.4.5",
+    "prompts": "^2.4.2"
+  },
+  "dependencies": {
+    "@as/shared": "workspace:^"
+  }
+}

@@ -1,7 +1,7 @@
 import path from "node:path";
 import fs from "node:fs";
 import prompts from "prompts";
-import { activator } from "./modules";
+import { activator } from "@as/shared";
 import { Command } from "commander";
 import { inject } from "./generator/inject";
 
@@ -261,7 +261,7 @@ async function action(str: any, options: any) {
   }
   if (str.module) {
     console.log("Generating .sgmodule file...");
-    let content = fs.readFileSync(path.join(process.cwd(), "./src/template.sgmodule"), "utf-8");
+    let content = fs.readFileSync(path.join(process.cwd(), "./template.sgmodule"), "utf-8");
     content += `\n\n${MITM(hostnames, str.external)}\n\n${Script(scripts, str.external)}`;
     fs.writeFileSync(path.join(process.cwd(), "activator.sgmodule"), `${content}`);
     console.log(".sgmodule file generated.");

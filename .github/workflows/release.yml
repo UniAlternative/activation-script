@@ -28,8 +28,6 @@ jobs:
       - name: Build
         run: |
           nr build
-          nr generate gen -o .
-          cp activator.conf dist/activator.conf
 
       - name: Rename
         run: |
@@ -41,12 +39,6 @@ jobs:
           name: activator.js
           path: dist/activator.js
       
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: activator.conf
-          path: dist/activator.conf
-
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -65,6 +57,7 @@ jobs:
         uses: bruceadams/get-release@v1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Upload Release Asset (activator.js)
         id: upload-release-asset-activator.js
         uses: actions/upload-release-asset@v1
@@ -74,17 +67,6 @@ jobs:
           upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: dist/activator.js
           asset_name: activator.js
-          asset_content_type: application/javascript
-
-      - name: Upload Release Asset (activator.conf)
-        id: upload-release-asset-activator.conf
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.get_release.outputs.upload_url }}
-          asset_path: dist/activator.conf
-          asset_name: activator.conf
           asset_content_type: application/javascript
 
       - name: Upload Release Asset (generator.js)

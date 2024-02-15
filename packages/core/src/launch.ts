@@ -1,6 +1,7 @@
+import { activator } from "@as/shared";
 import { DashboardRoute } from "./dashboard";
-import { activator } from "./modules";
-import { buildResponse, httpClient } from "./utils";
+
+import { buildResponse, httpClient } from "@as/shared";
 const url = $request.url.split("?")[0];
 
 /**

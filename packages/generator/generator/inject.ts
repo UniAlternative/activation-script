@@ -2,7 +2,6 @@ import { execSync } from "child_process";
 import path from "node:path";
 import fs from "node:fs";
 import prompts from "prompts";
-import { SurgeConfigParser } from "../parser";
 
 /**
  * Injects the activator.js file into the specified config directory.

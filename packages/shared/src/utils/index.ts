@@ -1,6 +1,9 @@
 import { IHttpClient, IHttpClientCallback, IHttpClientProps } from "../types";
 
-function transformToString(obj: any) {
+export * from './destr'
+export * from './url'
+
+export function transformToString(obj: any) {
   if (typeof obj === "object") {
     return JSON.stringify(obj);
   }

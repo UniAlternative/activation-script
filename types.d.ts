@@ -1,4 +1,4 @@
-import { AIConfig } from "./src/types";
+import { AIConfig } from "./packages/core/src/types";
 
 declare global {
   var $request: {

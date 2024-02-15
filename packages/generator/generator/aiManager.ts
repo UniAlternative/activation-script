@@ -1,7 +1,7 @@
 import path, { parse } from "node:path";
 import fs from "node:fs";
 import prompts from "prompts";
-import { SurgeConfigParser } from "../parser";
+import { SurgeConfigParser } from "../../core/src/parser";
 
 /**
  * AI Manager

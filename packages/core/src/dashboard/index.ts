@@ -1,4 +1,4 @@
-import { buildResponse } from "../utils";
+import { buildResponse } from "@as/shared";
 
 export function DashboardRoute(url: string) {
   buildResponse({

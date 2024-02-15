@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 permissions: 
   write-all
@@ -28,14 +31,12 @@ jobs:
       - name: Build
         run: |
           nr build
-          nr generate gen -o .
-          nr generate gen -m -e
-          mv activator.conf dist/activator.conf
+          node dist/generator.js gen -m -e
           mv activator.sgmodule dist/activator.sgmodule
-          mv dist/main.js dist/activator.js
           mv README.md dist/README.md
 
       - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
