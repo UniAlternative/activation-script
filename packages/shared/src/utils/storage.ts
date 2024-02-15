@@ -1,6 +1,6 @@
-import { destr } from "./destr"
+import { destr } from './destr'
 
-const STORAGE_KEY = "activation-script"
+const STORAGE_KEY = 'activation-script'
 
 export function getStorage(key?: string) {
   const storage = $persistentStore.read(STORAGE_KEY)
@@ -20,5 +20,5 @@ export function setStorage(key: string, value: any) {
 }
 
 export function clearStorage() {
-  return $persistentStore.write("", STORAGE_KEY)
+  return $persistentStore.write('', STORAGE_KEY)
 }

@@ -1,4 +1,4 @@
-import { buildResponse } from "@as/shared";
+import { buildResponse } from '@as/shared'
 
 export function lemonsqueezyValidate() {
   buildResponse({
@@ -6,5 +6,5 @@ export function lemonsqueezyValidate() {
       valid: true,
       error: null,
     },
-  });
+  })
 }

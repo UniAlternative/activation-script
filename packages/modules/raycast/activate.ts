@@ -1,19 +1,19 @@
-import { buildResponse, httpClient, modifyResponse, sendNotification } from "@as/shared";
+import { modifyResponse } from '@as/shared'
 
 /**
  * @url https://backend.raycast.com/api/v1/me
  */
 export function raycastActivate() {
-  activeWithResponse();
+  activeWithResponse()
 }
 
 function activeWithResponse() {
   // sendNotification("Raycast", "Activate Inject", "Catched - Response Pattern");
-  let body = JSON.parse($response.body);
-  console.log("raycastActivate: body", body);
+  const body = JSON.parse($response.body)
+  console.log('raycastActivate: body', body)
   modifyResponse({
     headers: {
-      ...$response.headers
+      ...$response.headers,
     },
     body: {
       ...body,
@@ -29,7 +29,7 @@ function activeWithResponse() {
       publishing_bot: true,
       can_upgrade_to_pro: false,
       admin: true,
-    }
+    },
   })
   // sendNotification("Raycast", "Activate Success", "Done");
 }

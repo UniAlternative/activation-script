@@ -1,15 +1,15 @@
 {
   "name": "@as/core",
+  "type": "module",
   "version": "1.3.0",
   "description": "",
-  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
   "main": "index.js",
   "scripts": {
     "build": "rollup -c && mv ../../dist/main.js ../../dist/activator.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@as/dashboard": "workspace:^",
     "@as/modules": "workspace:^",

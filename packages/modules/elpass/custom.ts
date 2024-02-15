@@ -1,4 +1,4 @@
-import { buildResponse } from "@as/shared";
+import { buildResponse } from '@as/shared'
 
 /**
  * @url https://api.elpass.app/device/management
@@ -6,14 +6,14 @@ import { buildResponse } from "@as/shared";
 export function elpassManagement() {
   buildResponse({
     body: {
-      email: "QiuChenly@52pojie.com",
+      email: 'QiuChenly@52pojie.com',
       subscriptionBillingPeriod: null,
       subscriptionEndDate: 99999502400,
       subscriptionSource: null,
       autoRenew: true,
       trial: false,
     },
-  });
+  })
 }
 
 /**
@@ -29,5 +29,5 @@ export function elpassInit() {
       autoRenew: true,
       trial: false,
     },
-  });
+  })
 }

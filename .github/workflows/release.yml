@@ -5,9 +5,8 @@ on:
     tags:
       - v*
 
-permissions: 
+permissions:
   write-all
-  
 
 jobs:
   build:
@@ -38,7 +37,7 @@ jobs:
         with:
           name: activator.js
           path: dist/activator.js
-      
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
         with:
@@ -57,7 +56,7 @@ jobs:
         uses: bruceadams/get-release@v1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Upload Release Asset (activator.js)
         id: upload-release-asset-activator.js
         uses: actions/upload-release-asset@v1

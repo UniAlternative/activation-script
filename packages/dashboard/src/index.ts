@@ -1,10 +1,11 @@
-import { buildResponse } from "@as/shared";
+import { buildResponse } from '@as/shared'
 
 export function DashboardRoute(url: string) {
   buildResponse({
     body: {
-      title: "Dashboard",
-      content: "Hello, World!",
-    }
+      title: 'Dashboard',
+      content: 'Hello, World!',
+      url,
+    },
   })
 }
