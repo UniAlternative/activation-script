@@ -1,7 +1,5 @@
 'use strict';
 
-function DashboardRoute(url) { }
-
 function transformToString(obj) {
     if (typeof obj === "object") {
         return JSON.stringify(obj);
@@ -51,24 +49,24 @@ for (let method of methods) {
         $httpClient[method](props, callback);
     };
 }
-function parseURLParams(url) {
-    // 获取 URL 中 ? 后面的查询参数部分
-    const queryString = url.split('?')[1];
-    if (!queryString) {
-        return {};
-    }
-    // 将查询参数字符串拆分成键值对数组
-    const keyValuePairs = queryString.split('&');
-    // 创建一个对象来存储解析后的参数
-    const params = {};
-    // 遍历键值对数组，将每个参数解析成对象的属性
-    keyValuePairs.forEach(function (keyValuePair) {
-        // 将键值对拆分成键和值
-        const pair = keyValuePair.split('=');
-        // 解码键和值，并存储到 params 对象中
-        params[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+
+function DashboardRoute(url) {
+    buildResponse({
+        body: {
+            title: "Dashboard",
+            content: "Hello, World!",
+        }
     });
-    return params;
+}
+
+function parseURLParams(url) {
+    const urlObj = new URL(url);
+    const searchParams = urlObj.searchParams;
+    const obj = {};
+    for (const [key, value] of searchParams) {
+        obj[key] = value;
+    }
+    return obj;
 }
 
 /**
