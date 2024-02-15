@@ -3,7 +3,7 @@ import fs from "node:fs";
 import prompts from "prompts";
 import { activator } from "@as/shared";
 import { Command } from "commander";
-import { inject } from "./generator/inject";
+import { inject } from "./functions/inject";
 
 const hostnames = Array<string>();
 const scripts = Array<{ name: string; pattern: string; type: string }>();

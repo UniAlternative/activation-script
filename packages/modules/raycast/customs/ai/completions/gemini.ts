@@ -1,4 +1,4 @@
-import { buildResponse, httpClient } from "../../../../../utils";
+import { buildResponse, httpClient } from "../../../../../shared/src/utils";
 import { GEMINI_OFFICIAL_ENDPOINT } from "../../../constants";
 
 /**

@@ -1,4 +1,4 @@
-import { Activator } from "../types";
+import { Activator } from "../shared/src/types";
 import { GumroadValidate } from "./gumroad/validate";
 import { lemonSqueezyActive } from "./lemon-squeezy/activate";
 import { lemonsqueezyValidate } from "./lemon-squeezy/validate";

@@ -1,4 +1,4 @@
-import { buildResponse } from "../../utils";
+import { buildResponse } from "../../shared/src/utils";
 
 /**
  * @url https://api.elpass.app/device/management

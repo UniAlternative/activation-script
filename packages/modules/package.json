@@ -1,6 +1,6 @@
 {
-  "name": "@as/shared",
-  "version": "1.3.0",
+  "name": "@as/modules",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,8 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@as/modules": "workspace:^"
-  }
+  "license": "ISC"
 }
