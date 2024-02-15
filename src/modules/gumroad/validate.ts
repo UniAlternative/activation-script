@@ -1,4 +1,5 @@
-import { buildResponse, parseURLParams } from "../../utils";
+import { buildResponse } from "../../utils";
+import { parseURLParams } from "../../utils/url";
 
 /**
  * @url https://api.gumroad.com/v2/licenses/verify
