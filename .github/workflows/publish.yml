@@ -4,12 +4,58 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
-permissions: 
+permissions:
   write-all
-  
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Lint
+        run: nr lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+
+      - name: Setup
+        run: npm i -g @antfu/ni
+
+      - name: Install
+        run: nci
+
+      - name: Typecheck
+        run: nr typecheck
+
   build:
     runs-on: ubuntu-latest
     steps:
@@ -28,14 +74,12 @@ jobs:
       - name: Build
         run: |
           nr build
-          nr generate gen -o .
-          nr generate gen -m -e
-          mv activator.conf dist/activator.conf
+          node dist/generator.js gen -m -e
           mv activator.sgmodule dist/activator.sgmodule
-          mv dist/main.js dist/activator.js
           mv README.md dist/README.md
 
       - name: Deploy
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
