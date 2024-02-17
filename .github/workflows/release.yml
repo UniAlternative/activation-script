@@ -33,13 +33,13 @@ jobs:
           mv dist/main.js dist/activator.js
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: activator.js
           path: dist/activator.js
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: generator.js
           path: dist/generator.js
