@@ -10,6 +10,7 @@ import { paddleVerify } from './paddle/validate'
 // import { raycastAiModels } from "./raycast/customs/ai/models";
 // import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from './spotify/custom'
+import { TyporaActivate } from './typora/activate'
 
 export const activator: Activator = {
   lemonSqueezy: {
@@ -46,6 +47,10 @@ export const activator: Activator = {
       base: 'verify',
       func: GumroadValidate,
     },
+  },
+  typora: {
+    base: 'https://dian.typora.com.cn/api/client',
+    activate: TyporaActivate,
   },
   raycast: {
     base: 'https://backend.raycast.com/api/v1',
