@@ -10,7 +10,6 @@ import { paddleVerify } from './paddle/validate'
 // import { raycastAiModels } from "./raycast/customs/ai/models";
 // import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from './spotify/custom'
-import { TyporaActivate } from './typora/activate'
 
 export const activator: Activator = {
   lemonSqueezy: {
