@@ -10,7 +10,8 @@ import prompts from 'prompts'
  * If the activator.js file already exists in the config directory, the user is prompted to overwrite it.
  */
 export async function inject() {
-  const rootPath = process.cwd()
+  // const rootPath = process.cwd()
+  const rootPath = path.join(__dirname, '../../..')
   let configPath = ''
   console.log('[*] Inject function. You are in ', rootPath)
   await prompts([
@@ -87,7 +88,7 @@ export async function inject() {
   // });
 
   if (!fs.existsSync(path.join(rootPath, 'package.json'))) {
-    if (!fs.existsSync(path.join(rootPath, 'activator.js'))) {
+    if (!fs.existsSync(path.join(rootPath, 'dist', 'activator.js'))) {
       console.error('[E] activator.js not found. Please download it first.')
       return
     }
@@ -98,7 +99,7 @@ export async function inject() {
     )
     console.log('[I] activator.js building...')
     execSync('pnpm build')
-    if (!fs.existsSync(path.join(rootPath, 'activator.js'))) {
+    if (!fs.existsSync(path.join(rootPath, 'dist', 'activator.js'))) {
       console.error('[E] activator.js bundle not found. Build failed.')
       return
     }

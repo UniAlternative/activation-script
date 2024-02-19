@@ -47,6 +47,10 @@ export const activator: Activator = {
       func: GumroadValidate,
     },
   },
+  // typora: {
+  //   base: 'https://dian.typora.com.cn/api/client',
+  //   activate: TyporaActivate,
+  // },
   raycast: {
     base: 'https://backend.raycast.com/api/v1',
     // activate: {
