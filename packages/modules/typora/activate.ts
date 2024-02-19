@@ -1,4 +1,4 @@
-import { base64Encode, buildResponse, destr, v4 } from '@as/shared'
+import { base64Encode, buildResponse, destr } from '@as/shared'
 
 /**
  * @url https://dian.typora.com.cn/api/client/activate

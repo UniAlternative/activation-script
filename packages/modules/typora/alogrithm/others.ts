@@ -1,6 +1,5 @@
 import crypto from 'node:crypto'
 import { Buffer } from 'node:buffer'
-import { v4 } from '@as/shared'
 
 const sha256 = crypto.createHash('sha256')
 
