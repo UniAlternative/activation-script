@@ -16,10 +16,8 @@ export function isMatchBase(url: string, base: string | string[]) {
     return false
   }
   url = url.replace(/\/$/, '')
-  base = base.replace(/\/$/, '')
-  if (url === base)
-    return true
-  else if (base.includes('*') && url.includes(base.replace('*', '').replace(/\/$/, '')))
+  base = base.replace('*', '').replace(/\/$/, '')
+  if (url.includes(base))
     return true
   else
     return false
@@ -71,6 +69,7 @@ export function launch() {
     const moduleItem = activator[module]
 
     if (isMatchBase(url, moduleItem.base)) { // 检查 url 是否匹配 module 中配置的 base（利用 includes）
+      console.log(`[activator] ${url} is matched`)
       for (const key in moduleItem) { // 遍历 module 中的配置（base, activate, validate, customs）
         const moduleItemOptions = moduleItem[key as keyof typeof moduleItem]
 
