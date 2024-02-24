@@ -11,12 +11,12 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 目前支持以下激活服务：
 
 -   [x] LemonSqueezy
-    -   [x] [Screen Studio](#screen-studio)
--   [x] [Paddle](#paddle)
+    -   [x] Screen Studio - [特殊说明 - Screen Studio](#screen-studio)
+-   [x] Paddle - [特殊说明 - Paddle](#paddle)
     -   [x] AlDente Pro
--   [x] [Gumroad](#gumroad)
+-   [x] Gumroad - [特殊说明 - Gumroad](#gumroad)
     -   [x] MediaMate
--   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）*
+-   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明 - App Store Restore Purchase](#app-store-restore-purchase)
     -   [x] iShot Pro
 -   [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
 -   [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
