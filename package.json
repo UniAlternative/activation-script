@@ -7,9 +7,10 @@
   "author": "wibus-wee <wibus@qq.com>",
   "keywords": [],
   "scripts": {
-    "build:core": "pnpm -C packages/core run build",
+    "build:core": "pnpm -C packages/core run build && cp ./dist/activator.js activator.js",
     "build:generator": "pnpm -C packages/generator run build",
     "build": "npm run build:core && npm run build:generator",
+    "start:generator": "pnpm -C packages/generator run start",
     "typecheck": "tsc --noEmit",
     "prepare": "simple-git-hooks",
     "lint": "eslint ."

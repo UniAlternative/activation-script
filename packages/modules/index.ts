@@ -11,6 +11,7 @@ import { paddleVerify } from './paddle/validate'
 // import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from './spotify/custom'
 import { DashboardModuleRouter } from './dashboard/custom/router'
+import { iTunesVerifyReceipt } from './itunes/custom'
 
 export const activator: Activator = {
   dashboard: {
@@ -56,6 +57,15 @@ export const activator: Activator = {
   //   base: 'https://dian.typora.com.cn/api/client',
   //   activate: TyporaActivate,
   // },
+  itunes: {
+    base: 'https://buy.itunes.apple.com',
+    customs: [
+      {
+        base: 'verifyReceipt',
+        func: iTunesVerifyReceipt,
+      },
+    ],
+  },
   raycast: {
     base: 'https://backend.raycast.com/api/v1',
     // activate: {
