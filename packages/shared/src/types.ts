@@ -1,16 +1,15 @@
-type ActivatorObjFunc =
-  | {
-    base: string
-    func: ActivatorFunction
-    type?: 'http-request' | 'http-response'
-  }
-  | ActivatorFunction
+export interface ActivatorObjFunc {
+  base: string
+  func: ActivatorFunction
+  type?: 'http-request' | 'http-response'
+}
+
 export interface Activator {
   [key: string]: {
     base: string | string[]
-    activate?: ActivatorObjFunc
-    validate?: ActivatorObjFunc
-    customs?: ActivatorObjFunc[]
+    activate?: ActivatorObjFunc | ActivatorFunction
+    validate?: ActivatorObjFunc | ActivatorFunction
+    customs?: Array<ActivatorObjFunc | ActivatorFunction>
   }
 }
 
