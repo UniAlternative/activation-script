@@ -16,6 +16,8 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
     -   [x] AlDente Pro
 -   [x] Gumroad
     -   [x] [MediaMate](#mediamate)
+-   [x] App Store Restore Purchase
+    -   [x] iShot Pro
 -   [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
 -   [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
 
@@ -91,7 +93,19 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 -   [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
-另外，你可能还需要前往 [./src/modules/index.ts#L83](./src/modules/index.ts#L83) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+另外，你可能还需要前往 [./packages/modules/index.ts](./packages/modules/index.ts) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+
+```diff
+$done({
+    url: $request.url.replace(
+        'https://backend.raycast.com',
+-        'http://127.0.0.1:3000',
++        'https://your-backend-service.com',
+    ),
+    headers: $request.headers,
+    body: $request.body,
+})
+```
 
 > [!WARNING]
 > 不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。

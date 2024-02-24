@@ -259,6 +259,25 @@ const DashboardModuleRouter = [
     },
 ];
 
+/**
+ * @url https://buy.itunes.apple.com/verifyReceipt
+ */
+function iTunesVerifyReceipt() {
+    return buildResponse({
+        body: {
+            status: 0,
+            receipt: {
+                in_app: [
+                    {
+                        expires_date_ms: 4096018800000,
+                        expires_date: '2100-01-01T00:00:00Z',
+                    },
+                ],
+            },
+        },
+    });
+}
+
 const activator = {
     dashboard: {
         base: 'http://as.as/*',
@@ -303,6 +322,15 @@ const activator = {
     //   base: 'https://dian.typora.com.cn/api/client',
     //   activate: TyporaActivate,
     // },
+    itunes: {
+        base: 'https://buy.itunes.apple.com',
+        customs: [
+            {
+                base: 'verifyReceipt',
+                func: iTunesVerifyReceipt,
+            },
+        ],
+    },
     raycast: {
         base: 'https://backend.raycast.com/api/v1',
         // activate: {
@@ -361,10 +389,8 @@ function isMatchBase(url, base) {
         return false;
     }
     url = url.replace(/\/$/, '');
-    base = base.replace(/\/$/, '');
-    if (url === base)
-        return true;
-    else if (base.includes('*') && url.includes(base.replace('*', '').replace(/\/$/, '')))
+    base = base.replace('*', '').replace(/\/$/, '');
+    if (url.includes(base))
         return true;
     else
         return false;
@@ -411,6 +437,7 @@ function launch() {
     for (const module in activator) {
         const moduleItem = activator[module];
         if (isMatchBase(url, moduleItem.base)) { // 检查 url 是否匹配 module 中配置的 base（利用 includes）
+            console.log(`[activator] ${url} is matched`);
             for (const key in moduleItem) { // 遍历 module 中的配置（base, activate, validate, customs）
                 const moduleItemOptions = moduleItem[key];
                 if (key === 'base') // 自然是不需要的
