@@ -1,5 +1,39 @@
 'use strict';
 
+var name = "@as/core";
+var type = "module";
+var version = "1.3.0";
+var description = "";
+var author = "";
+var license = "ISC";
+var keywords = [
+];
+var main = "index.js";
+var scripts = {
+	build: "rollup -c && mv ../../dist/main.js ../../dist/activator.js"
+};
+var dependencies = {
+	"@as/dashboard": "workspace:^",
+	"@as/modules": "workspace:^",
+	"@as/shared": "workspace:^"
+};
+var devDependencies = {
+	"@rollup/plugin-json": "^6.1.0"
+};
+var packageJson = {
+	name: name,
+	type: type,
+	version: version,
+	description: description,
+	author: author,
+	license: license,
+	keywords: keywords,
+	main: main,
+	scripts: scripts,
+	dependencies: dependencies,
+	devDependencies: devDependencies
+};
+
 function parseURLParams(url) {
     const params = url.split('?')[1];
     const result = {};
@@ -62,16 +96,6 @@ for (const method of methods) {
     httpClient[method] = (props, callback) => {
         $httpClient[method](props, callback);
     };
-}
-
-function DashboardRoute(url) {
-    buildResponse({
-        body: {
-            title: 'Dashboard',
-            content: 'Hello, World!',
-            url,
-        },
-    });
 }
 
 /**
@@ -226,7 +250,20 @@ function spotifyRemoveAds() {
     });
 }
 
+const DashboardModuleRouter = [
+    {
+        base: '/',
+        func: () => {
+            buildResponse({ status: 200, body: 'Dashboard' });
+        },
+    },
+];
+
 const activator = {
+    dashboard: {
+        base: 'http://as.as/*',
+        customs: DashboardModuleRouter,
+    },
     lemonSqueezy: {
         base: 'https://api.lemonsqueezy.com/v1/licenses',
         activate: lemonSqueezyActive,
@@ -313,52 +350,99 @@ const activator = {
 
 const url = $request.url.split('?')[0];
 /**
- * Determine whether the URL matches the base
+ * 检查 url 是否匹配 base 配置
  */
 function isMatchBase(url, base) {
     if (Array.isArray(base)) {
         for (const item of base) {
-            if (url.includes(item))
+            if (isMatchBase(url, item))
                 return true;
         }
         return false;
     }
-    return url.includes(base);
+    url = url.replace(/\/$/, '');
+    base = base.replace(/\/$/, '');
+    if (url === base)
+        return true;
+    else if (base.includes('*') && url.includes(base.replace('*', '').replace(/\/$/, '')))
+        return true;
+    else
+        return false;
 }
 /**
  * Automatic execution of the corresponding function according to the URL
+ * 自动执行对应的函数
+ * @description This will match the URL according to the base of the module function, and if it matches, it will execute the func of the module function
  */
 function launch() {
-    if (url.includes('as.as')) // dashboard route
-        return DashboardRoute(url);
+    console.log(`[activator] ${url}`);
+    /**
+     * 匹配模块函数
+     * @description 这会根据模块函数的 base 属性来匹配 url，如果匹配成功则执行模块函数的 func 属性
+     *
+     * @param moduleFunc 模块函数
+     * @returns 匹配结果
+     *
+     */
+    function matchModuleFunc(moduleFunc) {
+        console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`);
+        // 处理 * 通配符
+        if (isMatchBase(url, moduleFunc.base))
+            return moduleFunc.func();
+        // 不然就是要完全匹配
+        else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, '')) // 去掉末尾的 / 后再匹配
+            return moduleFunc.func();
+    }
+    /**
+     * 处理模块函数
+     * @description 这会根据模块函数的类型来执行对应的处理
+     *
+     * @param moduleFunc 模块函数
+     * @returns 匹配结果
+     *
+     */
+    function handleModuleFunc(moduleFunc) {
+        if (typeof moduleFunc === 'object') {
+            const match = matchModuleFunc(moduleFunc);
+            if (match)
+                return match;
+        }
+    }
     for (const module in activator) {
-        if (isMatchBase(url, activator[module].base)) {
-            for (const key in activator[module]) {
-                if (key === 'base')
+        const moduleItem = activator[module];
+        if (isMatchBase(url, moduleItem.base)) { // 检查 url 是否匹配 module 中配置的 base（利用 includes）
+            for (const key in moduleItem) { // 遍历 module 中的配置（base, activate, validate, customs）
+                const moduleItemOptions = moduleItem[key];
+                if (key === 'base') // 自然是不需要的
                     continue;
-                if (Array.isArray(activator[module][key])) {
-                    for (const custom of activator[module][key]) {
-                        if (custom.base === '*'
-                            && url.startsWith(activator[module].base))
-                            return custom.func();
-                        else if (url === `${activator[module].base}/${custom.base}`)
-                            return custom.func();
+                // 如果配置是数组（意味着有多个配置）这只会在 customs 中出现
+                if (typeof moduleItemOptions === 'object' && Array.isArray(moduleItemOptions)) {
+                    for (const custom of moduleItemOptions) {
+                        const match = handleModuleFunc({
+                            ...custom,
+                            base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
+                        });
+                        if (match)
+                            return match;
                     }
                     continue;
                 }
-                if (typeof activator[module][key] === 'object') {
-                    // *
-                    if (activator[module][key].base === '*')
-                        return activator[module][key].func();
-                    if (url
-                        === `${activator[module].base}/${activator[module][key].base}`)
-                        return activator[module][key].func();
-                }
-                else if (!url.includes(`${activator[module].base}/${key}`)) {
+                // 如果配置是对象（意味着只有一个配置）这只会在 activate 和 validate 中出现
+                if (typeof moduleItemOptions === 'object') {
+                    const match = handleModuleFunc(moduleItemOptions);
+                    if (match)
+                        return match;
                     continue;
                 }
-                if (typeof activator[module][key] === 'function')
-                    return activator[module][key]();
+                // 如果 url 不包含 module.base/key 则跳过，不用管后面的了
+                if (!url.includes(`${moduleItem.base}/${key}`))
+                    continue;
+                // 如果配置是函数，这个时候其实就没有什么特殊情况了，所以直接执行
+                if (typeof moduleItemOptions === 'function')
+                    return moduleItemOptions();
+                // 如果配置是字符串，几乎没有使用过，也算直接返回吧
+                if (typeof moduleItemOptions === 'string')
+                    return buildResponse({ body: moduleItemOptions });
             }
         }
     }
@@ -367,26 +451,26 @@ function launch() {
     // $done();
 }
 function returnDefaultResponse() {
-    console.log(`[activator] returnDefaultResponse: ${url} - ${$request.method.toLowerCase()}`);
-    // @ts-expect-error 这个地方无法通过类型检查
+    console.log(`[activator] returnDefaultResponse: [${$request.method}] -> ${url}`);
     httpClient[$request.method.toLowerCase()]({
         url: $request.url,
         headers: $request.headers,
     }, (err, response, _data) => {
-        if (!_data) {
-            console.log('returnDefaultResponse: _data is null', err);
-            buildResponse({
-                status: 500,
-                body: {},
-            });
+        if (err) {
+            console.log(err);
+            return buildResponse({ status: 500, body: err });
         }
+        if (!_data)
+            console.log('No data returned');
         const res = {
             status: response.status,
             headers: response.headers,
             body: _data,
         };
-        buildResponse(res);
+        return buildResponse(res);
     });
 }
 
+console.log(`===== Activator Script Handler =====`);
+console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} =====`);
 launch();

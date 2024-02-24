@@ -3,12 +3,13 @@
 
 
 [MITM]
-hostname = %APPEND% api.lemonsqueezy.com, v3.paddleapi.com, audio-akp-quic-spotify-com.akamaized.net, audio-fa.scdn.co, creativeservice-production.scdn.co, audio4-fa.scdn.co, api.gumroad.com, backend.raycast.com, as.as, *.as.as
+hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, audio-akp-quic-spotify-com.akamaized.net, audio-fa.scdn.co, creativeservice-production.scdn.co, audio4-fa.scdn.co, api.gumroad.com, backend.raycast.com
 
 
 
 [Script]
 activation-script-dashboard = type=http-request,pattern=^https://as.as/,requires-body=1,max-size=0,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
+dashboard-/-as.as = type=http-request,pattern=^http://as.as/*//,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
 lemonSqueezy-activate-api.lemonsqueezy.com = type=http-request,pattern=^https://api.lemonsqueezy.com/v1/licenses/activate,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
 lemonSqueezy-validate-api.lemonsqueezy.com = type=http-request,pattern=^https://api.lemonsqueezy.com/v1/licenses/validate,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
 paddle-activate-v3.paddleapi.com = type=http-request,pattern=^https://v3.paddleapi.com/3.2/license/activate,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
