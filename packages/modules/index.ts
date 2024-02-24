@@ -10,8 +10,13 @@ import { paddleVerify } from './paddle/validate'
 // import { raycastAiModels } from "./raycast/customs/ai/models";
 // import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from './spotify/custom'
+import { DashboardModuleRouter } from './dashboard/custom/router'
 
 export const activator: Activator = {
+  dashboard: {
+    base: 'http://as.as/*',
+    customs: DashboardModuleRouter,
+  },
   lemonSqueezy: {
     base: 'https://api.lemonsqueezy.com/v1/licenses',
     activate: lemonSqueezyActive,
