@@ -14,6 +14,7 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
     -   [x] Screen Studio - [特殊说明 - Screen Studio](#screen-studio)
 -   [x] Paddle - [特殊说明 - Paddle](#paddle)
     -   [x] AlDente Pro
+    -   [x] iStatistica Pro
 -   [x] Gumroad - [特殊说明 - Gumroad](#gumroad)
     -   [x] MediaMate
 -   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明 - App Store Restore Purchase](#app-store-restore-purchase)
@@ -53,6 +54,21 @@ find /Applications -name "Paddle.framework" -type d -exec sh -c 'echo "应用程
 ```
 
 一般来说，它们都可以被正常激活。同时，也欢迎提交你发现的使用了 Paddle 的应用程序，我会将它们添加到列表中。
+
+或许你需要许可证来触发激活程序，你可以使用以下激活码（fake）：
+
+```
+9U2DM70E-ED0RPLF3-6FOCF9UB-3GQ3WPEU-KREMAIUX
+UA3UMLRC-62GUZ8B0-4PRIA7PZ-5XNL05TV-RNTJ3YZ9
+D2TMD4AR-3CPQYT42-N6UWNYYA-69REG5QI-T4C7ZSIR
+75ZQRI8T-CQ8H46WJ-NFJHNROZ-P0A3PZ2R-SUA6PPYV
+JP26HIZ7-BP09SYO8-ER67YRNR-L61JBMJ7-CCZRM7IZ
+4JKMBTVI-4QXMR0O7-3WDLW8Z0-80618ZML-0EKK26KW
+61WUMZRG-DK4AI5JD-HIYYM3CP-FCFSNKLS-P08UYALJ
+F2X9ZBAR-ZO9Y1L4G-19MCAUK1-46358751-340O82BP
+8DG6WQ0G-HTEEITAS-89ZYJXMC-MEHW736F-DZFHNXPH
+I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
+```
 
 ### App Store Restore Purchase
 
