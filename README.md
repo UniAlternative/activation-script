@@ -12,11 +12,11 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 
 -   [x] LemonSqueezy
     -   [x] [Screen Studio](#screen-studio)
--   [x] Paddle
+-   [x] [Paddle](#paddle)
     -   [x] AlDente Pro
--   [x] Gumroad
-    -   [x] [MediaMate](#mediamate)
--   [x] App Store Restore Purchase
+-   [x] [Gumroad](#gumroad)
+    -   [x] MediaMate
+-   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）*
     -   [x] iShot Pro
 -   [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
 -   [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
@@ -44,6 +44,23 @@ pnpm generate inject
 
 ## 特殊说明
 
+### Paddle
+
+Paddle 是一个软件许可证管理服务，它的 SDK 会在应用程序启动时验证许可证。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
+
+```shell
+find /Applications -name "Paddle.framework" -type d -exec sh -c 'echo "应用程序 {} 使用了 Paddle.framework"' \;
+```
+
+一般来说，它们都可以被正常激活。同时，也欢迎提交你发现的使用了 Paddle 的应用程序，我会将它们添加到列表中。
+
+### App Store Restore Purchase
+
+> [!WARNING]
+> 由于 Apple 的限制，这个功能只能用于仍使用旧式 verifyReceipt 验证（文档中已被弃用）的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
+
+欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
+
 ### Screen Studio
 
 ```
@@ -59,9 +76,11 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 62c3bf31-428b-4bea-a31f-9a14f0a1a63c
 ```
 
-### MediaMate
+### Gumroad
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
+
+理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
 
 ```
 MNBVCXZLK-QWERTYUIO-ASDFHJKLZ-XCVBN
