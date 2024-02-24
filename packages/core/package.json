@@ -14,5 +14,8 @@
     "@as/dashboard": "workspace:^",
     "@as/modules": "workspace:^",
     "@as/shared": "workspace:^"
+  },
+  "devDependencies": {
+    "@rollup/plugin-json": "^6.1.0"
   }
 }
