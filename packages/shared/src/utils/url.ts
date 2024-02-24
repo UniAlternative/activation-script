@@ -1,18 +1,17 @@
 export function parseURLParams(url: string) {
-  const urlObj = new URL(url)
-  const searchParams = urlObj.searchParams
-  const obj: Record<string, string> = {}
-  for (const [key, value] of searchParams)
-    obj[key] = value
-
-  return obj
+  const params = url.split('?')[1]
+  const result: { [key: string]: string } = {}
+  if (params) {
+    const pairs = params.split('&')
+    for (const pair of pairs) {
+      const [key, value] = pair.split('=')
+      result[key] = value
+    }
+  }
+  return result
 }
 
 export function parseURL(url: string) {
-  const urlObj = new URL(url)
-  return {
-    host: urlObj.host,
-    path: urlObj.pathname,
-    query: parseURLParams(url),
-  }
+  const [path, params] = url.split('?')
+  return { path, params: parseURLParams(params) }
 }
