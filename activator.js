@@ -170,8 +170,12 @@ function lemonsqueezyValidate() {
  */
 function paddleActivate() {
     const body = $request.body;
+    console.log(body);
     if (!body) {
         buildResponse({
+            headers: {
+                'Content-Type': 'application/json; charset=UTF-8',
+            },
             body: {
                 success: false,
                 response: {
@@ -188,14 +192,19 @@ function paddleActivate() {
             product_id = k.split('=')[1];
     }
     buildResponse({
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        // B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
         body: {
             success: true,
             response: {
                 product_id,
                 activation_id: 'QiuChenly',
-                type: 'personal',
+                type: 'activate',
                 expires: 1,
                 expiry_date: 1999999999999,
+                signature: 'lkJpGAM',
             },
         },
     });
