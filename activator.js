@@ -227,10 +227,6 @@ function paddleVerify() {
     });
 }
 
-// *://audio-ak-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
-// *://audio-akp-quic-spotify-com.akamaized.net/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
-// *://audio-fa.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
-// *://creativeservice-production.scdn.co/*$header=content-range:/\/\d\d\d\d\d\d$/,redirect=noop-0.5s.mp3
 /**
  * @url audio-ak-spotify-com.akamaized.net
  * @url audio-akp-quic-spotify-com.akamaized.net
@@ -423,8 +419,8 @@ function launch() {
         // 处理 * 通配符
         if (isMatchBase(url, moduleFunc.base))
             return moduleFunc.func();
-        // 不然就是要完全匹配
-        else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, '')) // 去掉末尾的 / 后再匹配
+        // 不然就是要完全匹配（去掉末尾的 / 后再匹配）
+        else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, ''))
             return moduleFunc.func();
     }
     /**
@@ -437,6 +433,7 @@ function launch() {
      */
     function handleModuleFunc(moduleFunc) {
         if (typeof moduleFunc === 'object') {
+            moduleFunc.base = moduleFunc.base.replace(/\/$/, '');
             const match = matchModuleFunc(moduleFunc);
             if (match)
                 return match;
@@ -506,6 +503,7 @@ function returnDefaultResponse() {
     });
 }
 
+const COMMIT_HASH = "56fc0f0969e668db7cd8cd3bcd0bd3644a6d9dcc";
 console.log(`===== Activator Script Handler =====`);
-console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} =====`);
+console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
