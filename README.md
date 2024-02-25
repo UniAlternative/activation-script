@@ -6,23 +6,27 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 🧪 Working in Progress
 </pre>
 
-## Supported Activation Services
+## Features
 
-目前支持以下激活服务：
+目前支持激活的应用程序：
 
 -   [x] LemonSqueezy
     -   [x] Screen Studio - [特殊说明](#screen-studio)
 -   [x] Paddle - [特殊说明](#paddle)
     -   [x] AlDente Pro
     -   [x] iStatistica Pro
-    -   [x] Downie 4
     -   [x] One Switch
+    -   [x] com.charliemonroe
+        -   [x] Downie 4
+        -   [x] Permute 3
+    -   [x] Sensei
 -   [x] Gumroad - [特殊说明](#gumroad)
     -   [x] MediaMate
+    -   [x] ...more
 -   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
     -   [x] iShot Pro
--   [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
--   [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
+    -   [ ] ...more
+-   [ ] [~~Raycast Pro Plan~~]((#raycast-pro-plan))
 
 ## 安装
 
@@ -59,11 +63,10 @@ find /Applications -name "Paddle.framework" -type d -exec sh -c 'echo "应用程
 
 或许你需要许可证来触发激活程序，你可以使用以下激活码（fake）：
 
-> 尤其针对 `Downie 4` 做了特殊处理，因为 Downie 4 会校验激活码格式，所以需要特殊计算的激活码。
+> 尤其针对 `com.charliemonroe` 的程序做了许可证格式的处理，因此你可以使用以下激活码来激活它们。
 
 ```
 9U2DM70E-ED0RPLF3-6FOCF9UB-3GQ3WPEU-KREMAIUX
-UA3UMLRC-62GUZ8B0-4PRIA7PZ-5XNL05TV-RNTJ3YZ9
 D2TMD4AR-3CPQYT42-N6UWNYYA-69REG5QI-T4C7ZSIR
 75ZQRI8T-CQ8H46WJ-NFJHNROZ-P0A3PZ2R-SUA6PPYV
 JP26HIZ7-BP09SYO8-ER67YRNR-L61JBMJ7-CCZRM7IZ
@@ -73,6 +76,8 @@ F2X9ZBAR-ZO9Y1L4G-19MCAUK1-46358751-340O82BP
 8DG6WQ0G-HTEEITAS-89ZYJXMC-MEHW736F-DZFHNXPH
 I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 ```
+
+###### [Alogrithm](./packages/modules/paddle/alogrithm/gen.ts)
 
 ### App Store Restore Purchase
 
@@ -96,6 +101,8 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 62c3bf31-428b-4bea-a31f-9a14f0a1a63c
 ```
 
+###### [Alogrithm](./packages/modules/lemon-squeezy/alogrithm/screen-studio.ts)
+
 ### Gumroad
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
@@ -116,6 +123,8 @@ ZCJJBTBBT-XXTCCSCZT-XMVQQXQXL-ZVOZI
 IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 41389661-TLSYJYTE-32625842-BLCVBKVK
 ```
+
+###### [Alogrithm](./packages/modules/gumroad/alogrithm/index.ts)
 
 ### Raycast Pro Plan
 
