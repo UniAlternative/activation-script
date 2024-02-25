@@ -44,8 +44,8 @@ export function launch() {
     // 处理 * 通配符
     if (isMatchBase(url, moduleFunc.base))
       return moduleFunc.func()
-    // 不然就是要完全匹配
-    else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, '')) // 去掉末尾的 / 后再匹配
+    // 不然就是要完全匹配（去掉末尾的 / 后再匹配）
+    else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, ''))
       return moduleFunc.func()
   }
 
@@ -59,6 +59,7 @@ export function launch() {
    */
   function handleModuleFunc(moduleFunc: ActivatorObjFunc) {
     if (typeof moduleFunc === 'object') {
+      moduleFunc.base = moduleFunc.base.replace(/\/$/, '')
       const match = matchModuleFunc(moduleFunc)
       if (match)
         return match
