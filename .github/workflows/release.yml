@@ -58,7 +58,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload Release Asset (activator.js)
-        id: upload-release-asset-activator.js
+        id: upload-release-asset-activator-js
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,7 +69,7 @@ jobs:
           asset_content_type: application/javascript
 
       - name: Upload Release Asset (generator.js)
-        id: upload-release-asset-generator.js
+        id: upload-release-asset-generator-js
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

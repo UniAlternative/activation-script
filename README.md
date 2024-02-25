@@ -6,18 +6,29 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 🧪 Working in Progress
 </pre>
 
-## Supported Activation Services
+## Features
 
-目前支持以下激活服务：
+目前支持激活的应用程序：
 
 -   [x] LemonSqueezy
-    -   [x] [Screen Studio](#screen-studio)
--   [x] Paddle
+    -   [x] Screen Studio - [特殊说明](#screen-studio)
+-   [x] Paddle - [特殊说明](#paddle)
     -   [x] AlDente Pro
--   [x] Gumroad
-    -   [x] [MediaMate](#mediamate)
--   [x] Spotify (仅移除音频广告，你可以使用 AdBlock 等工具屏蔽 HTML 广告) `🧪 Beta`
--   [ ] ~~Raycast Pro Plan **(Without Pro plan features)**~~ - [特殊说明 - Raycast Pro Plan](#raycast-pro-plan)
+    -   [x] iStatistica Pro
+    -   [x] One Switch
+    -   [x] com.charliemonroe
+        -   [x] Downie 4
+        -   [x] Permute 3
+    -   [x] Sensei
+    -   [x] Rectangle Pro
+    -   [x] MenubarX
+-   [x] Gumroad - [特殊说明](#gumroad)
+    -   [x] MediaMate
+    -   [x] ...more
+-   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
+    -   [x] iShot Pro
+    -   [ ] ...more
+-   [ ] [~~Raycast Pro Plan~~]((#raycast-pro-plan))
 
 ## 安装
 
@@ -42,6 +53,41 @@ pnpm generate inject
 
 ## 特殊说明
 
+### Paddle
+
+Paddle 是一个软件许可证管理服务，它的 SDK 会在应用程序启动时验证许可证。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
+
+```shell
+find /Applications -name "Paddle.framework" -type d -exec sh -c 'echo "应用程序 {} 使用了 Paddle.framework"' \;
+```
+
+一般来说，它们都可以被正常激活。同时，也欢迎提交你发现的使用了 Paddle 的应用程序，我会将它们添加到列表中。
+
+或许你需要许可证来触发激活程序，你可以使用以下激活码（fake）：
+
+> 尤其针对 `com.charliemonroe` 的程序做了许可证格式的处理，因此你可以使用以下激活码来激活它们。
+
+```
+9U2DM70E-ED0RPLF3-6FOCF9UB-3GQ3WPEU-KREMAIUX
+D2TMD4AR-3CPQYT42-N6UWNYYA-69REG5QI-T4C7ZSIR
+75ZQRI8T-CQ8H46WJ-NFJHNROZ-P0A3PZ2R-SUA6PPYV
+JP26HIZ7-BP09SYO8-ER67YRNR-L61JBMJ7-CCZRM7IZ
+4JKMBTVI-4QXMR0O7-3WDLW8Z0-80618ZML-0EKK26KW
+61WUMZRG-DK4AI5JD-HIYYM3CP-FCFSNKLS-P08UYALJ
+F2X9ZBAR-ZO9Y1L4G-19MCAUK1-46358751-340O82BP
+8DG6WQ0G-HTEEITAS-89ZYJXMC-MEHW736F-DZFHNXPH
+I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
+```
+
+###### [Alogrithm](./packages/modules/paddle/alogrithm/gen.ts)
+
+### App Store Restore Purchase
+
+> [!WARNING]
+> 由于 Apple 的限制，这个功能只能用于仍使用旧式 verifyReceipt 验证（文档中已被弃用）的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
+
+欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
+
 ### Screen Studio
 
 ```
@@ -57,9 +103,13 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 62c3bf31-428b-4bea-a31f-9a14f0a1a63c
 ```
 
-### MediaMate
+###### [Alogrithm](./packages/modules/lemon-squeezy/alogrithm/screen-studio.ts)
+
+### Gumroad
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
+
+理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
 
 ```
 MNBVCXZLK-QWERTYUIO-ASDFHJKLZ-XCVBN
@@ -76,6 +126,8 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 41389661-TLSYJYTE-32625842-BLCVBKVK
 ```
 
+###### [Alogrithm](./packages/modules/gumroad/alogrithm/index.ts)
+
 ### Raycast Pro Plan
 
 > Thanks to @zhuozhiyongde.
@@ -91,16 +143,24 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 -   [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
-另外，你可能还需要前往 [./src/modules/index.ts#L83](./src/modules/index.ts#L83) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+另外，你可能还需要前往 [./packages/modules/index.ts](./packages/modules/index.ts) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+
+```diff
+$done({
+    url: $request.url.replace(
+        'https://backend.raycast.com',
+-        'http://127.0.0.1:3000',
++        'https://your-backend-service.com',
+    ),
+    headers: $request.headers,
+    body: $request.body,
+})
+```
 
 > [!WARNING]
 > 不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
 >
 > 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时建议后端服务关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Credits
 
@@ -109,3 +169,13 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 -   [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 -   [sfc9982/typoraActivator](https://github.com/sfc9982/typoraActivator)
+
+## License
+
+This project is licensed under the AGPLv3 License. See the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Activation Script © Wibus, Released under AGPLv3. Created on Sep 9, 2023
+
+> [Personal Website](http://wibus.ren/) · [Blog](https://blog.wibus.ren/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)

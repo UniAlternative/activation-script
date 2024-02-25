@@ -1,7 +1,7 @@
 {
   "name": "activation-scripts",
   "type": "module",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "packageManager": "pnpm@8.15.1",
   "description": "",
   "author": "wibus-wee <wibus@qq.com>",
@@ -12,6 +12,7 @@
     "build:generator": "pnpm -C packages/generator run build",
     "build": "npm run build:core && npm run build:generator",
     "dev:dashboard": "pnpm -C packages/dashboard run dev",
+    "start:generator": "pnpm -C packages/generator run start",
     "typecheck": "tsc --noEmit && pnpm -C packages/dashboard run typecheck",
     "prepare": "simple-git-hooks",
     "lint": "eslint ."
