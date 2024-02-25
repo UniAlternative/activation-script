@@ -20,6 +20,8 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
         -   [x] Downie 4
         -   [x] Permute 3
     -   [x] Sensei
+    -   [x] Rectangle Pro
+    -   [x] MenubarX
 -   [x] Gumroad - [特殊说明](#gumroad)
     -   [x] MediaMate
     -   [x] ...more
