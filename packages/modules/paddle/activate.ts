@@ -42,6 +42,7 @@ export function paddleActivate() {
         expires: 1,
         expiry_date: 1999999999999,
       },
+      signature: '',
     },
   })
 }
