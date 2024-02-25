@@ -205,6 +205,7 @@ function paddleActivate() {
                 expires: 1,
                 expiry_date: 1999999999999,
             },
+            signature: '',
         },
     });
 }
@@ -503,7 +504,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "56fc0f0969e668db7cd8cd3bcd0bd3644a6d9dcc";
+const COMMIT_HASH = "229192e621a1457f75d105426a3990ef0540eea2";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
