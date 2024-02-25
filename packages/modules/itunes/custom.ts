@@ -1,4 +1,4 @@
-import { buildResponse, destr } from '@as/shared'
+import { buildResponse } from '@as/shared'
 
 /**
  * @url https://buy.itunes.apple.com/verifyReceipt

@@ -6,8 +6,12 @@ import { buildResponse } from '@as/shared'
  */
 export function paddleActivate() {
   const body = $request.body
+  console.log(body)
   if (!body) {
     buildResponse({
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
       body: {
         success: false,
         response: {
@@ -25,14 +29,19 @@ export function paddleActivate() {
   }
 
   buildResponse({
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    // B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
     body: {
       success: true,
       response: {
         product_id,
         activation_id: 'QiuChenly',
-        type: 'personal',
+        type: 'activate',
         expires: 1,
-        expiry_date: 1999999999999,
+        expiry_date: 1999999999999, // lkJpGAMc6QUcwSwS2jmQmHQrXKd3qu4tZ5U2dhTIjus=",
+        signature: 'lkJpGAM',
       },
     },
   })
