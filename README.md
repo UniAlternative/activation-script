@@ -162,10 +162,6 @@ $done({
 >
 > 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时建议后端服务关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
 ## Credits
 
 -   [Surge](https://nssurge.com/)
@@ -173,3 +169,13 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 -   [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 -   [sfc9982/typoraActivator](https://github.com/sfc9982/typoraActivator)
+
+## License
+
+This project is licensed under the AGPLv3 License. See the [LICENSE](LICENSE) file for details.
+
+## Author
+
+Activation Script © Wibus, Released under AGPLv3. Created on Sep 9, 2023
+
+> [Personal Website](http://wibus.ren/) · [Blog](https://blog.wibus.ren/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
