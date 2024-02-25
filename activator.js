@@ -195,7 +195,6 @@ function paddleActivate() {
         headers: {
             'Content-Type': 'application/json',
         },
-        // B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
         body: {
             success: true,
             response: {
@@ -505,7 +504,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "d863a5b9583919352a1c242ef8665427634bb203";
+const COMMIT_HASH = "56ea2f3e959e181c08bd6d35e9668386ae8528b4";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
