@@ -32,7 +32,6 @@ export function paddleActivate() {
     headers: {
       'Content-Type': 'application/json',
     },
-    // B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
     body: {
       success: true,
       response: {

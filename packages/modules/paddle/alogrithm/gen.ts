@@ -1,16 +1,11 @@
 function genPaddle() {
-  // Example: B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
+  // Example: (Downie 4 Fake License)
+  // B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
+  // A1BB4A4A-A1BB4A4A-A1BB4A4A-A1BB4A4A-A1BB4A4A
   const words = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  const len = words.length
-  let result = ''
-  for (let i = 0; i < 5; i++) {
-    for (let j = 0; j < 8; j++)
-      result += words[Math.floor(Math.random() * len)]
-
-    if (i !== 4)
-      result += '-'
-  }
-  return result
+  const random = () => words[Math.floor(Math.random() * words.length)]
+  const gen = () => Array(5).fill(0).map(random).join('')
+  return `${gen()}-${gen()}-${gen()}-${gen()}-${gen()}`
 }
 
 console.log(genPaddle())
