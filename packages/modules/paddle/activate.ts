@@ -40,8 +40,7 @@ export function paddleActivate() {
         activation_id: 'QiuChenly',
         type: 'activate',
         expires: 1,
-        expiry_date: 1999999999999, // lkJpGAMc6QUcwSwS2jmQmHQrXKd3qu4tZ5U2dhTIjus=",
-        signature: 'lkJpGAM',
+        expiry_date: 1999999999999,
       },
     },
   })
