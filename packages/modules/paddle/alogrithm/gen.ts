@@ -1,12 +1,11 @@
-function genPaddle() {
-  // Example: (Downie 4 Fake License)
-  // B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C-B7EE3D3C
-  // A1BB4A4A-A1BB4A4A-A1BB4A4A-A1BB4A4A-A1BB4A4A
-  const words = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-  const random = () => words[Math.floor(Math.random() * words.length)]
-  const gen = () => Array(5).fill(0).map(random).join('')
-  return `${gen()}-${gen()}-${gen()}-${gen()}-${gen()}`
+function _genPaddle() {
+  const words = 'ABCDEF'
+  const numbers = '123456789'
+  const gen = (str: string, len: number) => Array(len).fill(0).map(() => str.charAt(Math.floor(Math.random() * str.length))).join('')
+  return `${gen(words, 1)}${gen(numbers, 1)}${gen(words, 1)}${gen(words, 1)}${gen(numbers, 1)}${gen(words, 1)}${gen(numbers, 1)}${gen(words, 1)}`
 }
 
-console.log(genPaddle())
-// Promise.all(Array(10).fill(0).map(() => genPaddle())).then(res => console.log(res.join('\n')))
+function genPaddle() {
+  return `${_genPaddle()}-${_genPaddle()}-${_genPaddle()}-${_genPaddle()}-${_genPaddle()}`
+}
+Promise.all(Array(10).fill(0).map(() => genPaddle())).then(res => console.log(res.join('\n')))
