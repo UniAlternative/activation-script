@@ -222,6 +222,7 @@ function paddleVerify() {
             expires: 1,
             expiry_date: 1999999999999,
         },
+        signature: '',
     };
     buildResponse({
         body,
@@ -504,7 +505,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "229192e621a1457f75d105426a3990ef0540eea2";
+const COMMIT_HASH = "d863a5b9583919352a1c242ef8665427634bb203";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
