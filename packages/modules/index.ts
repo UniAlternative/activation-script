@@ -12,6 +12,7 @@ import { paddleVerify } from './paddle/validate'
 import { spotifyRemoveAds } from './spotify/custom'
 import { DashboardModuleRouter } from './dashboard/custom/router'
 import { iTunesVerifyReceipt } from './itunes/custom'
+import { shottrVerifyLicense } from './shottr/validate'
 
 export const activator: Activator = {
   dashboard: {
@@ -53,10 +54,6 @@ export const activator: Activator = {
       func: GumroadValidate,
     },
   },
-  // typora: {
-  //   base: 'https://dian.typora.com.cn/api/client',
-  //   activate: TyporaActivate,
-  // },
   itunes: {
     base: 'https://buy.itunes.apple.com',
     customs: [
@@ -111,5 +108,16 @@ export const activator: Activator = {
       //   func: raycastAICompletionsRequest,
       // },
     ],
+  },
+  // typora: {
+  //   base: 'https://dian.typora.com.cn/api/client',
+  //   activate: TyporaActivate,
+  // },
+  shottr: {
+    base: 'https://shottr.cc/licensing',
+    validate: {
+      base: 'verify.php',
+      func: shottrVerifyLicense,
+    },
   },
 }

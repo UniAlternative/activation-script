@@ -28,6 +28,9 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
 -   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
     -   [x] iShot Pro
     -   [ ] ...more
+-   [x] Shottr
+    -   [x] Basic Tier
+    -   [ ] Friends Club
 -   [ ] [~~Raycast Pro Plan~~]((#raycast-pro-plan))
 
 ## 安装
