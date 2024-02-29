@@ -283,6 +283,18 @@ function iTunesVerifyReceipt() {
     });
 }
 
+/**
+ * @url https://shottr.cc/licensing/verify.php
+ */
+function shottrVerifyLicense() {
+    const body = {
+        tier: '',
+    };
+    buildResponse({
+        body,
+    });
+}
+
 const activator = {
     dashboard: {
         base: 'http://as.as/*',
@@ -323,10 +335,6 @@ const activator = {
             func: GumroadValidate,
         },
     },
-    // typora: {
-    //   base: 'https://dian.typora.com.cn/api/client',
-    //   activate: TyporaActivate,
-    // },
     itunes: {
         base: 'https://buy.itunes.apple.com',
         customs: [
@@ -378,6 +386,17 @@ const activator = {
         //   func: raycastAICompletionsRequest,
         // },
         ],
+    },
+    // typora: {
+    //   base: 'https://dian.typora.com.cn/api/client',
+    //   activate: TyporaActivate,
+    // },
+    shottr: {
+        base: 'https://shottr.cc/licensing',
+        validate: {
+            base: 'verify.php',
+            func: shottrVerifyLicense,
+        },
     },
 };
 
@@ -504,7 +523,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "b6b048ce899959d1d210e6bb9cf7d1860a56cf11";
+const COMMIT_HASH = "f22396c2c0ad5b3d1d20111a66bbb562797adefc";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
