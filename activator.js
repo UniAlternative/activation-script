@@ -34,6 +34,15 @@ var packageJson = {
 	devDependencies: devDependencies
 };
 
+function destr(str) {
+    try {
+        return JSON.parse(str);
+    }
+    catch (e) {
+        return str;
+    }
+}
+
 function parseURLParams(url) {
     const params = url.split('?')[1];
     const result = {};
@@ -68,6 +77,13 @@ function buildResponse(props) {
         response: {
             ...props,
         },
+    });
+}
+function modifyResponse(props) {
+    if (props.body)
+        props.body = transformToString(props.body);
+    $done({
+        ...props,
     });
 }
 /**
@@ -285,12 +301,15 @@ function iTunesVerifyReceipt() {
 
 /**
  * @url https://shottr.cc/licensing/verify.php
+ * @url https://shottr-verify-license.blimps.workers.dev
  */
 function shottrVerifyLicense() {
     const body = {
-        tier: '',
+        ...destr($response.body),
+        tier: '1',
+        explanation: undefined,
     };
-    buildResponse({
+    modifyResponse({
         body,
     });
 }
@@ -392,10 +411,14 @@ const activator = {
     //   activate: TyporaActivate,
     // },
     shottr: {
-        base: 'https://shottr.cc/licensing',
+        base: [
+            'https://shottr.cc/licensing',
+            'https://shottr-verify-license.blimps.workers.dev',
+        ],
         validate: {
             base: 'verify.php',
             func: shottrVerifyLicense,
+            type: 'http-response',
         },
     },
 };
@@ -523,7 +546,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "ccff7d003ef2b3e0038e4e8f087853af81de3d14";
+const COMMIT_HASH = "cd9ad3cde9a2a438240ff93d11aa3b2e98442c1d";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
