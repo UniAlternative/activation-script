@@ -4,11 +4,6 @@ import { lemonSqueezyActive } from './lemon-squeezy/activate'
 import { lemonsqueezyValidate } from './lemon-squeezy/validate'
 import { paddleActivate } from './paddle/activate'
 import { paddleVerify } from './paddle/validate'
-
-// import { raycastActivate } from "./raycast/activate";
-// import { raycastAICompletionsRequest } from "./raycast/customs/ai/completions";
-// import { raycastAiModels } from "./raycast/customs/ai/models";
-// import { raycastTrialStatus } from "./raycast/customs/custom";
 import { spotifyRemoveAds } from './spotify/custom'
 import { DashboardModuleRouter } from './dashboard/custom/router'
 import { iTunesVerifyReceipt } from './itunes/custom'
@@ -114,10 +109,14 @@ export const activator: Activator = {
   //   activate: TyporaActivate,
   // },
   shottr: {
-    base: 'https://shottr.cc/licensing',
+    base: [
+      'https://shottr.cc/licensing',
+      'https://shottr-verify-license.blimps.workers.dev',
+    ],
     validate: {
       base: 'verify.php',
       func: shottrVerifyLicense,
+      type: 'http-response',
     },
   },
 }

@@ -1,13 +1,16 @@
-import { buildResponse } from '@as/shared'
+import { buildResponse, destr, modifyResponse } from '@as/shared'
 
 /**
  * @url https://shottr.cc/licensing/verify.php
+ * @url https://shottr-verify-license.blimps.workers.dev
  */
 export function shottrVerifyLicense() {
   const body = {
-    tier: '',
+    ...destr($response.body),
+    tier: '1',
+    explanation: undefined,
   }
-  buildResponse({
+  modifyResponse({
     body,
   })
 }
