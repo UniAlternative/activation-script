@@ -16,12 +16,14 @@ Activation Script 是一个旨在生成配置文件和激活软件许可证的�
     -   [x] AlDente Pro
     -   [x] iStatistica Pro
     -   [x] One Switch
-    -   [x] com.charliemonroe
+    -   [x] Charliemonroe
         -   [x] Downie 4
         -   [x] Permute 3
     -   [x] Sensei
     -   [x] Rectangle Pro
     -   [x] MenubarX
+    -   [x] MarginNote 3
+    -   [x] MWeb Pro
 -   [x] Gumroad - [特殊说明](#gumroad)
     -   [x] MediaMate
     -   [x] ...more

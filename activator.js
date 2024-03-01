@@ -199,7 +199,7 @@ function paddleActivate() {
             success: true,
             response: {
                 product_id,
-                activation_id: 'QiuChenly',
+                activation_id: '@wibus-wee',
                 type: 'activate',
                 expires: 1,
                 expiry_date: 1999999999999,
@@ -523,7 +523,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "f22396c2c0ad5b3d1d20111a66bbb562797adefc";
+const COMMIT_HASH = "ccff7d003ef2b3e0038e4e8f087853af81de3d14";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
