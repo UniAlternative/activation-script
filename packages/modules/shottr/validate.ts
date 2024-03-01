@@ -1,4 +1,4 @@
-import { buildResponse, destr, modifyResponse } from '@as/shared'
+import { destr, modifyResponse } from '@as/shared'
 
 /**
  * @url https://shottr.cc/licensing/verify.php
