@@ -36,7 +36,7 @@ export function paddleActivate() {
       success: true,
       response: {
         product_id,
-        activation_id: 'QiuChenly',
+        activation_id: '@wibus-wee',
         type: 'activate',
         expires: 1,
         expiry_date: 1999999999999,
