@@ -43,8 +43,8 @@ importers:
         specifier: ^3.29.1
         version: 3.29.1
       rollup-plugin-esbuild:
-        specifier: ^5.0.0
-        version: 5.0.0(esbuild@0.20.1)(rollup@3.29.1)
+        specifier: ^6.1.1
+        version: 6.1.1(esbuild@0.20.1)(rollup@3.29.1)
       rollup-plugin-ts:
         specifier: ^3.4.5
         version: 3.4.5(rollup@3.29.1)(typescript@5.2.2)
@@ -252,7 +252,7 @@ packages:
     resolution: {integrity: sha512-BDXFbYOJzT/NBEtp71cvsrGPwGAMGRB/349rwKuoxNSiKjPraNNnlK6MIIabViCjqZugu6j+xeMDlEkWdHHJSg==}
     dependencies:
       '@esbuild-kit/core-utils': 3.3.0
-      get-tsconfig: 4.7.0
+      get-tsconfig: 4.7.2
     dev: true
 
   /@esbuild-kit/core-utils@3.3.0:
@@ -266,7 +266,7 @@ packages:
     resolution: {integrity: sha512-lUziJdacVDQrg65DwQ+OOQR9B1LQE2/pY77H+oVT0KQDLtsT2XfbHz7O+f0zUvexSWPKxMXa8h4RXT5PFAlv/g==}
     dependencies:
       '@esbuild-kit/core-utils': 3.3.0
-      get-tsconfig: 4.7.0
+      get-tsconfig: 4.7.2
     dev: true
 
   /@esbuild/aix-ppc64@0.20.1:
@@ -2265,12 +2265,12 @@ packages:
     resolution: {integrity: sha512-pmjiZ7xtB8URYm74PlGJozDNyhvsVLUcpBa8DZBG3bWHwaHa9bPiRpiSfovw+fjhwONSCWKRyk+JQHEGZmMrzw==}
     dependencies:
       resolve-pkg-maps: 1.0.0
+    dev: false
 
   /get-tsconfig@4.7.2:
     resolution: {integrity: sha512-wuMsz4leaj5hbGgg4IvDU0bqJagpftG5l5cXIAvo8uZrqn0NJqwtfupTN00VnkQJPcIRrxYrm1Ue24btpCha2A==}
     dependencies:
       resolve-pkg-maps: 1.0.0
-    dev: false
 
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -2486,11 +2486,6 @@ packages:
   /isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
 
-  /joycon@3.1.1:
-    resolution: {integrity: sha512-34wB/Y7MW7bzjKRjUKTa46I2Z7eV62Rkhva+KkopW7Qvv/OSWBqvkSY7vusOPrNuZcUG3tApvdVgNB8POj3SPw==}
-    engines: {node: '>=10'}
-    dev: true
-
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
     dev: false
@@ -2546,6 +2541,7 @@ packages:
 
   /jsonc-parser@3.2.0:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
+    dev: false
 
   /keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -3110,19 +3106,18 @@ packages:
       glob: 7.2.3
     dev: false
 
-  /rollup-plugin-esbuild@5.0.0(esbuild@0.20.1)(rollup@3.29.1):
-    resolution: {integrity: sha512-1cRIOHAPh8WQgdQQyyvFdeOdxuiyk+zB5zJ5+YOwrZP4cJ0MT3Fs48pQxrZeyZHcn+klFherytILVfE4aYrneg==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+  /rollup-plugin-esbuild@6.1.1(esbuild@0.20.1)(rollup@3.29.1):
+    resolution: {integrity: sha512-CehMY9FAqJD5OUaE/Mi1r5z0kNeYxItmRO2zG4Qnv2qWKF09J2lTy5GUzjJR354ZPrLkCj4fiBN41lo8PzBUhw==}
+    engines: {node: '>=14.18.0'}
     peerDependencies:
-      esbuild: '>=0.10.1'
-      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0
+      esbuild: '>=0.18.0'
+      rollup: ^1.20.0 || ^2.0.0 || ^3.0.0 || ^4.0.0
     dependencies:
-      '@rollup/pluginutils': 5.0.4(rollup@3.29.1)
+      '@rollup/pluginutils': 5.1.0(rollup@3.29.1)
       debug: 4.3.4
       es-module-lexer: 1.3.1
       esbuild: 0.20.1
-      joycon: 3.1.1
-      jsonc-parser: 3.2.0
+      get-tsconfig: 4.7.2
       rollup: 3.29.1
     transitivePeerDependencies:
       - supports-color
