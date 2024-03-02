@@ -60,7 +60,7 @@ pnpm generate inject
 
 ### Paddle
 
-Paddle 是一个软件许可证管理服务，它的 SDK 会在应用程序启动时验证许可证。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
+Paddle 是一个软件许可证管理服务。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
 
 ```shell
 find /Applications -name "Paddle.framework" -type d -exec sh -c 'echo "应用程序 {} 使用了 Paddle.framework"' \;
@@ -171,9 +171,9 @@ $done({
 
 -   [Surge](https://nssurge.com/)
 -   [QiuChenlyOpenSource/InjectLib](https://github.com/QiuChenlyOpenSource/InjectLib)
--   [sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)
+-   ~~[sooxt98/spotify-crack-chrome-app](https://github.com/sooxt98/spotify-crack-chrome-app)~~
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
--   [sfc9982/typoraActivator](https://github.com/sfc9982/typoraActivator)
+-   ~~[sfc9982/typoraActivator](https://github.com/sfc9982/typoraActivator)~~
 
 ## License
 

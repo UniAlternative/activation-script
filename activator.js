@@ -70,28 +70,24 @@ function transformToString(obj) {
  * @param props.status 响应状态码w
  * @description Surge 会直接返回 HTTP 响应，而不进行真实的网络操作
  */
-function buildResponse(props) {
+function ResponseDone(props) {
     if (props.body)
         props.body = transformToString(props.body);
-    $done({
+    return {
         response: {
             ...props,
         },
-    });
+    };
 }
-/**
- * 发送通知
- *
- * @param title 标题
- * @param subtitle 副标题
- * @param body 内容
- * @description 该函数将会自动将对象转换为 JSON 字符串，因此你可以直接传入对象
- */
-function sendNotification(title, subtitle, body) {
-    title = transformToString(title);
-    subtitle = transformToString(subtitle);
-    body = transformToString(body);
-    $notification.post(title, subtitle, body);
+function Done(props) {
+    var _a;
+    if (props.body)
+        props.body = transformToString(props.body);
+    if ((_a = props.response) === null || _a === void 0 ? void 0 : _a.body)
+        props.response.body = transformToString(props.response.body);
+    return {
+        ...props,
+    };
 }
 const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post'];
 /**
@@ -141,7 +137,7 @@ function GumroadValidate() {
             createdAt: '2023-07-16T19:00:00Z',
         },
     };
-    return buildResponse({
+    return ResponseDone({
         headers: {
             'Content-Type': 'application/json; charset=utf-8',
         },
@@ -153,7 +149,7 @@ function GumroadValidate() {
  * @url https://api.lemonsqueezy.com/v1/licenses/activate
  */
 function lemonSqueezyActive() {
-    buildResponse({
+    return ResponseDone({
         body: {
             activated: true,
             instance: {
@@ -165,7 +161,7 @@ function lemonSqueezyActive() {
 }
 
 function lemonsqueezyValidate() {
-    buildResponse({
+    return ResponseDone({
         body: {
             valid: true,
             error: null,
@@ -179,9 +175,9 @@ function lemonsqueezyValidate() {
  */
 function paddleActivate() {
     const body = $request.body;
-    console.log(body);
+    // console.log(body)
     if (!body) {
-        buildResponse({
+        return ResponseDone({
             headers: {
                 'Content-Type': 'application/json; charset=UTF-8',
             },
@@ -192,7 +188,6 @@ function paddleActivate() {
                 },
             },
         });
-        return;
     }
     const _body = body.split('&');
     let product_id = '';
@@ -200,7 +195,7 @@ function paddleActivate() {
         if (k.includes('product_id'))
             product_id = k.split('=')[1];
     }
-    buildResponse({
+    return ResponseDone({
         headers: {
             'Content-Type': 'application/json',
         },
@@ -232,35 +227,8 @@ function paddleVerify() {
         },
         signature: '',
     };
-    buildResponse({
+    return ResponseDone({
         body,
-    });
-}
-
-/**
- * @url audio-ak-spotify-com.akamaized.net
- * @url audio-akp-quic-spotify-com.akamaized.net
- * @url audio-fa.scdn.co
- * @url creativeservice-production.scdn.co
- *
- * @redirect https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3
- */
-function spotifyRemoveAds() {
-    sendNotification('Spotify Remove Ads', '请求 MP3', '');
-    const mp3 = 'https://raw.githubusercontent.com/texnikru/blank-mp3s/master/1sec.mp3';
-    httpClient.get({ url: mp3 }, (error, response, data) => {
-        if (error) {
-            sendNotification('Spotify Remove Ads', 'MP3 请求失败', error);
-            return buildResponse({
-                status: 500,
-                body: error,
-            });
-        }
-        buildResponse({
-            status: response.status,
-            headers: response.headers,
-            body: data,
-        });
     });
 }
 
@@ -268,7 +236,7 @@ const DashboardModuleRouter = [
     {
         base: '/',
         func: () => {
-            buildResponse({ status: 200, body: 'Dashboard' });
+            return ResponseDone({ status: 200, body: 'Dashboard' });
         },
     },
 ];
@@ -277,7 +245,7 @@ const DashboardModuleRouter = [
  * @url https://buy.itunes.apple.com/verifyReceipt
  */
 function iTunesVerifyReceipt() {
-    return buildResponse({
+    return ResponseDone({
         body: {
             status: 0,
             receipt: {
@@ -303,7 +271,7 @@ function shottrVerifyLicense() {
         tier: '1',
         // explanation: undefined,
     };
-    buildResponse({
+    return ResponseDone({
         body,
     });
 }
@@ -312,7 +280,7 @@ function shottrVerifyLicense() {
  * @url https://shottr.cc/api/telemetry.php
  */
 function shottrTelemetry() {
-    buildResponse({
+    return ResponseDone({
         body: {
             result: 'success',
         },
@@ -336,21 +304,6 @@ const activator = {
             base: 'verify',
             func: paddleVerify,
         },
-    },
-    spotify: {
-        base: [
-            // "https://audio-ak-spotify-com.akamaized.net", // 这个好像是真正的音乐获取地址...
-            'https://audio-akp-quic-spotify-com.akamaized.net',
-            'https://audio-fa.scdn.co',
-            'https://creativeservice-production.scdn.co',
-            'https://audio4-fa.scdn.co',
-        ],
-        customs: [
-            {
-                base: '*',
-                func: spotifyRemoveAds,
-            },
-        ],
     },
     gumroad: {
         base: 'https://api.gumroad.com/v2/licenses',
@@ -380,15 +333,14 @@ const activator = {
             func: () => {
                 if ($request.headers['x-raycast-unblock']) {
                     console.log('Raycast Unblock request');
-                    $done({
+                    return Done({
                         headers: {
                             ...$request.headers,
                             'x-raycast-unblock': undefined,
                         },
                     });
-                    return;
                 }
-                $done({
+                return Done({
                     url: $request.url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000'),
                     headers: $request.headers,
                     body: $request.body,
@@ -526,7 +478,7 @@ function launch() {
                     return moduleItemOptions();
                 // 如果配置是字符串，几乎没有使用过，也算直接返回吧
                 if (typeof moduleItemOptions === 'string')
-                    return buildResponse({ body: moduleItemOptions });
+                    return ResponseDone({ body: moduleItemOptions });
             }
         }
     }
@@ -542,7 +494,7 @@ function returnDefaultResponse() {
     }, (err, response, _data) => {
         if (err) {
             console.log(err);
-            return buildResponse({ status: 500, body: err });
+            return ResponseDone({ status: 500, body: err });
         }
         if (!_data)
             console.log('No data returned');
@@ -551,11 +503,11 @@ function returnDefaultResponse() {
             headers: response.headers,
             body: _data,
         };
-        return buildResponse(res);
+        return ResponseDone(res);
     });
 }
 
-const COMMIT_HASH = "89bef2f3922bcc503a677d4d3f93fbf1f8a080b8";
+const COMMIT_HASH = "9087ffde4016409e6a9d3ea6033ca3d83c7676ee";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
-launch();
+$done(launch());
