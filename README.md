@@ -14,9 +14,9 @@
 
 目前支持的激活模块有：
 
--   [x] ***`📦 Stable`*** - LemonSqueezy
+-   [x] <sup>***`📦 Stable`***</sup> - LemonSqueezy
     -   [x] Screen Studio - [特殊说明](#screen-studio)
--   [x] ***`📦 Stable`*** - Paddle - [特殊说明](#paddle)
+-   [x] <sup>***`📦 Stable`***</sup> - Paddle - [特殊说明](#paddle)
     -   [x] AlDente Pro
     -   [x] iStatistica Pro
     -   [x] One Switch
@@ -28,16 +28,16 @@
     -   [x] MenubarX
     -   [x] MarginNote 3
     -   [x] MWeb Pro
--   [x] ***`📦 Stable`*** - Gumroad - [特殊说明](#gumroad)
+-   [x] <sup>***`📦 Stable`***</sup> - Gumroad - [特殊说明](#gumroad)
     -   [x] MediaMate
     -   [x] ...more
--   [x] ***`🪄 Beta`*** - App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
+-   [x] <sup>***`🪄 Beta`***</sup> - App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
     -   [x] iShot Pro
     -   [ ] ...more
--   [x] ***`🪄 Beta`*** - Shottr
+-   [x] <sup>***`🪄 Beta`***</sup> - Shottr
     -   [x] Basic Tier
     -   [ ] Friends Club
--   [ ] ***`🚫 STOP MAINTAINING`*** - [~~Raycast Pro Plan~~]((#raycast-pro-plan))
+-   [ ] <sup>***`🚫 STOP MAINTAINING`***</sup> - [~~Raycast Pro Plan~~]((#raycast-pro-plan))
 
 ## 安装
 
