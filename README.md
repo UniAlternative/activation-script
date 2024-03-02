@@ -15,28 +15,17 @@
 目前支持的激活模块有：
 
 -   [x] LemonSqueezy <sup>***`📦 Stable`***</sup>
-    -   [x] Screen Studio
+
 -   [x] Paddle <sup>***`📦 Stable`***</sup>
-    -   [x] AlDente Pro
-    -   [x] iStatistica Pro
-    -   [x] One Switch
-    -   [x] Charliemonroe
-        -   [x] Downie 4
-        -   [x] Permute 3
-    -   [x] Sensei
-    -   [x] Rectangle Pro
-    -   [x] MenubarX
-    -   [x] MarginNote 3
-    -   [x] MWeb Pro
+
 -   [x] Gumroad <sup>***`📦 Stable`***</sup>
-    -   [x] MediaMate
-    -   [x] ...more
+
 -   [x] App Store Restore Purchase <sup>***`🪄 Beta`***</sup>
-    -   [x] iShot Pro
-    -   [ ] ...more
+
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
+
 -   [ ] [~~Raycast Pro Plan~~](#raycast-pro-plan) <sup>***`🚫 STOP MAINTAINING`***</sup>
 
 ## 安装
@@ -63,6 +52,18 @@ pnpm generate inject
 ## 特殊说明
 
 ### Paddle
+
+-   [x] AlDente Pro
+-   [x] iStatistica Pro
+-   [x] One Switch
+-   [x] Charliemonroe
+    -   [x] Downie 4
+    -   [x] Permute 3
+-   [x] Sensei
+-   [x] Rectangle Pro
+-   [x] MenubarX
+-   [x] MarginNote 3
+-   [x] MWeb Pro
 
 Paddle 是一个软件许可证管理服务。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
 
@@ -97,7 +98,13 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 
 欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
 
-### Screen Studio
+-   [x] iShot Pro
+
+### LemonSqueezy
+
+-   [x] Screen Studio
+
+以下许可证可以用于激活 Screen Studio，但是其他应用程序暂时未能确定（因为找不到其他使用 LemonSqueezy 的应用程序）
 
 ```
 401934ec-0a54-433c-a299-2a363501d4be
@@ -117,6 +124,9 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 ### Gumroad
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
+
+-   [x] MediaMate
+-   [x] ...more
 
 理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
 
