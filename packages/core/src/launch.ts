@@ -1,5 +1,5 @@
 import type { ActivatorObjFunc } from '@as/shared'
-import { buildResponse, httpClient } from '@as/shared'
+import { ResponseDone, httpClient } from '@as/shared'
 import { activator } from '@as/modules'
 
 const url = $request.url.split('?')[0]
@@ -108,7 +108,7 @@ export function launch() {
 
         // 如果配置是字符串，几乎没有使用过，也算直接返回吧
         if (typeof moduleItemOptions === 'string')
-          return buildResponse({ body: moduleItemOptions })
+          return ResponseDone({ body: moduleItemOptions })
       }
     }
   }
@@ -130,7 +130,7 @@ function returnDefaultResponse() {
     (err: any, response: any, _data: any) => {
       if (err) {
         console.log(err)
-        return buildResponse({ status: 500, body: err })
+        return ResponseDone({ status: 500, body: err })
       }
 
       if (!_data)
@@ -141,7 +141,7 @@ function returnDefaultResponse() {
         headers: response.headers,
         body: _data,
       }
-      return buildResponse(res)
+      return ResponseDone(res)
     },
   )
 }

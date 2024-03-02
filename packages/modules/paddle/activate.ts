@@ -1,4 +1,4 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * Paddle activation
@@ -6,9 +6,9 @@ import { buildResponse } from '@as/shared'
  */
 export function paddleActivate() {
   const body = $request.body
-  console.log(body)
+  // console.log(body)
   if (!body) {
-    buildResponse({
+    return ResponseDone({
       headers: {
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -19,7 +19,6 @@ export function paddleActivate() {
         },
       },
     })
-    return
   }
   const _body = body.split('&')
   let product_id = ''
@@ -28,7 +27,7 @@ export function paddleActivate() {
       product_id = k.split('=')[1]
   }
 
-  buildResponse({
+  return ResponseDone({
     headers: {
       'Content-Type': 'application/json',
     },

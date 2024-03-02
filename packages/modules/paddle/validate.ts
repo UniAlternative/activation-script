@@ -1,4 +1,4 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * Paddle verification
@@ -14,7 +14,7 @@ export function paddleVerify() {
     },
     signature: '',
   }
-  buildResponse({
+  return ResponseDone({
     body,
   })
 }

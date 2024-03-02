@@ -1,10 +1,10 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * @url https://api.lemonsqueezy.com/v1/licenses/activate
  */
 export function lemonSqueezyActive() {
-  buildResponse({
+  return ResponseDone({
     body: {
       activated: true,
       instance: {

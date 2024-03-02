@@ -1,10 +1,10 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * @url https://shottr.cc/api/telemetry.php
  */
 export function shottrTelemetry() {
-  buildResponse({
+  return ResponseDone({
     body: {
       result: 'success',
     },

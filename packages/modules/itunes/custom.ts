@@ -1,10 +1,10 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * @url https://buy.itunes.apple.com/verifyReceipt
  */
 export function iTunesVerifyReceipt() {
-  return buildResponse({
+  return ResponseDone({
     body: {
       status: 0,
       receipt: {

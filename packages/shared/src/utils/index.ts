@@ -20,7 +20,7 @@ export function transformToString(obj: any) {
  * @param props.status 响应状态码w
  * @description Surge 会直接返回 HTTP 响应，而不进行真实的网络操作
  */
-export function buildResponse(props: {
+export function ResponseDone(props: {
   headers?: Record<string, string>
   body?: Record<string, any> | string
   status?: number
@@ -28,16 +28,16 @@ export function buildResponse(props: {
   if (props.body)
     props.body = transformToString(props.body)
 
-  $done({
+  return {
     response: {
       ...props,
     },
-  })
+  }
 }
 
-export function modifyRequest(props: {
-  url: string
-  headers: Record<string, string>
+export function Done(props: {
+  url?: string
+  headers?: Record<string, any>
   body?: Record<string, any> | string
   response?: {
     status?: number
@@ -51,21 +51,9 @@ export function modifyRequest(props: {
   if (props.response?.body)
     props.response.body = transformToString(props.response.body)
 
-  $done({
+  return {
     ...props,
-  })
-}
-export function modifyResponse(props: {
-  status?: number
-  headers?: Record<string, string>
-  body?: Record<string, any> | string
-}) {
-  if (props.body)
-    props.body = transformToString(props.body)
-
-  $done({
-    ...props,
-  })
+  }
 }
 
 /**

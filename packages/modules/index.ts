@@ -1,10 +1,9 @@
-import type { Activator } from '@as/shared'
+import { type Activator, Done } from '@as/shared'
 import { GumroadValidate } from './gumroad/validate'
 import { lemonSqueezyActive } from './lemon-squeezy/activate'
 import { lemonsqueezyValidate } from './lemon-squeezy/validate'
 import { paddleActivate } from './paddle/activate'
 import { paddleVerify } from './paddle/validate'
-import { spotifyRemoveAds } from './spotify/custom'
 import { DashboardModuleRouter } from './dashboard/custom/router'
 import { iTunesVerifyReceipt } from './itunes/custom'
 import { shottrVerifyLicense } from './shottr/validate'
@@ -27,21 +26,6 @@ export const activator: Activator = {
       base: 'verify',
       func: paddleVerify,
     },
-  },
-  spotify: {
-    base: [
-      // "https://audio-ak-spotify-com.akamaized.net", // 这个好像是真正的音乐获取地址...
-      'https://audio-akp-quic-spotify-com.akamaized.net',
-      'https://audio-fa.scdn.co',
-      'https://creativeservice-production.scdn.co',
-      'https://audio4-fa.scdn.co',
-    ],
-    customs: [
-      {
-        base: '*',
-        func: spotifyRemoveAds,
-      },
-    ],
   },
   gumroad: {
     base: 'https://api.gumroad.com/v2/licenses',
@@ -71,15 +55,14 @@ export const activator: Activator = {
       func: () => {
         if ($request.headers['x-raycast-unblock']) {
           console.log('Raycast Unblock request')
-          $done({
+          return Done({
             headers: {
               ...$request.headers,
               'x-raycast-unblock': undefined,
             },
           })
-          return
         }
-        $done({
+        return Done({
           url: $request.url.replace(
             'https://backend.raycast.com',
             'http://127.0.0.1:3000',

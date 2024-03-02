@@ -1,4 +1,4 @@
-import { modifyResponse } from '@as/shared'
+import { Done } from '@as/shared'
 import { RAYCAST_AI_SERVICE_PROVIDERS, RAYCAST_DEFAULT_MODELS, RAYCAST_GEMINI_PRO_ONLY_MODELS } from '../../constants'
 
 /**
@@ -18,7 +18,7 @@ export function raycastAiModels() {
       default_models = RAYCAST_DEFAULT_MODELS
       break
   }
-  modifyResponse({
+  return Done({
     headers: $response.headers,
     body: {
       ...data,

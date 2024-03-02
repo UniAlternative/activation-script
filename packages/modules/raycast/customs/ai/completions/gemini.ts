@@ -1,4 +1,4 @@
-import { buildResponse, httpClient } from '@as/shared'
+import { ResponseDone, httpClient } from '@as/shared'
 import { GEMINI_OFFICIAL_ENDPOINT } from '../../../constants'
 
 /**
@@ -75,7 +75,7 @@ export function raycastAICompletionsWithGemini() {
           },
         }
       }
-      buildResponse(res)
+      return ResponseDone(res)
     },
   )
 }

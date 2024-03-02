@@ -13,7 +13,7 @@ export interface Activator {
   }
 }
 
-type ActivatorFunction = Function
+type ActivatorFunction = () => Record<string, any>
 
 export interface IHttpClientProps {
   url: string

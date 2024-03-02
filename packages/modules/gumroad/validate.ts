@@ -1,4 +1,4 @@
-import { buildResponse, parseURLParams } from '@as/shared'
+import { ResponseDone, parseURLParams } from '@as/shared'
 
 /**
  * @url https://api.gumroad.com/v2/licenses/verify
@@ -35,7 +35,7 @@ export function GumroadValidate() {
     },
   }
 
-  return buildResponse({
+  return ResponseDone({
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
     },

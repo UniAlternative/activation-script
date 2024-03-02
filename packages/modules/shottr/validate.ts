@@ -1,4 +1,4 @@
-import { buildResponse, destr, modifyResponse } from '@as/shared'
+import { ResponseDone, destr } from '@as/shared'
 
 /**
  * @url https://shottr.cc/licensing/verify.php
@@ -11,7 +11,7 @@ export function shottrVerifyLicense() {
     tier: '1',
     // explanation: undefined,
   }
-  buildResponse({
+  return ResponseDone({
     body,
   })
 }

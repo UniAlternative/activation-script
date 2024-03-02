@@ -1,7 +1,7 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 export function DashboardRoute(url: string) {
-  buildResponse({
+  return ResponseDone({
     body: {
       title: 'Dashboard',
       content: 'Hello, World!',
