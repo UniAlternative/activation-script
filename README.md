@@ -23,6 +23,8 @@
     -   [ ] Friends Club
 -   [ ] [~~Raycast Pro Plan~~](#raycast-pro-plan) <sup>***`🚫 STOP MAINTAINING`***</sup>
 
+###### [特殊说明](#特殊说明)
+
 ## 安装
 
 前往 Surge 的 `Module` 配置页面，添加外部模块链接：`https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule`
