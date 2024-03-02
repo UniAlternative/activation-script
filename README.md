@@ -27,7 +27,13 @@
 
 ## 安装
 
-前往 Surge 的 `Module` 配置页面，添加外部模块链接：`https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule`
+前往 Surge 的 `Module` 配置页面，添加外部模块链接，这里提供了一些链接，任选其一即可：
+
+```
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/wibus-wee/activation-script/gh-pages/activator.sgmodule
+https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.sgmodule
+https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
+```
 
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
