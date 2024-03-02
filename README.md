@@ -53,6 +53,8 @@ pnpm generate inject
   Paddle
   </summary>
 
+<br>
+
 -   [x] AlDente Pro
 -   [x] iStatistica Pro
 -   [x] One Switch
