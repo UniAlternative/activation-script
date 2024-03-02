@@ -3,7 +3,7 @@
 
 
 [MITM]
-hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, audio-akp-quic-spotify-com.akamaized.net, audio-fa.scdn.co, creativeservice-production.scdn.co, audio4-fa.scdn.co, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc, shottr-verify-license.blimps.workers.dev
+hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, audio-akp-quic-spotify-com.akamaized.net, audio-fa.scdn.co, creativeservice-production.scdn.co, audio4-fa.scdn.co, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc
 
 
 
@@ -21,6 +21,6 @@ spotify-*-audio4-fa.scdn.co = type=http-request,pattern=^https://audio4-fa.scdn.
 gumroad-validate-api.gumroad.com = type=http-request,pattern=^https://api.gumroad.com/v2/licenses/verify,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
 itunes-verifyReceipt-buy.itunes.apple.com = type=http-request,pattern=^https://buy.itunes.apple.com/verifyReceipt,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
 raycast-activate-backend.raycast.com = type=http-request,pattern=^https://backend.raycast.com/api/v1/*,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
-shottr-validate-shottr.cc = type=http-response,pattern=^https://shottr.cc/licensing/verify.php,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
-shottr-validate-shottr-verify-license.blimps.workers.dev = type=http-response,pattern=^https://shottr-verify-license.blimps.workers.dev/verify.php,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
+shottr-validate-shottr.cc = type=http-request,pattern=^https://shottr.cc/licensing/verify.php,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
+shottr-api/telemetry.php-shottr.cc = type=http-request,pattern=^https://shottr.cc/api/telemetry.php,requires-body=1,max-size=0,debug=1,script-path=https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.js,script-update-internal=86400
 

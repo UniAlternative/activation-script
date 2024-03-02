@@ -79,13 +79,6 @@ function buildResponse(props) {
         },
     });
 }
-function modifyResponse(props) {
-    if (props.body)
-        props.body = transformToString(props.body);
-    $done({
-        ...props,
-    });
-}
 /**
  * 发送通知
  *
@@ -305,12 +298,24 @@ function iTunesVerifyReceipt() {
  */
 function shottrVerifyLicense() {
     const body = {
-        ...destr($response.body),
+        // ...destr($response.body),
+        hash: destr($request.body).hash,
         tier: '1',
-        explanation: undefined,
+        // explanation: undefined,
     };
-    modifyResponse({
+    buildResponse({
         body,
+    });
+}
+
+/**
+ * @url https://shottr.cc/api/telemetry.php
+ */
+function shottrTelemetry() {
+    buildResponse({
+        body: {
+            result: 'success',
+        },
     });
 }
 
@@ -412,14 +417,18 @@ const activator = {
     // },
     shottr: {
         base: [
-            'https://shottr.cc/licensing',
-            'https://shottr-verify-license.blimps.workers.dev',
+            'https://shottr.cc',
         ],
         validate: {
-            base: 'verify.php',
+            base: 'licensing/verify.php',
             func: shottrVerifyLicense,
-            type: 'http-response',
         },
+        customs: [
+            {
+                base: 'api/telemetry.php',
+                func: shottrTelemetry,
+            },
+        ],
     },
 };
 
@@ -546,7 +555,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "afd9e5296ae17f9e9629f4278bc50158e918cdeb";
+const COMMIT_HASH = "89bef2f3922bcc503a677d4d3f93fbf1f8a080b8";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 launch();
