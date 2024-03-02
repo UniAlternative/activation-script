@@ -3,16 +3,20 @@
 [![Version][package-version-src]][package-version-href]
 [![License][license-src]][license-href]
 
-> [!WARNING]
-> 本项目仅供学习交流使用，严禁用于商业用途。请于下载后的 24 小时内删除。
-
 ## Features
 
-目前支持激活的应用程序：
+-   [x] Activate the application with MITM
+-   [ ] Universal script for all mitm proxy tools
+-   [ ] Dashboard for managing modules #14
+-   [ ] ...What else? [Create a new issue](https://github.com/wibus-wee/activation-script/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml)
 
--   [x] LemonSqueezy
+## Modules
+
+目前支持的激活模块有：
+
+-   [x] *`📦 Stable`* - LemonSqueezy
     -   [x] Screen Studio - [特殊说明](#screen-studio)
--   [x] Paddle - [特殊说明](#paddle)
+-   [x] *`📦 Stable`* - Paddle - [特殊说明](#paddle)
     -   [x] AlDente Pro
     -   [x] iStatistica Pro
     -   [x] One Switch
@@ -24,16 +28,16 @@
     -   [x] MenubarX
     -   [x] MarginNote 3
     -   [x] MWeb Pro
--   [x] Gumroad - [特殊说明](#gumroad)
+-   [x] *`📦 Stable`* - Gumroad - [特殊说明](#gumroad)
     -   [x] MediaMate
     -   [x] ...more
--   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
+-   [x] *`🪄 Beta`* - App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
     -   [x] iShot Pro
     -   [ ] ...more
--   [x] Shottr
+-   [x] *`🪄 Beta`* - Shottr
     -   [x] Basic Tier
     -   [ ] Friends Club
--   [ ] [~~Raycast Pro Plan~~]((#raycast-pro-plan))
+-   [ ] *`🚫 STOP MAINTAINING`* - [~~Raycast Pro Plan~~]((#raycast-pro-plan))
 
 ## 安装
 
