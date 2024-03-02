@@ -21,7 +21,7 @@
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
--   [ ] [~~Raycast Pro Plan~~](#raycast-pro-plan) <sup>***`🚫 STOP MAINTAINING`***</sup>
+-   [ ] [~~Raycast Pro Plan~~](#raycast-pro-plan) <sup>***`🌊 3rd-party`***</sup>
 
 ###### [模块特殊说明](#特殊说明)
 
