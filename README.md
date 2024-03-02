@@ -49,7 +49,7 @@ pnpm generate inject
 ## 特殊说明
 
 <details>
-  <summary><h3>Paddle</h3></summary>
+  <summary><span><h3>Paddle</h3><span></summary>
 
 -   [x] AlDente Pro
 -   [x] iStatistica Pro
