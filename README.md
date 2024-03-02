@@ -49,7 +49,9 @@ pnpm generate inject
 ## 特殊说明
 
 <details>
-  <summary><span><h3>Paddle</h3><span></summary>
+  <summary>
+  Paddle
+  </summary>
 
 -   [x] AlDente Pro
 -   [x] iStatistica Pro
