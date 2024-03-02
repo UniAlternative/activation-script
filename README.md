@@ -49,9 +49,7 @@ pnpm generate inject
 ## 特殊说明
 
 <details>
-  <summary>
-  Paddle
-  </summary>
+  <summary>&nbsp;&nbsp;Paddle</summary>
 
 <br>
 
