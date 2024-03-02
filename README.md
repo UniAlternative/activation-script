@@ -96,6 +96,8 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 <details>
   <summary>&nbsp;&nbsp;App Store Restore Purchase</summary>
 
+<br>
+
 > [!WARNING]
 > 由于 Apple 的限制，这个功能只能用于仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
 
@@ -107,6 +109,8 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 
 <details>
   <summary>&nbsp;&nbsp;LemonSqueezy</summary>
+
+<br>
 
 -   [x] Screen Studio
 
@@ -131,6 +135,8 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 
 <details>
   <summary>&nbsp;&nbsp;Gumroad</summary>
+
+<br>
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
 
@@ -160,6 +166,8 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 
 <details>
   <summary>&nbsp;&nbsp;Raycast Pro Plan</summary>
+
+<br>
 
 > Thanks to @zhuozhiyongde.
 
