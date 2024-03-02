@@ -15,8 +15,8 @@
 目前支持的激活模块有：
 
 -   [x] LemonSqueezy <sup>***`📦 Stable`***</sup>
-    -   [x] Screen Studio - [特殊说明](#screen-studio)
--   [x] Paddle <sup>***`📦 Stable`***</sup> [特殊说明](#paddle)
+    -   [x] Screen Studio
+-   [x] Paddle <sup>***`📦 Stable`***</sup>
     -   [x] AlDente Pro
     -   [x] iStatistica Pro
     -   [x] One Switch
@@ -28,10 +28,10 @@
     -   [x] MenubarX
     -   [x] MarginNote 3
     -   [x] MWeb Pro
--   [x] Gumroad <sup>***`📦 Stable`***</sup> [特殊说明](#gumroad)
+-   [x] Gumroad <sup>***`📦 Stable`***</sup>
     -   [x] MediaMate
     -   [x] ...more
--   [x] App Store Restore Purchase <sup>***`🪄 Beta`***</sup> *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* [特殊说明](#app-store-restore-purchase)
+-   [x] App Store Restore Purchase <sup>***`🪄 Beta`***</sup>
     -   [x] iShot Pro
     -   [ ] ...more
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
