@@ -1,10 +1,10 @@
 # Activation Script
 
-Activation Script 是一个旨在生成配置文件和激活软件许可证的脚本。这些配置文件和脚本用于拦截和操作各种应用程序提出的网络请求，允许您通过不同服务自动激活软件许可证。基于 [Surge](https://nssurge.com/)
+[![Version][package-version-src]][package-version-href]
+[![License][license-src]][license-href]
 
-<pre align="center">
-🧪 Working in Progress
-</pre>
+> [!WARNING]
+> 本项目仅供学习交流使用，严禁用于商业用途。请于下载后的 24 小时内删除。
 
 ## Features
 
@@ -89,7 +89,7 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 ### App Store Restore Purchase
 
 > [!WARNING]
-> 由于 Apple 的限制，这个功能只能用于仍使用旧式 verifyReceipt 验证（文档中已被弃用）的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
+> 由于 Apple 的限制，这个功能只能用于仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
 
 欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
 
@@ -184,3 +184,10 @@ This project is licensed under the AGPLv3 License. See the [LICENSE](LICENSE) fi
 Activation Script © Wibus, Released under AGPLv3. Created on Sep 9, 2023
 
 > [Personal Website](http://wibus.ren/) · [Blog](https://blog.wibus.ren/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
+
+<!-- Badges -->
+
+[package-version-src]: https://img.shields.io/github/package-json/v/wibus-wee/activation-script?style=flat&colorA=080f12&colorB=1fa669
+[package-version-href]: https://github.com/wibus-wee/activation-script
+[license-src]: https://img.shields.io/github/license/wibus-wee/activation-script.svg?style=flat&colorA=080f12&colorB=1fa669
+[license-href]: https://github.com/wibus-wee/activation-script/blob/main/LICENSE
