@@ -48,10 +48,7 @@ pnpm generate inject
 
 ## 特殊说明
 
-<details>
-  <summary>&nbsp;&nbsp;Paddle</summary>
-
-<br>
+### Paddle
 
 -   [x] AlDente Pro
 -   [x] iStatistica Pro
@@ -91,12 +88,7 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 
 ###### [Alogrithm](./packages/modules/paddle/alogrithm/gen.ts)
 
-</details>
-
-<details>
-  <summary>&nbsp;&nbsp;App Store Restore Purchase</summary>
-
-<br>
+### App Store Restore Purchase
 
 > [!WARNING]
 > 由于 Apple 的限制，这个功能只能用于仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
@@ -105,12 +97,7 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 
 -   [x] iShot Pro
 
-</details>
-
-<details>
-  <summary>&nbsp;&nbsp;LemonSqueezy</summary>
-
-<br>
+### LemonSqueezy
 
 -   [x] Screen Studio
 
@@ -131,12 +118,7 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 
 ###### [Alogrithm](./packages/modules/lemon-squeezy/alogrithm/screen-studio.ts)
 
-</details>
-
-<details>
-  <summary>&nbsp;&nbsp;Gumroad</summary>
-
-<br>
+### Gumroad
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
 
@@ -162,12 +144,7 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 
 ###### [Alogrithm](./packages/modules/gumroad/alogrithm/index.ts)
 
-</details>
-
-<details>
-  <summary>&nbsp;&nbsp;Raycast Pro Plan</summary>
-
-<br>
+### Raycast Pro Plan
 
 > Thanks to @zhuozhiyongde.
 
@@ -200,8 +177,6 @@ $done({
 > 不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
 >
 > 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时建议后端服务关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
-
-</details>
 
 ## Credits
 
