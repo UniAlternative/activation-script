@@ -8,6 +8,7 @@ import { spotifyRemoveAds } from './spotify/custom'
 import { DashboardModuleRouter } from './dashboard/custom/router'
 import { iTunesVerifyReceipt } from './itunes/custom'
 import { shottrVerifyLicense } from './shottr/validate'
+import { shottrTelemetry } from './shottr/custom/telemetry'
 
 export const activator: Activator = {
   dashboard: {
@@ -110,13 +111,17 @@ export const activator: Activator = {
   // },
   shottr: {
     base: [
-      'https://shottr.cc/licensing',
-      'https://shottr-verify-license.blimps.workers.dev',
+      'https://shottr.cc',
     ],
     validate: {
-      base: 'verify.php',
+      base: 'licensing/verify.php',
       func: shottrVerifyLicense,
-      type: 'http-response',
     },
+    customs: [
+      {
+        base: 'api/telemetry.php',
+        func: shottrTelemetry,
+      },
+    ],
   },
 }

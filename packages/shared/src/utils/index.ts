@@ -58,7 +58,7 @@ export function modifyRequest(props: {
 export function modifyResponse(props: {
   status?: number
   headers?: Record<string, string>
-  body?: string
+  body?: Record<string, any> | string
 }) {
   if (props.body)
     props.body = transformToString(props.body)
