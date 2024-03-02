@@ -1,43 +1,39 @@
 # Activation Script
 
-Activation Script 是一个旨在生成配置文件和激活软件许可证的脚本。这些配置文件和脚本用于拦截和操作各种应用程序提出的网络请求，允许您通过不同服务自动激活软件许可证。基于 [Surge](https://nssurge.com/)
-
-<pre align="center">
-🧪 Working in Progress
-</pre>
+[![Version][package-version-src]][package-version-href]
+[![License][license-src]][license-href]
 
 ## Features
 
-目前支持激活的应用程序：
+-   [x] Activate the application with MITM
+-   [ ] Universal script for all mitm proxy tools
+-   [ ] Dashboard for managing modules #14
+-   [ ] ...What else? [Create a new issue](https://github.com/wibus-wee/activation-script/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml)
 
--   [x] LemonSqueezy
-    -   [x] Screen Studio - [特殊说明](#screen-studio)
--   [x] Paddle - [特殊说明](#paddle)
-    -   [x] AlDente Pro
-    -   [x] iStatistica Pro
-    -   [x] One Switch
-    -   [x] Charliemonroe
-        -   [x] Downie 4
-        -   [x] Permute 3
-    -   [x] Sensei
-    -   [x] Rectangle Pro
-    -   [x] MenubarX
-    -   [x] MarginNote 3
-    -   [x] MWeb Pro
--   [x] Gumroad - [特殊说明](#gumroad)
-    -   [x] MediaMate
-    -   [x] ...more
--   [x] App Store Restore Purchase *（仅支持仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用）* - [特殊说明](#app-store-restore-purchase)
-    -   [x] iShot Pro
-    -   [ ] ...more
--   [x] Shottr
+## Modules
+
+目前支持的激活模块有：
+
+-   [x] LemonSqueezy <sup>***`📦 Stable`***</sup>
+-   [x] Paddle <sup>***`📦 Stable`***</sup>
+-   [x] Gumroad <sup>***`📦 Stable`***</sup>
+-   [x] App Store Restore Purchase <sup>***`🪄 Beta`***</sup>
+-   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
--   [ ] [~~Raycast Pro Plan~~]((#raycast-pro-plan))
+-   [ ] [Raycast Pro Plan](#raycast-pro-plan) <sup>***`🌊 3rd-party`***</sup>
+
+###### [模块特殊说明](#特殊说明)
 
 ## 安装
 
-前往 Surge 的 `Module` 配置页面，添加外部模块链接：`https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule`
+前往 Surge 的 `Module` 配置页面，添加外部模块链接，这里提供了一些链接，任选其一即可：
+
+```
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/wibus-wee/activation-script/gh-pages/activator.sgmodule
+https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.sgmodule
+https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
+```
 
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
@@ -60,6 +56,18 @@ pnpm generate inject
 
 ### Paddle
 
+-   [x] AlDente Pro
+-   [x] iStatistica Pro
+-   [x] One Switch
+-   [x] Charliemonroe
+    -   [x] Downie 4
+    -   [x] Permute 3
+-   [x] Sensei
+-   [x] Rectangle Pro
+-   [x] MenubarX
+-   [x] MarginNote 3
+-   [x] MWeb Pro
+
 Paddle 是一个软件许可证管理服务。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
 
 ```shell
@@ -73,15 +81,16 @@ find /Applications -name "Paddle.framework" -type d -exec sh -c 'echo "应用程
 > 尤其针对 `com.charliemonroe` 的程序做了许可证格式的处理，因此你可以使用以下激活码来激活它们。
 
 ```
-9U2DM70E-ED0RPLF3-6FOCF9UB-3GQ3WPEU-KREMAIUX
-D2TMD4AR-3CPQYT42-N6UWNYYA-69REG5QI-T4C7ZSIR
-75ZQRI8T-CQ8H46WJ-NFJHNROZ-P0A3PZ2R-SUA6PPYV
-JP26HIZ7-BP09SYO8-ER67YRNR-L61JBMJ7-CCZRM7IZ
-4JKMBTVI-4QXMR0O7-3WDLW8Z0-80618ZML-0EKK26KW
-61WUMZRG-DK4AI5JD-HIYYM3CP-FCFSNKLS-P08UYALJ
-F2X9ZBAR-ZO9Y1L4G-19MCAUK1-46358751-340O82BP
-8DG6WQ0G-HTEEITAS-89ZYJXMC-MEHW736F-DZFHNXPH
-I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
+D7BC2F5F-E9BC2E9E-B4DA2D3C-E7FF3E9F-D3FA6C7F
+A7DF3E8C-C2FD6B6E-E2EA2F6E-E7AD1E2F-B6DD8F2A
+D6AE1F1C-E8BE9B3C-E3EC1D5B-B5BB8D4D-C1DC3C3D
+F3BF4F2E-D7FE1B5B-E8BF7B6B-D7DA8A7A-F5FC7A4B
+F2FC1F4B-F8FF7F8D-D9EE6E7A-D4FA9F2E-D1FA2A9A
+B2AE7F7A-D5EE5C5F-F6CC6C6D-D4FF4C1E-C5DF6C9F
+B6AA1C9B-E3FC7B8D-F8AE5F4E-A2CC6F9A-F5BE5E6B
+D9BA5F4E-B8CA4E4D-B9AC7A1C-D2DA2A1D-E7BF9C2F
+D1BC8C4B-E8EE7E4C-E1BD9A6B-A5EF3C3B-D7ED5E4B
+C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 ```
 
 ###### [Alogrithm](./packages/modules/paddle/alogrithm/gen.ts)
@@ -89,11 +98,17 @@ I4QP2745-TBLLELKW-DQ6HRLOG-VPT8CN2V-Z5HDUTPY
 ### App Store Restore Purchase
 
 > [!WARNING]
-> 由于 Apple 的限制，这个功能只能用于仍使用旧式 verifyReceipt 验证（文档中已被弃用）的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
+> 由于 Apple 的限制，这个功能只能用于仍使用[旧式 verifyReceipt 验证（文档中已被弃用）](https://developer.apple.com/documentation/appstorereceipts/verifyreceipt)的应用。如果你的应用使用了新的验证方法，那么这个功能将无法正常工作。
 
 欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
 
-### Screen Studio
+-   [x] iShot Pro
+
+### LemonSqueezy
+
+-   [x] Screen Studio
+
+以下许可证可以用于激活 Screen Studio，但是其他应用程序暂时未能确定（因为找不到其他使用 LemonSqueezy 的应用程序）
 
 ```
 401934ec-0a54-433c-a299-2a363501d4be
@@ -113,6 +128,9 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 ### Gumroad
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
+
+-   [x] MediaMate
+-   [x] ...more
 
 理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
 
@@ -184,3 +202,10 @@ This project is licensed under the AGPLv3 License. See the [LICENSE](LICENSE) fi
 Activation Script © Wibus, Released under AGPLv3. Created on Sep 9, 2023
 
 > [Personal Website](http://wibus.ren/) · [Blog](https://blog.wibus.ren/) · GitHub [@wibus-wee](https://github.com/wibus-wee/) · Telegram [@wibus✪](https://t.me/wibus_wee)
+
+<!-- Badges -->
+
+[package-version-src]: https://img.shields.io/github/package-json/v/wibus-wee/activation-script?style=flat&colorA=080f12&colorB=1fa669
+[package-version-href]: https://github.com/wibus-wee/activation-script
+[license-src]: https://img.shields.io/github/license/wibus-wee/activation-script.svg?style=flat&colorA=080f12&colorB=1fa669
+[license-href]: https://github.com/wibus-wee/activation-script/blob/main/LICENSE
