@@ -15,17 +15,12 @@
 目前支持的激活模块有：
 
 -   [x] LemonSqueezy <sup>***`📦 Stable`***</sup>
-
 -   [x] Paddle <sup>***`📦 Stable`***</sup>
-
 -   [x] Gumroad <sup>***`📦 Stable`***</sup>
-
 -   [x] App Store Restore Purchase <sup>***`🪄 Beta`***</sup>
-
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
-
 -   [ ] [~~Raycast Pro Plan~~](#raycast-pro-plan) <sup>***`🚫 STOP MAINTAINING`***</sup>
 
 ## 安装
