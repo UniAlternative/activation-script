@@ -93,6 +93,51 @@ function Done(props) {
 }
 
 /**
+ * Timer class
+ *
+ * @class Timer
+ */
+class Timer {
+    constructor() {
+        this.start = Date.now();
+    }
+    /**
+     * Start the timer
+     *
+     * @memberof Timer
+     */
+    startTimer() {
+        this.start = Date.now();
+    }
+    /**
+     * End the timer
+     *
+     * @memberof Timer
+     */
+    endTimer() {
+        this.end = Date.now();
+    }
+    /**
+     * Get the duration of the timer
+     *
+     * @memberof Timer
+     */
+    getDuration() {
+        if (this.end)
+            return this.end - this.start;
+        return Date.now() - this.start;
+    }
+    /**
+     * Get the duration of the timer in seconds
+     *
+     * @memberof Timer
+     */
+    getDurationInSeconds() {
+        return this.getDuration() / 1000;
+    }
+}
+
+/**
  * @url https://api.gumroad.com/v2/licenses/verify
  */
 function GumroadValidate() {
@@ -623,10 +668,18 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "bee94b4ae762418636d89297f5d8c592aec88a81";
+const COMMIT_HASH = "11e010684d16c95ee7554fda434934dfbe092d24";
 const CORE_VERSION = "1.3.0";
+const timer = new Timer();
+timer.startTimer();
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 (async () => {
-    $done(await launch());
+    $done(await launch().catch((e) => {
+        console.error(e);
+        return Done({});
+    }).finally(() => {
+        timer.endTimer();
+        console.log(`===== Finished in ${timer.getDurationInSeconds()}s =====`);
+    }));
 })();
