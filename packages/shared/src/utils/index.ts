@@ -1,10 +1,10 @@
-import type { IHttpClient, IHttpClientCallback, IHttpClientProps } from '../types'
 import { transformToString } from './object'
 
 export * from './object'
 export * from './destr'
 export * from './url'
 export * from './uuid'
+export * from './http'
 
 /**
  * 构建 Surge 响应体
@@ -64,22 +64,4 @@ export function sendNotification(title: any, subtitle: any, body: any) {
   subtitle = transformToString(subtitle)
   body = transformToString(body)
   $notification.post(title, subtitle, body)
-}
-
-const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post']
-
-/**
- * 发送请求
- * @param props 请求参数
- * @param callback 回调函数
- */
-export const httpClient: IHttpClient = {} as any
-for (const method of methods) {
-  // @ts-expect-error 这个地方无法通过类型检查
-  httpClient[method] = (
-    props: IHttpClientProps,
-    callback: IHttpClientCallback,
-  ) => {
-    $httpClient[method](props, callback)
-  }
 }

@@ -11,7 +11,7 @@ import { shottrTelemetry } from './shottr/custom/telemetry'
 
 export const activator: Activator = {
   dashboard: {
-    base: 'http://as.as/*',
+    base: 'http://as.as',
     customs: DashboardModuleRouter,
   },
   lemonSqueezy: {

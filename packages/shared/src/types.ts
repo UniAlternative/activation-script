@@ -13,7 +13,7 @@ export interface Activator {
   }
 }
 
-type ActivatorFunction = () => Record<string, any>
+type ActivatorFunction = Function | (() => Promise<any>)
 
 export interface IHttpClientProps {
   url: string
@@ -30,11 +30,21 @@ export type IHttpClientCallback = (
   data: string
 ) => any
 
-export type IHttpClient = {
+export type ICallbackHttpClient = {
   [x in 'get' | 'put' | 'delete' | 'head' | 'options' | 'patch' | 'post']: (
     props: IHttpClientProps,
     callback: IHttpClientCallback
   ) => void;
+}
+
+export type IHttpClient = {
+  [x in 'get' | 'put' | 'delete' | 'head' | 'options' | 'patch' | 'post']: (
+    props: IHttpClientProps
+  ) => Promise<{
+    status: number
+    headers: Record<string, string>
+    data: string
+  }>;
 }
 
 type AIType = 'openai' | 'custom' | 'gemini'
