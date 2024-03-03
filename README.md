@@ -27,7 +27,7 @@
 
 ## 安装
 
-前往 Surge 的 `Module` 配置页面，添加外部模块链接，这里提供了一些链接，任选其一即可：
+前往 Surge 的 `Module` 配置页面，添加外部模块链接:
 
 ```text
 https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
@@ -36,19 +36,16 @@ https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
 ```bash
-# 安装依赖
 pnpm i
+pnpm build:core # Build core(activator.js)
 
-# 在当前目录下构建 activator.js 脚本
-pnpm build:main
-
-# 交互式命令
-# 生成 Surge config 应添加的字段
-pnpm generate gen
-
-# 生成并移动 activator.js 到 Surge 配置目录
-pnpm generate inject
+# CLI (When you want to use local module)
+pnpm start:generator gen # Generate config
+pnpm start:generator inject # Build activator.js and move to directory
+pnpm start:generator patch # Patch Surge config file (Beta)
 ```
+
+###### [项目结构](#项目结构)
 
 ## 特殊说明
 
@@ -204,6 +201,26 @@ return Done({
 > 不要让 Surge 既代理 Raycast 的请求，又代理你的后端服务的请求，这会导致无法正常使用。
 >
 > 除非...除非你给 headers 加点[料](./src/modules/index.ts#L70)，让你的后端服务可以正常工作. (同时建议后端服务关闭 SSL 检查 `NODE_TLS_REJECT_UNAUTHORIZED=0`)
+
+## 项目结构
+
+```text
+.
+├── .github
+│   └── workflows
+├── .vscode
+├── packages
+│   ├── core
+│   ├── modules
+│   ├── generator
+│   └── shared
+└── ...others
+```
+
+- `core`: 核心模块，负责启动与运行时的匹配和运行逻辑
+- `modules`: 模块集合，负责修改请求与响应
+- `generator`: 生成器，负责生成配置文件与脚本
+- `shared`: 共享模块，提供一些共享的工具（例如：储存、解析、类型支持）
 
 ## Credits
 
