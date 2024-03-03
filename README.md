@@ -6,9 +6,9 @@
 ## Features
 
 -   [x] Activate the application with MITM
--   [ ] Universal script for all mitm proxy tools
--   [ ] Dashboard for managing modules #14
 -   [ ] ...What else? [Create a new issue](https://github.com/wibus-wee/activation-script/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml)
+
+###### [Our Roadmap](https://github.com/wibus-wee/activation-script/issues/15)
 
 ## Modules
 
@@ -21,7 +21,7 @@
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
--   [x] [Raycast Pro Plan](#raycast-pro-plan) <sup>***`🌊 Partially supported`***</sup>
+-   [x] Raycast Pro Plan <sup>***`🌊 Partially supported`***</sup>
 
 ###### [模块特殊说明](#特殊说明)
 
@@ -29,9 +29,7 @@
 
 前往 Surge 的 `Module` 配置页面，添加外部模块链接，这里提供了一些链接，任选其一即可：
 
-```
-https://mirror.ghproxy.com/https://raw.githubusercontent.com/wibus-wee/activation-script/gh-pages/activator.sgmodule
-https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages/activator.sgmodule
+```text
 https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
 ```
 
