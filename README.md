@@ -21,7 +21,7 @@
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
--   [ ] [Raycast Pro Plan](#raycast-pro-plan) <sup>***`🌊 3rd-party`***</sup>
+-   [x] [Raycast Pro Plan](#raycast-pro-plan) <sup>***`🌊 Partially supported`***</sup>
 
 ###### [模块特殊说明](#特殊说明)
 
@@ -155,21 +155,43 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 
 > Thanks to @zhuozhiyongde.
 
-为了可以正常使用 Raycast Pro Plan，你需要在 `Surge -> HTTP -> 捕获 -> 捕获 MITM 覆写` 中修改 MITM 主机名，将最后一行 `*` 取消勾选。
+为了可以正常使用 Raycast Pro Plan，你可能需要在 `Surge -> HTTP -> 捕获 -> 捕获 MITM 覆写` 中修改 MITM 主机名，将最后一行 `*` 取消勾选。
+
+如果后续你需要使用 Surge Dashboard 并正常使用原本的流量捕获功能，您需要重新勾选 `*`
 
 > [!WARNING]
 > 由于 Surge 限制，在 Surge 内的 runtime 做脚本无法实现 SSE，这对体验有很大很大的影响，以及还有一些实现上的问题，因此我打算不做内置的 AI 支持了
 
-如果想使用此功能，请以下项目搭建自己的后端服务进行体验： **（它们都是不一样的！）**
+如果想使用 AI 功能，请参照以下项目搭建自己的后端服务进行体验： **（它们都是不一样的！）**
 
 -   [wibus-wee/raycast-unblock](https://github.com/wibus-wee/raycast-unblock)
 -   [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
-另外，你可能还需要前往 [./packages/modules/index.ts](./packages/modules/index.ts) 修改 `raycast` 模块替换的 `url` 为你自己的后端服务地址。
+目前，Activation Script 仅会将 AI 部分的请求转发到你的后端服务。
+
+> [!NOTE]
+> 此部分是因为暂时无法对模块进行配置而导致的问题，在完成 Dashboard 功能后，你可以自行配置模块的启动与关闭，而无需修改代码。
+
+<details>
+  <summary>如果你需要把 translations 功能也转发给后端服务：</summary>
 
 ```diff
-$done({
+{
+    base: 'translations',
+-    func: raycastTranslate,
++    func: unblockRequest,
+},
+```
+
+对于其他的 Route 你需要转发给后端服务，你也可以这么做。
+
+</details>
+
+另外，你可能还需要前往 [./packages/modules/raycast/universal.ts](./packages/modules/raycast/universal.ts) 或已构建的脚本中，修改替换的 `url` 为你自己的后端服务地址。
+
+```diff
+return Done({
     url: $request.url.replace(
         'https://backend.raycast.com',
 -        'http://127.0.0.1:3000',

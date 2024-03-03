@@ -1,38 +1,10 @@
 'use strict';
 
-var name = "@as/core";
-var type = "module";
-var version = "1.3.0";
-var description = "";
-var author = "";
-var license = "ISC";
-var keywords = [
-];
-var main = "index.js";
-var scripts = {
-	build: "rollup -c && mv ../../dist/main.js ../../dist/activator.js"
-};
-var dependencies = {
-	"@as/dashboard": "workspace:^",
-	"@as/modules": "workspace:^",
-	"@as/shared": "workspace:^"
-};
-var devDependencies = {
-	"@rollup/plugin-json": "^6.1.0"
-};
-var packageJson = {
-	name: name,
-	type: type,
-	version: version,
-	description: description,
-	author: author,
-	license: license,
-	keywords: keywords,
-	main: main,
-	scripts: scripts,
-	dependencies: dependencies,
-	devDependencies: devDependencies
-};
+function transformToString(obj) {
+    if (typeof obj === 'object')
+        return JSON.stringify(obj);
+    return obj;
+}
 
 function destr(str) {
     try {
@@ -56,11 +28,41 @@ function parseURLParams(url) {
     return result;
 }
 
-function transformToString(obj) {
-    if (typeof obj === 'object')
-        return JSON.stringify(obj);
-    return obj;
+const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post'];
+/**
+ * 发送请求
+ * @param props 请求参数
+ * @param callback 回调函数
+ */
+const callBackHttpClient = {};
+for (const method of methods) {
+    // @ts-expect-error 这个地方无法通过类型检查
+    callBackHttpClient[method] = (props, callback) => {
+        $httpClient[method](props, callback);
+    };
 }
+const httpClient = {};
+for (const method of methods) {
+    // @ts-expect-error ts-migrate(7006) FIXME: Parameter 'props' implicitly has an 'any' type.
+    httpClient[method] = (props) => {
+        return new Promise((resolve, reject) => {
+            // @ts-expect-error 不想做类型检查...
+            callBackHttpClient[method](props, (error, response, data) => {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    resolve({
+                        status: response.status,
+                        headers: response.headers,
+                        data,
+                    });
+                }
+            });
+        });
+    };
+}
+
 /**
  * 构建 Surge 响应体
  *
@@ -87,19 +89,6 @@ function Done(props) {
         props.response.body = transformToString(props.response.body);
     return {
         ...props,
-    };
-}
-const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post'];
-/**
- * 发送请求
- * @param props 请求参数
- * @param callback 回调函数
- */
-const httpClient = {};
-for (const method of methods) {
-    // @ts-expect-error 这个地方无法通过类型检查
-    httpClient[method] = (props, callback) => {
-        $httpClient[method](props, callback);
     };
 }
 
@@ -234,7 +223,19 @@ function paddleVerify() {
 
 const DashboardModuleRouter = [
     {
-        base: '/',
+        base: 'test',
+        func: async () => {
+            console.log('Test');
+            const request = await httpClient.get({ url: 'https://baidu.com' });
+            return ResponseDone({ body: {
+                    status: request.status,
+                    headers: request.headers,
+                    data: 'Test Success!',
+                } });
+        },
+    },
+    {
+        base: '',
         func: () => {
             return ResponseDone({ status: 200, body: 'Dashboard' });
         },
@@ -287,9 +288,160 @@ function shottrTelemetry() {
     });
 }
 
+/**
+ * @url https://backend.raycast.com/api/v1/me
+ */
+function raycastActivate() {
+    return activeWithResponse();
+}
+function activeWithResponse() {
+    const body = JSON.parse($response.body);
+    return Done({
+        headers: {
+            ...$response.headers,
+        },
+        body: {
+            ...body,
+            has_active_subscription: true,
+            has_pro_features: true,
+            has_better_ai: true,
+            eligible_for_pro_features: true,
+            eligible_for_ai: true,
+            eligible_for_gpt4: true,
+            eligible_for_ai_citations: true,
+            eligible_for_developer_hub: true,
+            eligible_for_application_settings: true,
+            publishing_bot: true,
+            can_upgrade_to_pro: false,
+            admin: true,
+        },
+    });
+    // sendNotification("Raycast", "Activate Success", "Done");
+}
+
+function unblockRequest() {
+    if ($request.headers['x-raycast-unblock']) {
+        console.log('Raycast Unblock request');
+        return Done({
+            headers: {
+                ...$request.headers,
+                'x-raycast-unblock': undefined,
+            },
+        });
+    }
+    return Done({
+        url: $request.url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000'),
+        headers: $request.headers,
+        body: $request.body,
+    });
+}
+
+/**
+ * @url https://backend.raycast.com/api/v1/me/trial_status
+ */
+function raycastTrialStatus() {
+    const body = $request.body || '{}';
+    const data = JSON.parse(body);
+    data.organizations = [];
+    data.trial_limits = {
+        commands_limit: 999,
+        quicklinks_limit: 999,
+        snippets_limit: 999,
+    };
+    return ResponseDone({
+        body: data,
+    });
+}
+
+function countLetterI(translateText) {
+    return (translateText || '').split('i').length - 1;
+}
+function getTimestamp(letterCount) {
+    const timestamp = new Date().getTime();
+    return letterCount !== 0
+        ? timestamp - (timestamp % (letterCount + 1)) + (letterCount + 1)
+        : timestamp;
+}
+async function raycastTranslate() {
+    var _a;
+    const endpoint = 'https://www2.deepl.com/jsonrpc';
+    const body = destr($request.body);
+    const query = {
+        text: body.q,
+        source_lang: body.source || 'auto',
+        target_lang: body.target,
+    };
+    const requestParams = {
+        jsonrpc: '2.0',
+        method: 'LMT_handle_texts',
+        id: Math.floor(Math.random() * 100000 + 100000) * 1000,
+        params: {
+            texts: [{ text: '', requestAlternatives: 3 }],
+            timestamp: 0,
+            splitting: 'newlines',
+            lang: {
+                source_lang_user_selected: query.source_lang.toUpperCase(),
+                target_lang: (_a = query.target_lang) === null || _a === void 0 ? void 0 : _a.toUpperCase(),
+            },
+        },
+    };
+    requestParams.params.texts = [
+        {
+            text: query.text,
+            requestAlternatives: 3,
+        },
+    ];
+    requestParams.params.timestamp = getTimestamp(countLetterI(query.text));
+    let requestBody = JSON.stringify(requestParams);
+    if ([0, 3].includes((requestParams.id + 5) % 29)
+        || (requestParams.id + 3) % 13 === 0)
+        requestBody = requestBody.replace('"method":"', '"method" : "');
+    else
+        requestBody = requestBody.replace('"method":"', '"method": "');
+    const translateResponse = await httpClient.post({
+        url: endpoint,
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: requestBody,
+    }).then((res) => {
+        var _a, _b, _c, _d, _e, _f;
+        const data = destr(res.data);
+        const { result } = data;
+        return {
+            code: 200,
+            message: 'success',
+            data: (_b = (_a = result === null || result === void 0 ? void 0 : result.texts) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.text,
+            source_lang: (query === null || query === void 0 ? void 0 : query.source_lang) || (result === null || result === void 0 ? void 0 : result.lang) || 'auto',
+            target_lang: (query === null || query === void 0 ? void 0 : query.target_lang) || 'en',
+            alternatives: (_f = (_e = (_d = (_c = result.texts) === null || _c === void 0 ? void 0 : _c[0]) === null || _d === void 0 ? void 0 : _d.alternatives) === null || _e === void 0 ? void 0 : _e.map) === null || _f === void 0 ? void 0 : _f.call(_e, (item) => item.text),
+        };
+    }).catch((e) => {
+        return {
+            code: 500,
+            data: null,
+            message: e,
+        };
+    });
+    return ResponseDone({
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: {
+            data: {
+                translations: [
+                    {
+                        translatedText: translateResponse.data || '',
+                    },
+                ],
+            },
+        },
+    });
+}
+
 const activator = {
     dashboard: {
-        base: 'http://as.as/*',
+        base: 'http://as.as',
         customs: DashboardModuleRouter,
     },
     lemonSqueezy: {
@@ -323,44 +475,28 @@ const activator = {
     },
     raycast: {
         base: 'https://backend.raycast.com/api/v1',
-        // activate: {
-        //   base: "me",
-        //   func: raycastActivate,
-        //   type: "http-response",
-        // },
         activate: {
-            base: '*',
-            func: () => {
-                if ($request.headers['x-raycast-unblock']) {
-                    console.log('Raycast Unblock request');
-                    return Done({
-                        headers: {
-                            ...$request.headers,
-                            'x-raycast-unblock': undefined,
-                        },
-                    });
-                }
-                return Done({
-                    url: $request.url.replace('https://backend.raycast.com', 'http://127.0.0.1:3000'),
-                    headers: $request.headers,
-                    body: $request.body,
-                });
-            },
+            base: 'me',
+            func: raycastActivate,
+            type: 'http-response',
         },
         customs: [
-        // {
-        //   base: "me/trial_status",
-        //   func: raycastTrialStatus,
-        // },
-        // {
-        //   base: "ai/models",
-        //   func: raycastAiModels,
-        //   type: "http-response"
-        // },
-        // {
-        //   base: "ai/chat_completions",
-        //   func: raycastAICompletionsRequest,
-        // },
+            {
+                base: 'translations',
+                func: raycastTranslate,
+            },
+            {
+                base: 'me/trial_status',
+                func: raycastTrialStatus,
+            },
+            {
+                base: 'ai/models',
+                func: unblockRequest,
+            },
+            {
+                base: 'ai/chat_completions',
+                func: unblockRequest,
+            },
         ],
     },
     // typora: {
@@ -408,7 +544,7 @@ function isMatchBase(url, base) {
  * 自动执行对应的函数
  * @description This will match the URL according to the base of the module function, and if it matches, it will execute the func of the module function
  */
-function launch() {
+async function launch() {
     console.log(`[activator] ${url}`);
     /**
      * 匹配模块函数
@@ -418,14 +554,15 @@ function launch() {
      * @returns 匹配结果
      *
      */
-    function matchModuleFunc(moduleFunc) {
-        console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`);
+    async function matchModuleFunc(moduleFunc) {
+        // console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
         // 处理 * 通配符
         if (isMatchBase(url, moduleFunc.base))
-            return moduleFunc.func();
+            return await moduleFunc.func();
         // 不然就是要完全匹配（去掉末尾的 / 后再匹配）
         else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, ''))
-            return moduleFunc.func();
+            return await moduleFunc.func();
+        return false;
     }
     /**
      * 处理模块函数
@@ -435,10 +572,10 @@ function launch() {
      * @returns 匹配结果
      *
      */
-    function handleModuleFunc(moduleFunc) {
+    async function handleModuleFunc(moduleFunc) {
         if (typeof moduleFunc === 'object') {
             moduleFunc.base = moduleFunc.base.replace(/\/$/, '');
-            const match = matchModuleFunc(moduleFunc);
+            const match = await matchModuleFunc(moduleFunc);
             if (match)
                 return match;
         }
@@ -454,7 +591,7 @@ function launch() {
                 // 如果配置是数组（意味着有多个配置）这只会在 customs 中出现
                 if (typeof moduleItemOptions === 'object' && Array.isArray(moduleItemOptions)) {
                     for (const custom of moduleItemOptions) {
-                        const match = handleModuleFunc({
+                        const match = await handleModuleFunc({
                             ...custom,
                             base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
                         });
@@ -464,8 +601,8 @@ function launch() {
                     continue;
                 }
                 // 如果配置是对象（意味着只有一个配置）这只会在 activate 和 validate 中出现
-                if (typeof moduleItemOptions === 'object') {
-                    const match = handleModuleFunc(moduleItemOptions);
+                if (typeof moduleItemOptions === 'object' && !Array.isArray(moduleItemOptions)) {
+                    const match = await handleModuleFunc(moduleItemOptions);
                     if (match)
                         return match;
                     continue;
@@ -475,7 +612,7 @@ function launch() {
                     continue;
                 // 如果配置是函数，这个时候其实就没有什么特殊情况了，所以直接执行
                 if (typeof moduleItemOptions === 'function')
-                    return moduleItemOptions();
+                    return await moduleItemOptions();
                 // 如果配置是字符串，几乎没有使用过，也算直接返回吧
                 if (typeof moduleItemOptions === 'string')
                     return ResponseDone({ body: moduleItemOptions });
@@ -483,31 +620,13 @@ function launch() {
         }
     }
     console.log(`[activator] ${url} is not matched`);
-    returnDefaultResponse();
-    // $done();
-}
-function returnDefaultResponse() {
-    console.log(`[activator] returnDefaultResponse: [${$request.method}] -> ${url}`);
-    httpClient[$request.method.toLowerCase()]({
-        url: $request.url,
-        headers: $request.headers,
-    }, (err, response, _data) => {
-        if (err) {
-            console.log(err);
-            return ResponseDone({ status: 500, body: err });
-        }
-        if (!_data)
-            console.log('No data returned');
-        const res = {
-            status: response.status,
-            headers: response.headers,
-            body: _data,
-        };
-        return ResponseDone(res);
-    });
+    return Done({});
 }
 
-const COMMIT_HASH = "a465c67c1d4766c66502ce21e6dfaea2eb65ec27";
+const COMMIT_HASH = "101d86f163d027976720353137052ecb20ee5412";
+const CORE_VERSION = "1.3.0";
 console.log(`===== Activator Script Handler =====`);
-console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
-$done(launch());
+console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
+(async () => {
+    $done(await launch());
+})();
