@@ -1,4 +1,4 @@
-import { ResponseDone, callBackHttpClient, httpClient } from '@as/shared'
+import { ResponseDone, callBackHttpClient } from '@as/shared'
 import { GEMINI_OFFICIAL_ENDPOINT } from '../../../constants'
 
 /**

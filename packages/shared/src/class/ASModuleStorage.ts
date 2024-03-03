@@ -1,5 +1,5 @@
-import { getDeepKeyInAnObject } from './utils/object'
-import { getStorage, setStorage } from './utils/storage'
+import { getDeepKeyInAnObject } from '../utils/object'
+import { getStorage, setStorage } from '../utils/storage'
 
 /**
  * Activation Script Module Storage Class: ASModuleStorage
