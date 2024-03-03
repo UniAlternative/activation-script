@@ -1,4 +1,4 @@
-import { type Activator, Done } from '@as/shared'
+import type { Activator } from '@as/shared'
 import { GumroadValidate } from './gumroad/validate'
 import { lemonSqueezyActive } from './lemon-squeezy/activate'
 import { lemonsqueezyValidate } from './lemon-squeezy/validate'
@@ -8,6 +8,10 @@ import { DashboardModuleRouter } from './dashboard/custom/router'
 import { iTunesVerifyReceipt } from './itunes/custom'
 import { shottrVerifyLicense } from './shottr/validate'
 import { shottrTelemetry } from './shottr/custom/telemetry'
+import { raycastActivate } from './raycast/activate'
+import { unblockRequest } from './raycast/universal'
+import { raycastTrialStatus } from './raycast/customs/custom'
+import { raycastTranslate } from './raycast/customs/translate'
 
 export const activator: Activator = {
   dashboard: {
@@ -45,47 +49,28 @@ export const activator: Activator = {
   },
   raycast: {
     base: 'https://backend.raycast.com/api/v1',
-    // activate: {
-    //   base: "me",
-    //   func: raycastActivate,
-    //   type: "http-response",
-    // },
     activate: {
-      base: '*',
-      func: () => {
-        if ($request.headers['x-raycast-unblock']) {
-          console.log('Raycast Unblock request')
-          return Done({
-            headers: {
-              ...$request.headers,
-              'x-raycast-unblock': undefined,
-            },
-          })
-        }
-        return Done({
-          url: $request.url.replace(
-            'https://backend.raycast.com',
-            'http://127.0.0.1:3000',
-          ),
-          headers: $request.headers,
-          body: $request.body,
-        })
-      },
+      base: 'me',
+      func: raycastActivate,
+      type: 'http-response',
     },
     customs: [
-      // {
-      //   base: "me/trial_status",
-      //   func: raycastTrialStatus,
-      // },
-      // {
-      //   base: "ai/models",
-      //   func: raycastAiModels,
-      //   type: "http-response"
-      // },
-      // {
-      //   base: "ai/chat_completions",
-      //   func: raycastAICompletionsRequest,
-      // },
+      {
+        base: 'translations',
+        func: raycastTranslate,
+      },
+      {
+        base: 'me/trial_status',
+        func: raycastTrialStatus,
+      },
+      {
+        base: 'ai/models',
+        func: unblockRequest,
+      },
+      {
+        base: 'ai/chat_completions',
+        func: unblockRequest,
+      },
     ],
   },
   // typora: {

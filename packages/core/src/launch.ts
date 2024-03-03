@@ -1,5 +1,5 @@
 import type { ActivatorObjFunc } from '@as/shared'
-import { Done, ResponseDone, callBackHttpClient } from '@as/shared'
+import { Done, ResponseDone } from '@as/shared'
 import { activator } from '@as/modules'
 
 const url = $request.url.split('?')[0]
