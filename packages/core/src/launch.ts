@@ -1,5 +1,5 @@
 import type { ActivatorObjFunc } from '@as/shared'
-import { ResponseDone, httpClient } from '@as/shared'
+import { ResponseDone, callBackHttpClient } from '@as/shared'
 import { activator } from '@as/modules'
 
 const url = $request.url.split('?')[0]
@@ -113,35 +113,5 @@ export function launch() {
     }
   }
   console.log(`[activator] ${url} is not matched`)
-  returnDefaultResponse()
-  // $done();
-}
-
-function returnDefaultResponse() {
-  console.log(
-    `[activator] returnDefaultResponse: [${$request.method}] -> ${url}`,
-  )
-
-  httpClient[$request.method.toLowerCase() as keyof typeof httpClient](
-    {
-      url: $request.url,
-      headers: $request.headers,
-    },
-    (err: any, response: any, _data: any) => {
-      if (err) {
-        console.log(err)
-        return ResponseDone({ status: 500, body: err })
-      }
-
-      if (!_data)
-        console.log('No data returned')
-
-      const res = {
-        status: response.status,
-        headers: response.headers,
-        body: _data,
-      }
-      return ResponseDone(res)
-    },
-  )
+  $done({})
 }
