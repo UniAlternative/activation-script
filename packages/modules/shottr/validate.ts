@@ -7,7 +7,11 @@ import { ResponseDone, destr } from '@as/shared'
 export function shottrVerifyLicense() {
   const body = {
     // ...destr($response.body),
-    hash: destr($request.body).hash,
+    hash: destr<{
+      hash: string
+      tier: string | number
+      explanation?: string
+    }>($request.body).hash,
     tier: '1',
     // explanation: undefined,
   }
