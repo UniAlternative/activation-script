@@ -507,7 +507,7 @@ function returnDefaultResponse() {
     });
 }
 
-const COMMIT_HASH = "37c93629b9535f29da20c7ed9d6f1ab3fefa12cb";
+const COMMIT_HASH = "a465c67c1d4766c66502ce21e6dfaea2eb65ec27";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${packageJson.version} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 $done(launch());
