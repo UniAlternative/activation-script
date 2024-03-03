@@ -21,6 +21,13 @@ jobs:
       - name: Setup
         run: npm i -g @antfu/ni
 
+      - name: Create Release
+        id: create_release
+        run: |
+          npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Install
         run: nci
 
@@ -30,7 +37,7 @@ jobs:
 
       - name: Rename
         run: |
-          mv dist/main.js dist/activator.js
+          mv dist/activator.js dist/activator.js
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v2
@@ -43,13 +50,6 @@ jobs:
         with:
           name: generator.js
           path: dist/generator.js
-
-      - name: Create Release
-        id: create_release
-        run: |
-          npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get release
         id: get_release
