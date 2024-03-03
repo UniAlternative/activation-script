@@ -1,5 +1,5 @@
 #!name=Activation Script
-#!desc=Activate your software by interceping the activation process
+#!desc=Activate your software by interceping the activation process - @wibus-wee
 
 
 [MITM]

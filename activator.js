@@ -623,7 +623,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "7d274b668b03735c976792c5497bc7d03c7c5080";
+const COMMIT_HASH = "bee94b4ae762418636d89297f5d8c592aec88a81";
 const CORE_VERSION = "1.3.0";
 console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
