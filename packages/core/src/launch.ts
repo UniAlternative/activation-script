@@ -1,5 +1,5 @@
 import type { ActivatorObjFunc } from '@as/shared'
-import { ResponseDone, callBackHttpClient } from '@as/shared'
+import { Done, ResponseDone, callBackHttpClient } from '@as/shared'
 import { activator } from '@as/modules'
 
 const url = $request.url.split('?')[0]
@@ -40,13 +40,14 @@ export async function launch() {
    *
    */
   async function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
-    console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
+    // console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
     // 处理 * 通配符
     if (isMatchBase(url, moduleFunc.base))
       return await moduleFunc.func()
     // 不然就是要完全匹配（去掉末尾的 / 后再匹配）
     else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, ''))
       return await moduleFunc.func()
+    return false
   }
 
   /**
@@ -57,10 +58,10 @@ export async function launch() {
    * @returns 匹配结果
    *
    */
-  function handleModuleFunc(moduleFunc: ActivatorObjFunc) {
+  async function handleModuleFunc(moduleFunc: ActivatorObjFunc) {
     if (typeof moduleFunc === 'object') {
       moduleFunc.base = moduleFunc.base.replace(/\/$/, '')
-      const match = matchModuleFunc(moduleFunc)
+      const match = await matchModuleFunc(moduleFunc)
       if (match)
         return match
     }
@@ -80,7 +81,7 @@ export async function launch() {
         // 如果配置是数组（意味着有多个配置）这只会在 customs 中出现
         if (typeof moduleItemOptions === 'object' && Array.isArray(moduleItemOptions)) {
           for (const custom of moduleItemOptions as ActivatorObjFunc[]) {
-            const match = handleModuleFunc({
+            const match = await handleModuleFunc({
               ...custom,
               base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
             })
@@ -91,8 +92,8 @@ export async function launch() {
         }
 
         // 如果配置是对象（意味着只有一个配置）这只会在 activate 和 validate 中出现
-        if (typeof moduleItemOptions === 'object') {
-          const match = handleModuleFunc(moduleItemOptions)
+        if (typeof moduleItemOptions === 'object' && !Array.isArray(moduleItemOptions)) {
+          const match = await handleModuleFunc(moduleItemOptions)
           if (match)
             return match
           continue
@@ -113,5 +114,5 @@ export async function launch() {
     }
   }
   console.log(`[activator] ${url} is not matched`)
-  $done({})
+  return Done({})
 }
