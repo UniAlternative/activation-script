@@ -28,7 +28,7 @@ export function isMatchBase(url: string, base: string | string[]) {
  * 自动执行对应的函数
  * @description This will match the URL according to the base of the module function, and if it matches, it will execute the func of the module function
  */
-export function launch() {
+export async function launch() {
   console.log(`[activator] ${url}`)
 
   /**
@@ -39,14 +39,14 @@ export function launch() {
    * @returns 匹配结果
    *
    */
-  function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
+  async function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
     console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
     // 处理 * 通配符
     if (isMatchBase(url, moduleFunc.base))
-      return moduleFunc.func()
+      return await moduleFunc.func()
     // 不然就是要完全匹配（去掉末尾的 / 后再匹配）
     else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, ''))
-      return moduleFunc.func()
+      return await moduleFunc.func()
   }
 
   /**
@@ -104,7 +104,7 @@ export function launch() {
 
         // 如果配置是函数，这个时候其实就没有什么特殊情况了，所以直接执行
         if (typeof moduleItemOptions === 'function')
-          return moduleItemOptions()
+          return await moduleItemOptions()
 
         // 如果配置是字符串，几乎没有使用过，也算直接返回吧
         if (typeof moduleItemOptions === 'string')
