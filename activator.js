@@ -535,6 +535,10 @@ const activator = {
                 func: raycastTrialStatus,
             },
             {
+                base: 'me/sync',
+                func: unblockRequest,
+            },
+            {
                 base: 'ai/models',
                 func: unblockRequest,
             },
@@ -668,7 +672,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "797902f67b49ccda768f299b7698b93f395d01e4";
+const COMMIT_HASH = "fa2da80a2925075745de7b1cfd8076740c2359eb";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
