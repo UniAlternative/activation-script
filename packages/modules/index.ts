@@ -64,6 +64,10 @@ export const activator: Activator = {
         func: raycastTrialStatus,
       },
       {
+        base: 'me/sync',
+        func: unblockRequest,
+      },
+      {
         base: 'ai/models',
         func: unblockRequest,
       },
