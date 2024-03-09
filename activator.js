@@ -183,11 +183,19 @@ function GumroadValidate() {
  * @url https://api.lemonsqueezy.com/v1/licenses/activate
  */
 function lemonSqueezyActive() {
+    let product_id = 0;
+    const body = destr($request.body);
+    if (body.license_key === '401934ec-0a54-433c-a299-2a363501d4be')
+        product_id = 154474;
     return ResponseDone({
         body: {
             activated: true,
             instance: {
                 id: 'wibus-wee',
+            },
+            meta: {
+                product_id,
+                product_name: 'Lemon Squeezy',
             },
             error: null,
         },
@@ -672,7 +680,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "fa2da80a2925075745de7b1cfd8076740c2359eb";
+const COMMIT_HASH = "c480c1727d8ebb47c615c91bbb953b77d94d5563";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();

@@ -102,11 +102,11 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 ### LemonSqueezy
 
 -   [x] Screen Studio
+-   [x] Alist Desktop <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 
-以下许可证可以用于激活 Screen Studio，但是其他应用程序暂时未能确定（因为找不到其他使用 LemonSqueezy 的应用程序）
+除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
 
 ```
-401934ec-0a54-433c-a299-2a363501d4be
 d06ad32e-00c2-43fb-a5a7-9bb44b094831
 0c903cdd-9ee1-4935-8ad3-88de0ecef496
 295aab81-b87e-437c-868a-1f0877216cae
