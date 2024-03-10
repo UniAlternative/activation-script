@@ -5,7 +5,7 @@ const STORAGE_KEY = 'activation-script'
 export function getStorage(key?: string) {
   const storage = $persistentStore.read(STORAGE_KEY)
   if (storage) {
-    const obj = destr(storage)
+    const obj = destr<any>(storage)
     return key ? obj[key] : obj
   }
   else {

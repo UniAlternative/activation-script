@@ -1,17 +1,15 @@
-import { modifyResponse } from '@as/shared'
+import { Done } from '@as/shared'
 
 /**
  * @url https://backend.raycast.com/api/v1/me
  */
 export function raycastActivate() {
-  activeWithResponse()
+  return activeWithResponse()
 }
 
 function activeWithResponse() {
-  // sendNotification("Raycast", "Activate Inject", "Catched - Response Pattern");
   const body = JSON.parse($response.body)
-  console.log('raycastActivate: body', body)
-  modifyResponse({
+  return Done({
     headers: {
       ...$response.headers,
     },

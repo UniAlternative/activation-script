@@ -8,7 +8,7 @@ import { inject } from './functions/inject'
 
 const hostnames = Array<string>()
 const scripts = Array<{ name: string, pattern: string, type: string }>()
-const externalUrl = `https://fastly.jsdelivr.net/gh/wibus-wee/activation-script@gh-pages`
+const externalUrl = `https://github.com/wibus-wee/activation-script/raw/gh-pages`
 
 function MITM(hostnames: any[], external = false) {
   return `

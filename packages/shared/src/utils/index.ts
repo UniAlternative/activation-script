@@ -1,15 +1,11 @@
-import type { IHttpClient, IHttpClientCallback, IHttpClientProps } from '../types'
+import { transformToString } from './object'
 
+export * from './object'
 export * from './destr'
 export * from './url'
 export * from './uuid'
-
-export function transformToString(obj: any) {
-  if (typeof obj === 'object')
-    return JSON.stringify(obj)
-
-  return obj
-}
+export * from './http'
+export * from './base64'
 
 /**
  * 构建 Surge 响应体
@@ -20,7 +16,7 @@ export function transformToString(obj: any) {
  * @param props.status 响应状态码w
  * @description Surge 会直接返回 HTTP 响应，而不进行真实的网络操作
  */
-export function buildResponse(props: {
+export function ResponseDone(props: {
   headers?: Record<string, string>
   body?: Record<string, any> | string
   status?: number
@@ -28,16 +24,16 @@ export function buildResponse(props: {
   if (props.body)
     props.body = transformToString(props.body)
 
-  $done({
+  return {
     response: {
       ...props,
     },
-  })
+  }
 }
 
-export function modifyRequest(props: {
-  url: string
-  headers: Record<string, string>
+export function Done(props: {
+  url?: string
+  headers?: Record<string, any>
   body?: Record<string, any> | string
   response?: {
     status?: number
@@ -51,21 +47,9 @@ export function modifyRequest(props: {
   if (props.response?.body)
     props.response.body = transformToString(props.response.body)
 
-  $done({
+  return {
     ...props,
-  })
-}
-export function modifyResponse(props: {
-  status?: number
-  headers?: Record<string, string>
-  body?: string
-}) {
-  if (props.body)
-    props.body = transformToString(props.body)
-
-  $done({
-    ...props,
-  })
+  }
 }
 
 /**
@@ -81,38 +65,4 @@ export function sendNotification(title: any, subtitle: any, body: any) {
   subtitle = transformToString(subtitle)
   body = transformToString(body)
   $notification.post(title, subtitle, body)
-}
-
-const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post']
-
-/**
- * 发送请求
- * @param props 请求参数
- * @param callback 回调函数
- */
-export const httpClient: IHttpClient = {} as any
-for (const method of methods) {
-  // @ts-expect-error 这个地方无法通过类型检查
-  httpClient[method] = (
-    props: IHttpClientProps,
-    callback: IHttpClientCallback,
-  ) => {
-    $httpClient[method](props, callback)
-  }
-}
-
-export function base64Encode(str: string) {
-  const base64Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-  let result = ''
-  let i = 0
-  do {
-    const a = str.charCodeAt(i++)
-    const b = str.charCodeAt(i++)
-    const c = str.charCodeAt(i++)
-    a ? result += base64Chars[a >> 2] : result += '='
-    a ? result += base64Chars[(a & 3) << 4 | (b >> 4)] : result += '='
-    b ? result += base64Chars[(b & 15) << 2 | (c >> 6)] : result += '='
-    c ? result += base64Chars[c & 63] : result += '='
-  } while (i < str.length)
-  return result
 }

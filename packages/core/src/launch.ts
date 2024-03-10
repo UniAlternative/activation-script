@@ -1,5 +1,5 @@
 import type { ActivatorObjFunc } from '@as/shared'
-import { buildResponse, httpClient } from '@as/shared'
+import { Done, ResponseDone } from '@as/shared'
 import { activator } from '@as/modules'
 
 const url = $request.url.split('?')[0]
@@ -28,7 +28,7 @@ export function isMatchBase(url: string, base: string | string[]) {
  * 自动执行对应的函数
  * @description This will match the URL according to the base of the module function, and if it matches, it will execute the func of the module function
  */
-export function launch() {
+export async function launch() {
   console.log(`[activator] ${url}`)
 
   /**
@@ -39,14 +39,15 @@ export function launch() {
    * @returns 匹配结果
    *
    */
-  function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
-    console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
+  async function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
+    // console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
     // 处理 * 通配符
     if (isMatchBase(url, moduleFunc.base))
-      return moduleFunc.func()
+      return await moduleFunc.func()
     // 不然就是要完全匹配（去掉末尾的 / 后再匹配）
     else if (url.replace(/\/$/, '') === moduleFunc.base.replace(/\/$/, ''))
-      return moduleFunc.func()
+      return await moduleFunc.func()
+    return false
   }
 
   /**
@@ -57,10 +58,10 @@ export function launch() {
    * @returns 匹配结果
    *
    */
-  function handleModuleFunc(moduleFunc: ActivatorObjFunc) {
+  async function handleModuleFunc(moduleFunc: ActivatorObjFunc) {
     if (typeof moduleFunc === 'object') {
       moduleFunc.base = moduleFunc.base.replace(/\/$/, '')
-      const match = matchModuleFunc(moduleFunc)
+      const match = await matchModuleFunc(moduleFunc)
       if (match)
         return match
     }
@@ -80,7 +81,7 @@ export function launch() {
         // 如果配置是数组（意味着有多个配置）这只会在 customs 中出现
         if (typeof moduleItemOptions === 'object' && Array.isArray(moduleItemOptions)) {
           for (const custom of moduleItemOptions as ActivatorObjFunc[]) {
-            const match = handleModuleFunc({
+            const match = await handleModuleFunc({
               ...custom,
               base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
             })
@@ -91,8 +92,8 @@ export function launch() {
         }
 
         // 如果配置是对象（意味着只有一个配置）这只会在 activate 和 validate 中出现
-        if (typeof moduleItemOptions === 'object') {
-          const match = handleModuleFunc(moduleItemOptions)
+        if (typeof moduleItemOptions === 'object' && !Array.isArray(moduleItemOptions)) {
+          const match = await handleModuleFunc(moduleItemOptions)
           if (match)
             return match
           continue
@@ -104,44 +105,14 @@ export function launch() {
 
         // 如果配置是函数，这个时候其实就没有什么特殊情况了，所以直接执行
         if (typeof moduleItemOptions === 'function')
-          return moduleItemOptions()
+          return await moduleItemOptions()
 
         // 如果配置是字符串，几乎没有使用过，也算直接返回吧
         if (typeof moduleItemOptions === 'string')
-          return buildResponse({ body: moduleItemOptions })
+          return ResponseDone({ body: moduleItemOptions })
       }
     }
   }
   console.log(`[activator] ${url} is not matched`)
-  returnDefaultResponse()
-  // $done();
-}
-
-function returnDefaultResponse() {
-  console.log(
-    `[activator] returnDefaultResponse: [${$request.method}] -> ${url}`,
-  )
-
-  httpClient[$request.method.toLowerCase() as keyof typeof httpClient](
-    {
-      url: $request.url,
-      headers: $request.headers,
-    },
-    (err: any, response: any, _data: any) => {
-      if (err) {
-        console.log(err)
-        return buildResponse({ status: 500, body: err })
-      }
-
-      if (!_data)
-        console.log('No data returned')
-
-      const res = {
-        status: response.status,
-        headers: response.headers,
-        body: _data,
-      }
-      return buildResponse(res)
-    },
-  )
+  return Done({})
 }

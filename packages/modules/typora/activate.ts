@@ -1,4 +1,4 @@
-import { base64Encode, buildResponse, destr } from '@as/shared'
+import { ResponseDone, base64Encode, destr } from '@as/shared'
 
 /**
  * @url https://dian.typora.com.cn/api/client/activate
@@ -46,7 +46,7 @@ export function TyporaActivate() {
     date,
   }
 
-  buildResponse({
+  return ResponseDone({
     body: {
       code: 1,
       msg: base64Encode(JSON.stringify(msg)),

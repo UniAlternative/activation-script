@@ -1,10 +1,10 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * @url https://api.elpass.app/device/management
  */
 export function elpassManagement() {
-  buildResponse({
+  return ResponseDone({
     body: {
       email: 'QiuChenly@52pojie.com',
       subscriptionBillingPeriod: null,
@@ -20,7 +20,7 @@ export function elpassManagement() {
  * @url https://api.elpass.app/device/init
  */
 export function elpassInit() {
-  buildResponse({
+  return ResponseDone({
     body: {
       code: 0,
       subscriptionBillingPeriod: null,

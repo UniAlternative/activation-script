@@ -12,14 +12,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18.x
 
       - name: Setup
         run: npm i -g @antfu/ni
+
+      - name: Create Release
+        id: create_release
+        run: |
+          npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install
         run: nci
@@ -30,26 +37,19 @@ jobs:
 
       - name: Rename
         run: |
-          mv dist/main.js dist/activator.js
+          mv dist/activator.js dist/activator.js
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: activator.js
           path: dist/activator.js
 
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: generator.js
           path: dist/generator.js
-
-      - name: Create Release
-        id: create_release
-        run: |
-          npx changelogithub
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get release
         id: get_release

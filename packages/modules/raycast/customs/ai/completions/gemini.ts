@@ -1,4 +1,4 @@
-import { buildResponse, httpClient } from '@as/shared'
+import { ResponseDone, callBackHttpClient } from '@as/shared'
 import { GEMINI_OFFICIAL_ENDPOINT } from '../../../constants'
 
 /**
@@ -43,7 +43,7 @@ export function raycastAICompletionsWithGemini() {
   }
   body = JSON.stringify(body)
   console.log('[Gemini] Request Body: ', body)
-  httpClient.post(
+  callBackHttpClient.post(
     {
       url: $request.url,
       body,
@@ -75,7 +75,7 @@ export function raycastAICompletionsWithGemini() {
           },
         }
       }
-      buildResponse(res)
+      return ResponseDone(res)
     },
   )
 }

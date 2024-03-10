@@ -1,7 +1,7 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 export function lemonsqueezyValidate() {
-  buildResponse({
+  return ResponseDone({
     body: {
       valid: true,
       error: null,

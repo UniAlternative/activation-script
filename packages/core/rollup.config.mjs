@@ -1,4 +1,5 @@
 import { execSync } from 'node:child_process'
+import fs from 'node:fs'
 import { defineConfig } from 'rollup'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
@@ -19,6 +20,7 @@ export default defineConfig({
     json(),
     inject({
       COMMIT_HASH: getGitCommitHash(),
+      CORE_VERSION: getCoreVersion(),
     }),
   ],
 })
@@ -31,4 +33,9 @@ function getGitCommitHash() {
   if (isGitRepo !== 'true')
     return ''
   return execSync('git rev-parse HEAD').toString().trim()
+}
+
+function getCoreVersion() {
+  const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'))
+  return packageJson.version
 }

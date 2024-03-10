@@ -1,4 +1,4 @@
-import { buildResponse } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 
 /**
  * @url https://backend.raycast.com/api/v1/me/trial_status
@@ -13,7 +13,7 @@ export function raycastTrialStatus() {
     snippets_limit: 999,
   }
 
-  buildResponse({
+  return ResponseDone({
     body: data,
   })
 }
