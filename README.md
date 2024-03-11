@@ -63,6 +63,8 @@ pnpm start:generator patch # Patch Surge config file (Beta)
 -   [x] MarginNote 3
 -   [x] MWeb Pro
 -   [x] iReal Pro (All Styles)
+-   [x] Clop
+-   [x] Mission Control Plus
 
 Paddle 是一个软件许可证管理服务。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
 
