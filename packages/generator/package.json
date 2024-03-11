@@ -15,7 +15,7 @@
     "@as/shared": "workspace:^"
   },
   "devDependencies": {
-    "@types/prompts": "^2.4.5",
+    "@types/prompts": "^2.4.9",
     "prompts": "^2.4.2"
   }
 }
