@@ -22,7 +22,7 @@
     -   [x] Basic Tier
     -   [ ] Friends Club
 -   [x] Raycast Pro Plan <sup>***`🌊 Partially supported`***</sup>
--   [x] Cleanshot X <sup>***`🫣 Untested`*** ***`🌊 Partially supported`*** ***`🚫 Non-crack``***</sup>
+-   [x] Cleanshot X <sup>***`🫣 Untested`*** ***`🌊 Partially supported`*** ***`🚫 Non-crack`***</sup>
 
 ###### [各个模块特殊说明](#特殊说明)
 
