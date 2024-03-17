@@ -6,10 +6,7 @@ import json from '@rollup/plugin-json'
 import typescript from 'rollup-plugin-ts'
 import { inject } from '../shared/src/plugins/rollup/inject.js'
 
-export default defineConfig({
-  input: [
-    'src/main.ts',
-  ],
+const destConfig = {
   output: {
     dir: '../../dist',
     format: 'cjs',
@@ -23,7 +20,14 @@ export default defineConfig({
       CORE_VERSION: getCoreVersion(),
     }),
   ],
-})
+}
+
+export default defineConfig([{
+  input: [
+    'src/main.ts',
+  ],
+  ...destConfig,
+}])
 
 function getGitCommitHash() {
   const isGitExists = execSync('which git').toString().trim()
