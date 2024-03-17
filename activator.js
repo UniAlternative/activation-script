@@ -711,7 +711,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "690eae44db1d1fae7be322f123a6d27970d1fe52";
+const COMMIT_HASH = "2019cb873803082e110652ab6272856bb6f3c57e";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
