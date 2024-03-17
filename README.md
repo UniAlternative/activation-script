@@ -28,11 +28,10 @@
 
 ## 安装
 
-前往 Surge 的 `Module` 配置页面，添加外部模块链接:
+前往 Surge 的 `Module` 配置页面，添加外部模块链接，以下有不同的链接可供选择：
 
-```text
-https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
-```
+- GitHub Release (stable): 它是最新的稳定版本，如果不追求最新的功能，你可以使用这个版本 - [activator.sgmodule](https://github.com/wibus-wee/activation-script/releases/latest/download/activator.sgmodule)
+- GitHub Action (latest): 它是使用最新代码构建的版本，但是这可能会带来不稳定性和一些问题 - [activator.sgmodule](https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule)
 
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
