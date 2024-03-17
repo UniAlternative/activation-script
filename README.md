@@ -30,8 +30,8 @@
 
 前往 Surge 的 `Module` 配置页面，添加外部模块链接，以下有不同的链接可供选择：
 
-- GitHub Release: 最新的稳定版本，如果不追求最新的功能，你可以使用这个版本 - [activator.sgmodule](https://github.com/wibus-wee/activation-script/releases/latest/download/activator.sgmodule) <sup>***`📦 Stable`***</sup>
-- GitHub Action: 使用最新代码构建，但是这可能会带来不稳定性和一些问题 - [activator.sgmodule](https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule) <sup>***`💥 Latest`***</sup>
+- [GitHub Release](https://github.com/wibus-wee/activation-script/releases/latest/download/activator.sgmodule) <sup>***`📦 Stable`***</sup> 最新的稳定版本，如果不追求最新的功能，你可以使用这个版本
+- [GitHub Action](https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule) <sup>***`💥 Latest`***</sup> 使用最新代码构建，但是这可能会带来不稳定性和一些问题
 
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
