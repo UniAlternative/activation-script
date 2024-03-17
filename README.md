@@ -28,11 +28,10 @@
 
 ## 安装
 
-前往 Surge 的 `Module` 配置页面，添加外部模块链接:
+前往 Surge 的 `Module` 配置页面，添加外部模块链接，以下有不同的链接可供选择：
 
-```text
-https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule
-```
+- [GitHub Release](https://github.com/wibus-wee/activation-script/releases/latest/download/activator.sgmodule) <sup>***`📦 Stable`***</sup> 最新的稳定版本，如果不追求最新的功能，你可以使用这个版本
+- [GitHub Action](https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule) <sup>***`💥 Latest`***</sup> 使用最新代码构建，但是这可能会带来不稳定性和一些问题
 
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
@@ -52,20 +51,20 @@ pnpm start:generator patch # Patch Surge config file (Beta)
 
 ### Paddle
 
--   [x] AlDente Pro
--   [x] iStatistica Pro
--   [x] One Switch
+-   [x] AlDente Pro `$25`
+-   [x] iStatistica Pro `$9.99`
+-   [x] One Switch `$4.99`
 -   [x] Charliemonroe
-    -   [x] Downie 4
-    -   [x] Permute 3
--   [x] Sensei
--   [x] Rectangle Pro
--   [x] MenubarX
--   [x] MarginNote 3
--   [x] MWeb Pro
--   [x] iReal Pro (All Styles)
--   [x] Clop
--   [x] Mission Control Plus
+    -   [x] Downie 4 `$19.99`
+    -   [x] Permute 3 `$14.99`
+-   [x] Sensei `$29`
+-   [x] Rectangle Pro `$10.15`
+-   [x] MenubarX `$4.99`
+-   [x] MarginNote 3 `$12.99`
+-   [x] MWeb Pro `$34.99`
+-   [x] iReal Pro (All Styles) `$20.39+$5.09+$6.11 = $31.59`
+-   [x] Clop `$9.99/mo`
+-   [x] Mission Control Plus `$9.99/mo`
 
 Paddle 是一个软件许可证管理服务。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
 
@@ -101,12 +100,12 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 
 欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
 
--   [x] iShot Pro
+-   [x] iShot Pro `$12.99`
 
 ### LemonSqueezy
 
--   [x] Screen Studio
--   [x] Alist Desktop <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
+-   [x] Screen Studio `$89`
+-   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 
 除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
 
@@ -128,7 +127,7 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
 
--   [x] MediaMate
+-   [x] MediaMate `$7.62`
 -   [x] ...more
 
 理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
