@@ -9,15 +9,23 @@ import { inject } from './functions/inject'
 const hostnames = Array<string>()
 const scripts = Array<{ name: string, pattern: string, type: string }>()
 const externalUrl = `https://github.com/wibus-wee/activation-script/raw/gh-pages`
+const releaseAssetsUrl = `https://github.com/wibus-wee/activation-script/releases/download`
 
-function MITM(hostnames: any[], external = false) {
+function MITM(hostnames: any[], external = false, release = '') {
+  if (release.length > 0)
+    external = true
   return `
 [MITM]
 hostname = ${external ? `%APPEND% ` : ''}${hostnames.join(', ')}
 `
 }
-function Script(_scripts: typeof scripts, external = false) {
-  const scriptPath = external ? `${externalUrl}/activator.js` : `activator.js`
+function Script(_scripts: typeof scripts, external = false, release = '') {
+  let _externalUrl = externalUrl
+  if (release.length > 0) {
+    external = true
+    _externalUrl = `${releaseAssetsUrl}/${release}`
+  }
+  const scriptPath = external ? `${_externalUrl}/activator.js` : `activator.js`
   const scriptUpdateInternal = 86400
   return `
 [Script]
@@ -264,7 +272,8 @@ async function action(str: any, _options: any) {
   if (str.module) {
     console.log('Generating .sgmodule file...')
     let content = fs.readFileSync(path.join(process.cwd(), './template.sgmodule'), 'utf-8')
-    content += `\n\n${MITM(hostnames, str.external)}\n\n${Script(scripts, str.external)}`
+    console.log(str)
+    content += `\n\n${MITM(hostnames, str.external, str.release)}\n\n${Script(scripts, str.external, str.release)}`
     fs.writeFileSync(path.join(process.cwd(), 'activator.sgmodule'), `${content}`)
     console.log('.sgmodule file generated.')
   }
@@ -281,6 +290,7 @@ program
   .option('-f, --fix', 'fix config file')
   .option('-m, --module', 'generate .sgmodule')
   .option('-e, --external', 'use external source url')
+  .option('-r, --release <version>', 'use external source url (release version)')
   .action(action)
 program.command('inject').description('inject activator').action(inject)
 program.command('patch').description('patch config').action(patch)
