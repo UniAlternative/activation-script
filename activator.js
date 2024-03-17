@@ -492,6 +492,28 @@ async function raycastTranslate() {
     });
 }
 
+/**
+ * @url https://api.cleanshot.cloud/v1/user
+ */
+function cleanshotUser() {
+    var _a, _b;
+    console.log('[W] It\'s a alpha script, if the script is not working, please contact the author.');
+    const body = destr($response.body);
+    if ((_b = (_a = body === null || body === void 0 ? void 0 : body.data) === null || _a === void 0 ? void 0 : _a.user) === null || _b === void 0 ? void 0 : _b.storage) {
+        const storage = body.data.user.storage;
+        storage.limit_bytes = 21073741824; // 20GB
+        storage.limit_readable = '20GB';
+        const team = body.data.user.team;
+        team.billing_plan.abilities.can_upload_original_media = true;
+        team.billing_plan.abilities.can_copy_direct_link = true;
+        team.billing_plan.abilities.can_set_expire_after = true;
+        team.billing_plan.abilities.can_set_media_password = true;
+        body.data.user.email_verified = true;
+        body.data.user.updated_at = '2099-01-11T11:36:16.000000Z';
+    }
+    return Done({ body });
+}
+
 const activator = {
     dashboard: {
         base: 'http://as.as',
@@ -572,6 +594,15 @@ const activator = {
             {
                 base: 'api/telemetry.php',
                 func: shottrTelemetry,
+            },
+        ],
+    },
+    cleanshot: {
+        base: 'https://api.cleanshot.cloud/v1',
+        customs: [
+            {
+                base: 'user',
+                func: cleanshotUser,
             },
         ],
     },
@@ -680,7 +711,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "60aa5023001ca9ea7f99bf916c19eb96f523e949";
+const COMMIT_HASH = "27d14e323934774d6785c8112c782dbcc2b5aca3";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
