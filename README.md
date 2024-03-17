@@ -51,20 +51,20 @@ pnpm start:generator patch # Patch Surge config file (Beta)
 
 ### Paddle
 
--   [x] AlDente Pro
--   [x] iStatistica Pro
--   [x] One Switch
+-   [x] AlDente Pro `$25`
+-   [x] iStatistica Pro `$9.99`
+-   [x] One Switch `$4.99`
 -   [x] Charliemonroe
-    -   [x] Downie 4
-    -   [x] Permute 3
--   [x] Sensei
--   [x] Rectangle Pro
--   [x] MenubarX
--   [x] MarginNote 3
--   [x] MWeb Pro
--   [x] iReal Pro (All Styles)
--   [x] Clop
--   [x] Mission Control Plus
+    -   [x] Downie 4 `$19.99`
+    -   [x] Permute 3 `$14.99`
+-   [x] Sensei `$29`
+-   [x] Rectangle Pro `$10.15`
+-   [x] MenubarX `$4.99`
+-   [x] MarginNote 3 `$12.99`
+-   [x] MWeb Pro `$34.99`
+-   [x] iReal Pro (All Styles) `$20.39+$5.09+$6.11 = $31.59`
+-   [x] Clop `$9.99/mo`
+-   [x] Mission Control Plus `$9.99/mo`
 
 Paddle 是一个软件许可证管理服务。你可以使用以下指令查找使用了本机使用了 `Paddle.framework` 的应用程序：
 
@@ -100,12 +100,12 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 
 欢迎提交你发现的使用了旧式验证的应用程序，我会将它们添加到列表中。
 
--   [x] iShot Pro
+-   [x] iShot Pro `$12.99`
 
 ### LemonSqueezy
 
--   [x] Screen Studio
--   [x] Alist Desktop <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
+-   [x] Screen Studio `$89`
+-   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 
 除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
 
@@ -127,7 +127,7 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
 
--   [x] MediaMate
+-   [x] MediaMate `$7.62`
 -   [x] ...more
 
 理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
