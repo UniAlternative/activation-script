@@ -1,6 +1,6 @@
 export function parseURLParams(url: string) {
   const params = url.split('?')[1]
-  const result: { [key: string]: string } = {}
+  const result: { [key: string]: string } = {} as any
   if (params) {
     const pairs = params.split('&')
     for (const pair of pairs) {
@@ -12,6 +12,8 @@ export function parseURLParams(url: string) {
 }
 
 export function parseURL(url: string) {
-  const [path, params] = url.split('?')
-  return { path, params: parseURLParams(params) }
+  if (!url.includes('?'))
+    return { path: url, params: {} }
+  const [_url] = url.split('?')
+  return { url: _url, params: parseURLParams(url), raw: url }
 }
