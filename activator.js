@@ -711,7 +711,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "817a6b501b44373644205bf32a90b4d23cf1ee06";
+const COMMIT_HASH = "faff47d78113127186e5dbbb07e4ac80cd2a5294";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
@@ -719,7 +719,7 @@ console.log(`===== Activator Script Handler =====`);
 console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${(COMMIT_HASH.slice(0, 7)) || 'main'} =====`);
 (async () => {
     $done(await launch().catch((e) => {
-        console.error(e);
+        console.log(`Error -> ${e}`);
         return Done({});
     }).finally(() => {
         timer.endTimer();
