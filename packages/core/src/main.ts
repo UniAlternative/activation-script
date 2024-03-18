@@ -9,7 +9,7 @@ console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${COM
 (async () => {
   $done(
     await launch().catch((e) => {
-      console.error(e)
+      console.log(`Error -> ${e}`)
       return Done({})
     }).finally(() => {
       timer.endTimer()
