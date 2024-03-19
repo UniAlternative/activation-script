@@ -6,6 +6,7 @@ export * from './url'
 export * from './uuid'
 export * from './http'
 export * from './base64'
+export * from './fake'
 
 /**
  * 构建 Surge 响应体
