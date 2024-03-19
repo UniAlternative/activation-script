@@ -28,6 +28,14 @@ function parseURLParams(url) {
     return result;
 }
 
+function v4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = (Math.random() * 16) | 0;
+        const v = c === 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+    });
+}
+
 const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post'];
 /**
  * 发送请求
@@ -61,6 +69,26 @@ for (const method of methods) {
             });
         });
     };
+}
+
+const words = 'abcdefghijklmnopqrstuvwxyz';
+function fakeEmail() {
+    let email = '';
+    let company = '';
+    for (let i = 0; i < 10; i++)
+        email += words[Math.floor(Math.random() * words.length)];
+    email += '@';
+    for (let i = 0; i < 5; i++)
+        company += words[Math.floor(Math.random() * words.length)];
+    email += `${company}.com`;
+    return email;
+}
+function fakeUrl() {
+    let url = '';
+    for (let i = 0; i < 10; i++)
+        url += words[Math.floor(Math.random() * words.length)];
+    url += '.com';
+    return url;
 }
 
 /**
@@ -141,34 +169,41 @@ class Timer {
  * @url https://api.gumroad.com/v2/licenses/verify
  */
 function GumroadValidate() {
+    console.log($request);
     const url = $request.url;
-    const params = parseURLParams(url);
+    const _body = $request.body;
+    let params = parseURLParams(url);
+    // 如果 params 里面没有东西，那就是 body 里面有东西
+    if (Object.keys(params).length === 0)
+        params = parseURLParams(`${$request.url}?${_body}`);
     const body = {
         success: true,
-        uses: -999,
+        uses: 0,
         purchase: {
-            sellerId: '123',
-            productId: params.product_permalink,
-            productName: params.product_permalink,
-            permalink: params.product_permalink,
-            productPermalink: params.product_permalink,
-            email: 'qiuchenly@outlook.com',
-            price: 100,
-            gumroadFee: 0,
+            order_number: 524459935,
+            id: v4(),
+            seller_id: v4(),
+            purchaser_id: v4(),
+            subscription_id: v4(),
+            product_id: params.product_id || v4(),
+            product_name: 'Gumroad\'s Product',
+            permalink: params.product_permalink || 'gumroad-product',
+            product_permalink: params.product_permalink || fakeUrl(),
+            email: fakeEmail(),
+            price: 0,
+            gumroad_fee: 0,
             currency: 'usd',
             quantity: 1,
-            discoverFeeCharged: false,
-            canContact: false,
+            discover_fee_charged: false,
+            can_contact: false,
             referrer: 'none',
-            orderNumber: 1234,
-            saleId: '1',
-            saleTimestamp: '2099-07-16T19:00:00Z',
-            licenseKey: params.license_key,
+            sale_id: v4(),
+            sale_timestamp: new Date().toISOString(),
+            license_key: params.license_key,
             refunded: false,
             disputed: false,
-            disputeWon: false,
-            id: '1234',
-            createdAt: '2023-07-16T19:00:00Z',
+            dispute_won: false,
+            created_at: '2021-01-01T00:00:00Z',
         },
     };
     return ResponseDone({
@@ -711,7 +746,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "b3dd72af6b48e47831560926155c9acaf3225ba1";
+const COMMIT_HASH = "9ac0c9c8adf562a9f20bfc768b5c7cffb74877d8";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
