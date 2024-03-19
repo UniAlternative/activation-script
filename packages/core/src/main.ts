@@ -1,4 +1,4 @@
-import { Done, Timer } from '@as/shared'
+import { ResponseDone, Timer } from '@as/shared'
 import { launch } from './launch'
 
 const timer = new Timer()
@@ -10,7 +10,16 @@ console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${COM
   $done(
     await launch().catch((e) => {
       console.log(`Error -> ${e}`)
-      return Done({})
+      return ResponseDone({
+        status: 500,
+        body: {
+          msg: 'Activation Script Error. Please check the logs for more details.',
+          error: {
+            message: e.message,
+            stack: e.stack,
+          },
+        },
+      })
     }).finally(() => {
       timer.endTimer()
       console.log(`===== Finished in ${timer.getDurationInSeconds()}s =====`)
