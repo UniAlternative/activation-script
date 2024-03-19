@@ -711,7 +711,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "faff47d78113127186e5dbbb07e4ac80cd2a5294";
+const COMMIT_HASH = "0c215a8bf514a75ee0db961b6259c8ab9c968d93";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
@@ -720,7 +720,16 @@ console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${(CO
 (async () => {
     $done(await launch().catch((e) => {
         console.log(`Error -> ${e}`);
-        return Done({});
+        return ResponseDone({
+            status: 500,
+            body: {
+                msg: 'Activation Script Error. Please check the logs for more details.',
+                error: {
+                    message: e.message,
+                    stack: e.stack,
+                },
+            },
+        });
     }).finally(() => {
         timer.endTimer();
         console.log(`===== Finished in ${timer.getDurationInSeconds()}s =====`);
