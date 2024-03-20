@@ -128,6 +128,7 @@ f899ec8c-020b-4f8a-a09d-22a978b716a5
 > Thanks to @QiuchenlyOpenSource & @Qiuchenly.
 
 -   [x] MediaMate `$7.62`
+-   [x] MacMouseFix `$2.99`
 -   [x] ...more
 
 理论上，以下的激活码可以用于所有使用 Gumroad 的应用程序。
