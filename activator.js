@@ -27,6 +27,12 @@ function parseURLParams(url) {
     }
     return result;
 }
+function parseURL(url) {
+    if (!url.includes('?'))
+        return { path: url, params: {} };
+    const [_url] = url.split('?');
+    return { url: _url, params: parseURLParams(url), raw: url };
+}
 
 function v4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -214,23 +220,43 @@ function GumroadValidate() {
     });
 }
 
+// LicenseKey -> ProductID mapping
+const licenseKeyToProductID = {
+    '401934ec-0a54-433c-a299-2a363501d4be': 154474,
+    'ca3120ca-f2f7-4d8b-89ec-76effe34431b': 172179,
+};
 /**
  * @url https://api.lemonsqueezy.com/v1/licenses/activate
  */
 function lemonSqueezyActive() {
     let product_id = 0;
     const body = destr($request.body);
-    if (body.license_key === '401934ec-0a54-433c-a299-2a363501d4be')
-        product_id = 154474;
+    const license_key = (body === null || body === void 0 ? void 0 : body.license_key) || parseURL($request.url).params.license_key;
+    // LicenseKey -> ProductID mapping
+    product_id = licenseKeyToProductID[license_key] || 0;
     return ResponseDone({
         body: {
             activated: true,
+            license_key: {
+                id: 1,
+                status: 'active',
+                key: license_key,
+                activation_limit: 1,
+                activation_usage: 0,
+                created_at: new Date().toISOString(),
+                expires_at: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 365).toISOString(),
+            },
             instance: {
-                id: 'wibus-wee',
+                id: 'f90ec370-fd83-46a5-8bbd-44a241e78665',
+                name: 'Wibus Wee',
+                created_at: new Date().toISOString(),
             },
             meta: {
                 product_id,
                 product_name: 'Lemon Squeezy',
+                customer_id: 1,
+                customer_name: 'Wibus Wee',
+                customer_email: 'luke@skywalker.com',
             },
             error: null,
         },
@@ -746,7 +772,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "3b41947943733852de16424e3de0f2cdf2ecb04a";
+const COMMIT_HASH = "8eb8659829e61ced645df316fda7caddde6d6a0d";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
