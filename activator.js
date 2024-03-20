@@ -185,7 +185,7 @@ function GumroadValidate() {
             seller_id: v4(),
             purchaser_id: v4(),
             subscription_id: v4(),
-            product_id: params.product_id || v4(),
+            product_id: unescape(params.product_id) || v4(),
             product_name: 'Gumroad\'s Product',
             permalink: params.product_permalink || 'gumroad-product',
             product_permalink: params.product_permalink || fakeUrl(),
@@ -746,7 +746,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "87153cfa8798045bf946543e3e61940c21fa0409";
+const COMMIT_HASH = "3b41947943733852de16424e3de0f2cdf2ecb04a";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
