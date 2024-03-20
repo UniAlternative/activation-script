@@ -24,7 +24,7 @@ export function GumroadValidate() {
       purchaser_id: v4(),
       subscription_id: v4(),
 
-      product_id: params.product_id || v4(),
+      product_id: unescape(params.product_id) || v4(),
       product_name: 'Gumroad\'s Product',
       permalink: params.product_permalink || 'gumroad-product',
       product_permalink: params.product_permalink || fakeUrl(),
