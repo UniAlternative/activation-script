@@ -34,14 +34,6 @@ function parseURL(url) {
     return { url: _url, params: parseURLParams(url), raw: url };
 }
 
-function v4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-        const r = (Math.random() * 16) | 0;
-        const v = c === 'x' ? r : (r & 0x3) | 0x8;
-        return v.toString(16);
-    });
-}
-
 const methods = ['get', 'put', 'delete', 'head', 'options', 'patch', 'post'];
 /**
  * 发送请求
@@ -75,26 +67,6 @@ for (const method of methods) {
             });
         });
     };
-}
-
-const words = 'abcdefghijklmnopqrstuvwxyz';
-function fakeEmail() {
-    let email = '';
-    let company = '';
-    for (let i = 0; i < 10; i++)
-        email += words[Math.floor(Math.random() * words.length)];
-    email += '@';
-    for (let i = 0; i < 5; i++)
-        company += words[Math.floor(Math.random() * words.length)];
-    email += `${company}.com`;
-    return email;
-}
-function fakeUrl() {
-    let url = '';
-    for (let i = 0; i < 10; i++)
-        url += words[Math.floor(Math.random() * words.length)];
-    url += '.com';
-    return url;
 }
 
 /**
@@ -184,32 +156,30 @@ function GumroadValidate() {
         params = parseURLParams(`${$request.url}?${_body}`);
     const body = {
         success: true,
-        uses: 0,
+        uses: 1,
         purchase: {
-            order_number: 524459935,
-            id: v4(),
-            seller_id: v4(),
-            purchaser_id: v4(),
-            subscription_id: v4(),
-            product_id: unescape(params.product_id) || v4(),
-            product_name: 'Gumroad\'s Product',
-            permalink: params.product_permalink || 'gumroad-product',
-            product_permalink: params.product_permalink || fakeUrl(),
-            email: fakeEmail(),
-            price: 0,
+            seller_id: '123',
+            product_id: params.product_permalink,
+            product_name: params.product_permalink,
+            permalink: params.product_permalink,
+            product_permalink: params.product_permalink,
+            email: 'wibus@qq.com',
+            price: 100,
             gumroad_fee: 0,
             currency: 'usd',
             quantity: 1,
             discover_fee_charged: false,
             can_contact: false,
             referrer: 'none',
-            sale_id: v4(),
-            sale_timestamp: new Date().toISOString(),
+            order_number: 1234,
+            sale_id: '1',
+            sale_timestamp: '2099-07-16T19:00:00Z',
             license_key: params.license_key,
             refunded: false,
             disputed: false,
             dispute_won: false,
-            created_at: '2021-01-01T00:00:00Z',
+            id: '1234',
+            created_at: '2023-07-16T19:00:00Z',
         },
     };
     return ResponseDone({
@@ -772,7 +742,7 @@ async function launch() {
     return Done({});
 }
 
-const COMMIT_HASH = "0d2b602ac60ef89777242f7dbd406f2c76688b91";
+const COMMIT_HASH = "c08d740a67a104d24618ee365e341128af353d14";
 const CORE_VERSION = "1.3.0";
 const timer = new Timer();
 timer.startTimer();
