@@ -167,10 +167,24 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 -   [zhuozhiyongde/Unlocking-Raycast-With-Surge](https://github.com/zhuozhiyongde/Unlocking-Raycast-With-Surge)
 -   [yufeikang/raycast_api_proxy](https://github.com/yufeikang/raycast_api_proxy)
 
-目前，Activation Script 仅会将 AI 部分的请求转发到你的后端服务。
+> [!CAUTION]
+> 如果你使用了自建后端服务，我推荐你使用 Header 重写功能，将 `backend.raycast.com` 重写为你的后端服务地址，这样可以避免一些问题，也不需要修改代码。
 
 > [!NOTE]
-> 此部分是因为暂时无法对模块进行配置而导致的问题，在完成 Dashboard 功能后，你可以自行配置模块的启动与关闭，而无需修改代码。
+> 以下部分是因为暂时无法对模块进行配置而导致的问题，在完成 Dashboard 功能后，你可以自行配置模块的启动与关闭，而无需修改代码。
+
+目前，Activation Script 仅会将 AI 部分的请求转发到你的后端服务。
+
+> [!CAUTION]
+> 目前代码默认并不会将 /me 转发到后端服务，这可能会导致后端服务无法正常工作（依赖于 /me 来识别用户的，如 Raycast Unblock），你需要自行修改代码。
+
+```diff
+activate: {
+    base: 'me',
+-   func: raycastActivate,
++   func: unblockRequest,
+},
+```
 
 <details>
   <summary>如果你需要把 translations 功能也转发给后端服务：</summary>
