@@ -7,17 +7,21 @@ const url = $request.url.split('?')[0]
 /**
  * 检查 url 是否匹配 base 配置
  */
-export function isMatchBase(url: string, base: string | string[]) {
+export function isMatchBase(url: string, base: string | string[], strict = true) {
   if (Array.isArray(base)) {
     for (const item of base) {
-      if (isMatchBase(url, item))
+      if (isMatchBase(url, item, strict))
         return true
     }
     return false
   }
   url = url.replace(/\/$/, '')
+  if (base.includes('*'))
+    strict = false // 如果 base 中包含 * 则不需要严格匹配
   base = base.replace('*', '').replace(/\/$/, '')
-  if (url.includes(base))
+  if (strict && url === base)
+    return true
+  else if (!strict && url.includes(base))
     return true
   else
     return false
@@ -40,7 +44,7 @@ export async function launch() {
    *
    */
   async function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
-    // console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${isMatchBase(url, moduleFunc.base)}`)
+    // console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${url} |${isMatchBase(url, moduleFunc.base)}`)
     // 处理 * 通配符
     if (isMatchBase(url, moduleFunc.base))
       return await moduleFunc.func()
@@ -70,7 +74,7 @@ export async function launch() {
   for (const module in activator) {
     const moduleItem = activator[module]
 
-    if (isMatchBase(url, moduleItem.base)) { // 检查 url 是否匹配 module 中配置的 base（利用 includes）
+    if (isMatchBase(url, moduleItem.base, false)) { // 检查 url 是否匹配 module 中配置的 base（利用 includes）
       console.log(`[activator] ${url} is matched`)
       for (const key in moduleItem) { // 遍历 module 中的配置（base, activate, validate, customs）
         const moduleItemOptions = moduleItem[key as keyof typeof moduleItem]
@@ -85,27 +89,35 @@ export async function launch() {
               ...custom,
               base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
             })
-            if (match)
+            if (match) {
+              console.log(`[activator] Handle customs: ${custom.base}`)
               return match
+            }
           }
           continue
         }
 
         // 如果配置是对象（意味着只有一个配置）这只会在 activate 和 validate 中出现
         if (typeof moduleItemOptions === 'object' && !Array.isArray(moduleItemOptions)) {
-          const match = await handleModuleFunc(moduleItemOptions)
-          if (match)
+          const match = await handleModuleFunc({
+            ...moduleItemOptions,
+            base: `${moduleItem.base}/${moduleItemOptions.base.replace(/^\//, '')}`,
+          })
+          if (match) {
+            console.log(`[activator] Handle ${key}: ${moduleItemOptions.base}`)
             return match
+          }
           continue
         }
 
-        // 如果 url 不包含 module.base/key 则跳过，不用管后面的了
-        if (!url.includes(`${moduleItem.base}/${key}`))
+        if (!isMatchBase(url, `${moduleItem.base}/${key}`))
           continue
 
         // 如果配置是函数，这个时候其实就没有什么特殊情况了，所以直接执行
-        if (typeof moduleItemOptions === 'function')
+        if (typeof moduleItemOptions === 'function') {
+          console.log(`[activator] Handle ${key}`)
           return await moduleItemOptions()
+        }
 
         // 如果配置是字符串，几乎没有使用过，也算直接返回吧
         if (typeof moduleItemOptions === 'string')
