@@ -4,6 +4,7 @@ import { defineConfig } from 'rollup'
 import nodeResolve from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
 import typescript from 'rollup-plugin-ts'
+import terser from '@rollup/plugin-terser'
 import { inject } from '../shared/src/plugins/rollup/inject.js'
 
 const destConfig = {
@@ -19,6 +20,7 @@ const destConfig = {
       COMMIT_HASH: getGitCommitHash(),
       CORE_VERSION: getCoreVersion(),
     }),
+    terser(),
   ],
 }
 
