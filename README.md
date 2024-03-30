@@ -4,7 +4,9 @@
 [![License][license-src]][license-href]
 
 > [!CAUTION]
-> 近期，我们发现越来越多软件开始使用了一些避免破解的手段，如 Certificate Pinning。这使得我们无法再像以前那样使用 MITM 来激活软件。因此，我们在未来将有可能停止维护 Activation Script。
+> 近期，我们发现越来越多软件开始使用了一些避免破解的手段，如 **`Certificate Pinning`**。
+>
+> 这使得我们无法再像以前那样使用 MITM 来激活软件。因此，我们在未来将有可能停止维护 Activation Script。
 
 ## Features
 
