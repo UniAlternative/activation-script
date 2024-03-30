@@ -3,6 +3,11 @@
 [![Version][package-version-src]][package-version-href]
 [![License][license-src]][license-href]
 
+> [!CAUTION]
+> 近期，我们发现越来越多软件开始使用了一些避免破解的手段，如 **`Certificate Pinning`**。
+>
+> 这使得我们无法再像以前那样使用 MITM 来激活软件。因此，我们在未来将有可能停止维护 Activation Script。
+
 ## Features
 
 -   [x] Activate the application with MITM
@@ -104,7 +109,7 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 
 ### LemonSqueezy
 
--   [x] Screen Studio `$89`
+-   [x] Screen Studio `$89` - <sup>***`Only support <= 2.20 version`***</sup>
 -   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 
 除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
