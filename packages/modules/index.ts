@@ -12,6 +12,7 @@ import { raycastActivate } from './raycast/activate'
 import { unblockRequest } from './raycast/universal'
 import { raycastTrialStatus } from './raycast/customs/custom'
 import { raycastTranslate } from './raycast/customs/translate'
+import { lemonSqueezyDeactivate } from './lemon-squeezy/deactivate'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -24,6 +25,12 @@ export const activator: Activator = {
     base: 'https://api.lemonsqueezy.com/v1/licenses',
     activate: lemonSqueezyActive,
     validate: lemonsqueezyValidate,
+    customs: [
+      {
+        base: 'deactivate',
+        func: lemonSqueezyDeactivate,
+      },
+    ],
   },
   paddle: {
     base: 'https://v3.paddleapi.com/3.2/license',
