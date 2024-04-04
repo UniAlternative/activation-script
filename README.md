@@ -17,6 +17,8 @@
 
 ## Modules
 
+> 有部分软件使用了一些特殊的激活方式，因此我们需要针对不同的软件进行不同的处理，所以他们也会被分为不同的模块。
+
 目前支持的激活模块有：
 
 -   [x] LemonSqueezy <sup>***`📦 Stable`***</sup>
@@ -34,8 +36,8 @@
 
 前往 Surge 的 `Module` 配置页面，添加外部模块链接，以下有不同的链接可供选择：
 
-- [GitHub Release](https://github.com/wibus-wee/activation-script/releases/latest/download/activator.sgmodule) <sup>***`📦 Stable`***</sup> 最新的稳定版本，如果不追求最新的功能，你可以使用这个版本
 - [GitHub Action](https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.sgmodule) <sup>***`💥 Latest`***</sup> 使用最新代码构建，但是这可能会带来不稳定性和一些问题
+- [GitHub Release](https://github.com/wibus-wee/activation-script/releases/latest/download/activator.sgmodule) <sup>***`📦 Stable`***</sup> 最新的稳定版本，如果不追求最新的功能，你可以使用这个版本
 
 或者你希望自行修改配置文件与脚本，你可以使用如下指令：
 
@@ -110,6 +112,7 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 
 -   [x] Screen Studio `$89` - <sup>***`Only support <= 2.20 version`***</sup>
 -   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
+-   [x] LookAway `$9.99`
 
 除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
 
@@ -173,6 +176,8 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 
 > [!CAUTION]
 > 如果你使用了自建后端服务，我推荐你使用 Header 重写功能，将 `backend.raycast.com` 重写为你的后端服务地址，这样可以避免一些问题，也不需要修改代码。
+
+---
 
 > [!NOTE]
 > 以下部分是因为暂时无法对模块进行配置而导致的问题，在[完成 Dashboard 功能](https://github.com/wibus-wee/activation-script/issues/13)后，你可以自行配置模块的启动与关闭，而无需修改代码。
