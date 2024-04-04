@@ -12,7 +12,8 @@ import { raycastActivate } from './raycast/activate'
 import { unblockRequest } from './raycast/universal'
 import { raycastTrialStatus } from './raycast/customs/custom'
 import { raycastTranslate } from './raycast/customs/translate'
-import { cleanshotUser } from './cleanshot/customs/user'
+
+// import { cleanshotUser } from './cleanshot/customs/user'
 
 export const activator: Activator = {
   dashboard: {
@@ -97,13 +98,13 @@ export const activator: Activator = {
       },
     ],
   },
-  cleanshot: {
-    base: 'https://api.cleanshot.cloud/v1',
-    customs: [
-      {
-        base: 'user',
-        func: cleanshotUser,
-      },
-    ],
-  },
+  // cleanshot: {
+  //   base: 'https://api.cleanshot.cloud/v1',
+  //   customs: [
+  //     {
+  //       base: 'user',
+  //       func: cleanshotUser,
+  //     },
+  //   ],
+  // },
 }
