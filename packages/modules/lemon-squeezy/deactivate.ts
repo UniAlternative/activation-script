@@ -1,4 +1,4 @@
-import { ResponseDone, destr, parseURL } from '@as/shared'
+import { ResponseDone } from '@as/shared'
 import { generateLemonSqueezyShare, getLemonSqueezyLicenseKeyFromRequest } from './share'
 
 export function lemonSqueezyDeactivate() {

@@ -1,5 +1,5 @@
-import { ResponseDone, destr, parseURL } from '@as/shared'
-import { generateLemonSqueezyShare, getLemonSqueezyLicenseKeyFromRequest } from './share'
+import { ResponseDone } from '@as/shared'
+import { generateLemonSqueezyShare, getLemonSqueezyLicenseKeyFromRequest, lemonSqueezyInstance } from './share'
 
 export function lemonsqueezyValidate() {
   const license_key = getLemonSqueezyLicenseKeyFromRequest()
@@ -8,11 +8,7 @@ export function lemonsqueezyValidate() {
     body: {
       valid: true,
       error: null,
-      instance: {
-        id: '47596ad9-a811-4ebf-ac8a-03fc7b6d2a17',
-        name: 'Wibus Wee',
-        created_at: new Date().toISOString(),
-      },
+      instance: lemonSqueezyInstance,
       ...generateLemonSqueezyShare(license_key),
     },
   })

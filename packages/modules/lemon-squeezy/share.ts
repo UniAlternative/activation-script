@@ -9,6 +9,12 @@ export const licenseKeyToProductID: Record<string, number> = {
   'ca3120ca-f2f7-4d8b-89ec-76effe34431b': 221204, // 172179
 }
 
+export const lemonSqueezyInstance = {
+  id: '47596ad9-a811-4ebf-ac8a-03fc7b6d2a17',
+  name: 'Wibus Wee',
+  created_at: new Date().toISOString(),
+}
+
 export function generateLemonSqueezyShare(licenseKey: string) {
   const product_id = licenseKeyToProductID[licenseKey] || 0
   return {
