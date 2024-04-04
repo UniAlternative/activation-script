@@ -3,7 +3,7 @@
 
 
 [MITM]
-hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc, api.cleanshot.cloud
+hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc
 
 
 
@@ -25,5 +25,4 @@ raycast-ai/models-backend.raycast.com = type=http-request,pattern=^https://backe
 raycast-ai/chat_completions-backend.raycast.com = type=http-request,pattern=^https://backend.raycast.com/api/v1/ai/chat_completions,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 shottr-validate-shottr.cc = type=http-request,pattern=^https://shottr.cc/licensing/verify.php,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 shottr-api/telemetry.php-shottr.cc = type=http-request,pattern=^https://shottr.cc/api/telemetry.php,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
-cleanshot-user-api.cleanshot.cloud = type=http-request,pattern=^https://api.cleanshot.cloud/v1/user,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 
