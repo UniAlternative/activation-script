@@ -1,5 +1,7 @@
+import { destr, parseURL } from '@as/shared'
+
 // LicenseKey -> ProductID mapping
-const licenseKeyToProductID: Record<string, number> = {
+export const licenseKeyToProductID: Record<string, number> = {
   // Alist Desktop
   '401934ec-0a54-433c-a299-2a363501d4be': 154474,
   // LookAway
@@ -32,4 +34,12 @@ export function generateLemonSqueezyShare(licenseKey: string) {
       customer_email: 'luke@skywalker.com',
     },
   }
+}
+
+export function getLemonSqueezyLicenseKeyFromRequest() {
+  const body = destr($request.body) as {
+    license_key: string
+  } | undefined
+  const license_key = body?.license_key || (parseURL($request.url).params as { license_key: string }).license_key
+  return license_key
 }

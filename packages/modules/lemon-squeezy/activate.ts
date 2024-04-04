@@ -1,15 +1,11 @@
 import { ResponseDone, destr, parseURL } from '@as/shared'
-import { generateLemonSqueezyShare } from './share'
+import { generateLemonSqueezyShare, getLemonSqueezyLicenseKeyFromRequest } from './share'
 
 /**
  * @url https://api.lemonsqueezy.com/v1/licenses/activate
  */
 export function lemonSqueezyActive() {
-  const body = destr($request.body) as {
-    license_key: string
-  } | undefined
-
-  const license_key = body?.license_key || (parseURL($request.url).params as { license_key: string }).license_key
+  const license_key = getLemonSqueezyLicenseKeyFromRequest()
 
   return ResponseDone({
     body: {
