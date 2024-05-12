@@ -9,6 +9,11 @@ export const licenseKeyToProductID: Record<string, number> = {
   'ca3120ca-f2f7-4d8b-89ec-76effe34431b': 221204, // 172179
 }
 
+export const licenseKeyToStoreID: Record<string, number> = {
+  // Studio Studio -- qee=9273
+  '64fd88be-79c0-4167-8078-680ddef8cbc5': 9273,
+}
+
 export const lemonSqueezyInstance = {
   id: '47596ad9-a811-4ebf-ac8a-03fc7b6d2a17',
   name: 'Wibus Wee',
@@ -17,6 +22,7 @@ export const lemonSqueezyInstance = {
 
 export function generateLemonSqueezyShare(licenseKey: string) {
   const product_id = licenseKeyToProductID[licenseKey] || 0
+  const store_id = licenseKeyToStoreID[licenseKey] || 1
   return {
     license_key: {
       id: 1,
@@ -28,7 +34,7 @@ export function generateLemonSqueezyShare(licenseKey: string) {
       expires_at: null,
     },
     meta: {
-      store_id: 1,
+      store_id,
       order_id: 2,
       order_item_id: 3,
       variant_id: 5,
