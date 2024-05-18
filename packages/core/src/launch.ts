@@ -110,7 +110,9 @@ export async function launch() {
           continue
         }
 
-        if (!isMatchBase(url, `${moduleItem.base}/${key}`))
+        const base = typeof moduleItem.base === 'string' ? moduleItem.base : moduleItem.base.find(item => isMatchBase(url, item, false))
+        console.log(`[activator] ${url} | ${base} | ${key}`)
+        if (!isMatchBase(url, `${base}/${key}`))
           continue
 
         // 如果配置是函数，这个时候其实就没有什么特殊情况了，所以直接执行

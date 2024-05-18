@@ -50,8 +50,13 @@ export function generateLemonSqueezyShare(licenseKey: string) {
 
 export function getLemonSqueezyLicenseKeyFromRequest() {
   const body = destr($request.body) as {
-    license_key: string
+    license_key?: string
+    licenseKey?: string
   } | undefined
-  const license_key = body?.license_key || (parseURL($request.url).params as { license_key: string }).license_key
-  return license_key
+  // const license_key = body?.license_key || (parseURL($request.url).params as { license_key: string }).license_key
+  const license_key = body?.license_key
+    || body?.licenseKey
+    || (parseURL($request.url).params as { license_key?: string, licenseKey?: string }).license_key
+    || (parseURL($request.url).params as { license_key?: string, licenseKey?: string }).licenseKey
+  return license_key || ''
 }
