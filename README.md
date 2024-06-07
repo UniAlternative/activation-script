@@ -28,6 +28,8 @@
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
+-   [x] lo.cafe <sup>***`🪄 Beta`***</sup>
+    -   [x] NotchNook
 -   [x] Raycast Pro Plan <sup>***`🌊 Partially supported`***</sup>
 
 ###### [各个模块特殊说明](#特殊说明)
@@ -156,6 +158,12 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 ```
 
 ###### [Alogrithm](./packages/modules/gumroad/alogrithm/index.ts)
+
+### Lo.Cafe
+
+Script currently supports the following applications from Lo.Cafe:
+
+-   [x] NotchNook `$40`
 
 ### Raycast Pro Plan
 

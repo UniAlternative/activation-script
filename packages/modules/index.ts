@@ -13,6 +13,7 @@ import { unblockRequest } from './raycast/universal'
 import { raycastTrialStatus } from './raycast/customs/custom'
 import { raycastTranslate } from './raycast/customs/translate'
 import { lemonSqueezyDeactivate } from './lemon-squeezy/deactivate'
+import { locafeNotchNook } from './locafe/notchnook/verify'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -86,10 +87,6 @@ export const activator: Activator = {
       },
     ],
   },
-  // typora: {
-  //   base: 'https://dian.typora.com.cn/api/client',
-  //   activate: TyporaActivate,
-  // },
   shottr: {
     base: [
       'https://shottr.cc',
@@ -102,6 +99,15 @@ export const activator: Activator = {
       {
         base: 'api/telemetry.php',
         func: shottrTelemetry,
+      },
+    ],
+  },
+  locafe: {
+    base: 'https://lo.cafe/api',
+    customs: [
+      {
+        base: 'notchnook-verify-key',
+        func: locafeNotchNook,
       },
     ],
   },
