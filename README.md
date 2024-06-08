@@ -28,6 +28,8 @@
 -   [x] Shottr <sup>***`🪄 Beta`***</sup>
     -   [x] Basic Tier
     -   [ ] Friends Club
+-   [x] lo.cafe <sup>***`🪄 Beta`***</sup>
+    -   [x] NotchNook
 -   [x] Raycast Pro Plan <sup>***`🌊 Partially supported`***</sup>
 
 ###### [各个模块特殊说明](#特殊说明)
@@ -110,7 +112,7 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 
 ### LemonSqueezy
 
--   [x] Screen Studio `$89` - <sup>***`Only support <= 2.20 version`***</sup>
+-   [x] Screen Studio `$89` - <sup>***`Only support <= 2.20 version` & `64fd88be-79c0-4167-8078-680ddef8cbc5`***</sup>
 -   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 -   [x] LookAway `$9.99`
 
@@ -156,6 +158,12 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 ```
 
 ###### [Alogrithm](./packages/modules/gumroad/alogrithm/index.ts)
+
+### Lo.Cafe
+
+Script currently supports the following applications from Lo.Cafe:
+
+-   [x] NotchNook `$40`
 
 ### Raycast Pro Plan
 
