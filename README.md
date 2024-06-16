@@ -115,6 +115,7 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 -   [x] Screen Studio `$89` - <sup>***`Only support <= 2.20 version` & `64fd88be-79c0-4167-8078-680ddef8cbc5`***</sup>
 -   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 -   [x] LookAway `$9.99`
+-   [x] ~~Kerlig `$39`~~ - <sup>***`Need to open Dev mode`***</sup>
 
 除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
 

@@ -14,6 +14,7 @@ import { raycastTrialStatus } from './raycast/customs/custom'
 import { raycastTranslate } from './raycast/customs/translate'
 import { lemonSqueezyDeactivate } from './lemon-squeezy/deactivate'
 import { locafeNotchNook } from './locafe/notchnook/verify'
+import { kerLigActivate } from './kerlig/activate'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -108,6 +109,15 @@ export const activator: Activator = {
       {
         base: 'notchnook-verify-key',
         func: locafeNotchNook,
+      },
+    ],
+  },
+  kerlig: {
+    base: 'https://b.kerlig.local/api/v1',
+    customs: [
+      {
+        base: 'license',
+        func: kerLigActivate,
       },
     ],
   },
