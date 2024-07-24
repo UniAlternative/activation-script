@@ -164,7 +164,7 @@ IFZONWUNB-OWLYVQKQB-YFNIKSXBS-MCLRA
 
 Script currently supports the following applications from Lo.Cafe:
 
--   [x] NotchNook `$40`
+-   [ ] NotchNook `$40` <sup>***`🐛 Bug`***</sup>
 
 ### Raycast Pro Plan
 

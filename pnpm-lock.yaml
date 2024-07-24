@@ -67,6 +67,9 @@ importers:
         specifier: workspace:^
         version: link:../shared
     devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^25.0.8
+        version: 25.0.8(rollup@3.29.4)
       '@rollup/plugin-json':
         specifier: ^6.1.0
         version: 6.1.0(rollup@3.29.4)

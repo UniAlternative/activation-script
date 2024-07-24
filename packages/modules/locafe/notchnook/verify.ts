@@ -1,11 +1,11 @@
 import { ResponseDone } from '@as/shared'
-import jwt from 'jsonwebtoken'
+import { sign } from 'jsonwebtoken'
 
 /**
  * @url https://lo.cafe/api/notchnook-verify-key
  */
 export function locafeNotchNook() {
-  const token = jwt.sign({
+  const token = sign({
     valid: false,
     iat: Math.floor(Date.now() / 1000),
   }, 'secret', {

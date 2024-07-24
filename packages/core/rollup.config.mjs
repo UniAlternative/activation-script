@@ -5,6 +5,7 @@ import nodeResolve from '@rollup/plugin-node-resolve'
 import json from '@rollup/plugin-json'
 import typescript from 'rollup-plugin-ts'
 import terser from '@rollup/plugin-terser'
+import commonjs from '@rollup/plugin-commonjs'
 import { inject } from '../shared/src/plugins/rollup/inject.js'
 
 const destConfig = {
@@ -13,6 +14,7 @@ const destConfig = {
     format: 'cjs',
   },
   plugins: [
+    commonjs(),
     nodeResolve(),
     typescript(),
     json(),

@@ -103,15 +103,15 @@ export const activator: Activator = {
       },
     ],
   },
-  locafe: {
-    base: 'https://lo.cafe/api',
-    customs: [
-      {
-        base: 'notchnook-verify-key',
-        func: locafeNotchNook,
-      },
-    ],
-  },
+  // locafe: {
+  //   base: 'https://lo.cafe/api',
+  //   customs: [
+  //     {
+  //       base: 'notchnook-verify-key',
+  //       func: locafeNotchNook,
+  //     },
+  //   ],
+  // },
   kerlig: {
     base: 'https://b.kerlig.local/api/v1',
     customs: [
