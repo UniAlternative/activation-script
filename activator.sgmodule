@@ -3,7 +3,7 @@
 
 
 [MITM]
-hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc, b.kerlig.local
+hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc, b.kerlig.local, screen.studio
 
 
 
@@ -27,4 +27,8 @@ raycast-ai/chat_completions-backend.raycast.com = type=http-request,pattern=^htt
 shottr-validate-shottr.cc = type=http-request,pattern=^https://shottr.cc/licensing/verify.php,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 shottr-api/telemetry.php-shottr.cc = type=http-request,pattern=^https://shottr.cc/api/telemetry.php,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 kerlig-license-b.kerlig.local = type=http-request,pattern=^https://b.kerlig.local/api/v1/license,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+screenStudio-license.verify-www.screen.studio = type=http-request,pattern=^https://www.screen.studio/api/trpc/license.verify,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+screenStudio-license.activate-www.screen.studio = type=http-request,pattern=^https://www.screen.studio/api/trpc/license.activate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+screenStudio-license.verify-screen.studio = type=http-request,pattern=^https://screen.studio/api/trpc/license.verify,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+screenStudio-license.activate-screen.studio = type=http-request,pattern=^https://screen.studio/api/trpc/license.activate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 
