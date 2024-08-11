@@ -58,5 +58,7 @@ export function getLemonSqueezyLicenseKeyFromRequest() {
     || body?.licenseKey
     || (parseURL($request.url).params as { license_key?: string, licenseKey?: string }).license_key
     || (parseURL($request.url).params as { license_key?: string, licenseKey?: string }).licenseKey
+    || (parseURL($request.url).params as { input: { licenseKey?: string } }).input?.licenseKey
+  console.log(`[lemon-squeezy] license_key: ${license_key}`)
   return license_key || ''
 }

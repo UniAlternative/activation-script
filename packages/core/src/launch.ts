@@ -43,8 +43,17 @@ export async function launch() {
    * @returns 匹配结果
    *
    */
-  async function matchModuleFunc(moduleFunc: ActivatorObjFunc) {
-    // console.log(`[activator] matchModuleFunc: ${moduleFunc.base} | ${url} |${isMatchBase(url, moduleFunc.base)}`)
+  async function matchModuleFunc(moduleFunc: Omit<ActivatorObjFunc, 'base'> & { base: string | string[] }) {
+    if (Array.isArray(moduleFunc.base)) {
+      for (let base of moduleFunc.base) {
+        base = base.replace(/\/$/, '')
+        const res = await matchModuleFunc({ ...moduleFunc, base }) as any
+        if (!res)
+          continue
+        return res
+      }
+      return false
+    }
     // 处理 * 通配符
     if (isMatchBase(url, moduleFunc.base))
       return await moduleFunc.func()
@@ -62,9 +71,8 @@ export async function launch() {
    * @returns 匹配结果
    *
    */
-  async function handleModuleFunc(moduleFunc: ActivatorObjFunc) {
+  async function handleModuleFunc(moduleFunc: Omit<ActivatorObjFunc, 'base'> & { base: string | string[] }) {
     if (typeof moduleFunc === 'object') {
-      moduleFunc.base = moduleFunc.base.replace(/\/$/, '')
       const match = await matchModuleFunc(moduleFunc)
       if (match)
         return match
@@ -85,13 +93,18 @@ export async function launch() {
         // 如果配置是数组（意味着有多个配置）这只会在 customs 中出现
         if (typeof moduleItemOptions === 'object' && Array.isArray(moduleItemOptions)) {
           for (const custom of moduleItemOptions as ActivatorObjFunc[]) {
+            const base = typeof moduleItem.base === 'string' ? `${moduleItem.base}/${custom.base.replace(/^\//, '')}` : moduleItem.base.map(item => `${item}/${custom.base.replace(/^\//, '')}`)
             const match = await handleModuleFunc({
               ...custom,
-              base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
+              // base: `${moduleItem.base}/${custom.base.replace(/^\//, '')}`,
+              base,
             })
             if (match) {
               console.log(`[activator] Handle customs: ${custom.base}`)
               return match
+            }
+            else {
+              console.log(`[activator] ${url} is not matched in customs`)
             }
           }
           continue

@@ -8,21 +8,22 @@ console.log(`===== Author: @wibus-wee | Version: ${CORE_VERSION} | Commit: ${COM
 
 (async () => {
   $done(
-    await launch().catch((e) => {
-      console.log(`Error -> ${e}`)
-      return ResponseDone({
-        status: 500,
-        body: {
-          msg: 'Activation Script Error. Please check the logs for more details.',
-          error: {
-            message: e.message,
-            stack: e.stack,
+    await launch()
+      .catch((e) => {
+        console.log(`Error -> ${e}`)
+        return ResponseDone({
+          status: 500,
+          body: {
+            msg: 'Activation Script Error. Please check the logs for more details.',
+            error: {
+              message: e.message,
+              stack: e.stack,
+            },
           },
-        },
-      })
-    }).finally(() => {
-      timer.endTimer()
-      console.log(`===== Finished in ${timer.getDurationInSeconds()}s =====`)
-    }),
+        })
+      }).finally(() => {
+        timer.endTimer()
+        console.log(`===== Finished in ${timer.getDurationInSeconds()}s =====`)
+      }),
   )
 })()

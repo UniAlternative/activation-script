@@ -5,7 +5,7 @@ export function parseURLParams(url: string) {
     const pairs = params.split('&')
     for (const pair of pairs) {
       const [key, value] = pair.split('=')
-      result[key] = value
+      result[key] = decodeURIComponent(value)
     }
   }
   return result

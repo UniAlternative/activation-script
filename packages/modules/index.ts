@@ -15,6 +15,8 @@ import { raycastTranslate } from './raycast/customs/translate'
 import { lemonSqueezyDeactivate } from './lemon-squeezy/deactivate'
 import { locafeNotchNook } from './locafe/notchnook/verify'
 import { kerLigActivate } from './kerlig/activate'
+import { screenStudioVerify } from './screen-studio/verify'
+import { screenStudioActivate } from './screen-studio/activate'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -103,15 +105,6 @@ export const activator: Activator = {
       },
     ],
   },
-  // locafe: {
-  //   base: 'https://lo.cafe/api',
-  //   customs: [
-  //     {
-  //       base: 'notchnook-verify-key',
-  //       func: locafeNotchNook,
-  //     },
-  //   ],
-  // },
   kerlig: {
     base: 'https://b.kerlig.local/api/v1',
     customs: [
@@ -121,13 +114,20 @@ export const activator: Activator = {
       },
     ],
   },
-  // cleanshot: {
-  //   base: 'https://api.cleanshot.cloud/v1',
-  //   customs: [
-  //     {
-  //       base: 'user',
-  //       func: cleanshotUser,
-  //     },
-  //   ],
-  // },
+  screenStudio: {
+    base: [
+      'https://www.screen.studio/api/trpc',
+      'https://screen.studio/api/trpc',
+    ],
+    customs: [
+      {
+        base: 'license.verify',
+        func: screenStudioVerify,
+      },
+      {
+        base: 'license.activate',
+        func: screenStudioActivate,
+      },
+    ],
+  },
 }
