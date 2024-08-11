@@ -17,6 +17,7 @@ import { locafeNotchNook } from './locafe/notchnook/verify'
 import { kerLigActivate } from './kerlig/activate'
 import { screenStudioVerify } from './screen-studio/verify'
 import { screenStudioActivate } from './screen-studio/activate'
+import { screenStudioLicenseInfo } from './screen-studio/info'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -127,6 +128,10 @@ export const activator: Activator = {
       {
         base: 'license.activate',
         func: screenStudioActivate,
+      },
+      {
+        base: 'license.licenseInfo',
+        func: screenStudioLicenseInfo,
       },
     ],
   },
