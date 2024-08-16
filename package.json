@@ -15,7 +15,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@antfu/eslint-config": "^2.6.4",
+    "@antfu/eslint-config": "^2.26.0",
     "commander": "^12.0.0",
     "eslint": "^8.56.0",
     "typescript": "^5.2.2"
@@ -24,7 +24,7 @@
     "@rollup/plugin-commonjs": "^25.0.8",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
-    "@types/node": "^20.11.30",
+    "@types/node": "^20.15.0",
     "esno": "^0.17.0",
     "lint-staged": "^15.2.7",
     "rollup": "^3.29.4",
