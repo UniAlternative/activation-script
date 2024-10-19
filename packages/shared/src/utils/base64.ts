@@ -18,14 +18,16 @@ export function base64Decode(str: string) {
   const base64Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
   let result = ''
   let i = 0
-  do {
+  while (i < str.length) {
     const a = base64Chars.indexOf(str[i++])
     const b = base64Chars.indexOf(str[i++])
     const c = base64Chars.indexOf(str[i++])
     const d = base64Chars.indexOf(str[i++])
     result += String.fromCharCode(a << 2 | b >> 4)
-    c !== 64 && (result += String.fromCharCode(b << 4 | c >> 2))
-    d !== 64 && (result += String.fromCharCode(c << 6 | d))
-  } while (i < str.length)
+    if (c !== -1)
+      result += String.fromCharCode((b & 15) << 4 | c >> 2)
+    if (d !== -1)
+      result += String.fromCharCode((c & 3) << 6 | d)
+  }
   return result
 }
