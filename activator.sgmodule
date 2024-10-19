@@ -3,7 +3,7 @@
 
 
 [MITM]
-hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc, b.kerlig.local, screen.studio
+hostname = %APPEND% as.as, api.lemonsqueezy.com, v3.paddleapi.com, api.gumroad.com, buy.itunes.apple.com, backend.raycast.com, shottr.cc, b.kerlig.local, screen.studio, moyufed.com, license.memo.ac
 
 
 
@@ -33,4 +33,10 @@ screenStudio-license.licenseInfo-www.screen.studio = type=http-request,pattern=^
 screenStudio-license.verify-screen.studio = type=http-request,pattern=^https://screen.studio/api/trpc/license.verify,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 screenStudio-license.activate-screen.studio = type=http-request,pattern=^https://screen.studio/api/trpc/license.activate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 screenStudio-license.licenseInfo-screen.studio = type=http-request,pattern=^https://screen.studio/api/trpc/license.licenseInfo,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+memo-'users/cdkey'-moyufed.com = type=http-request,pattern=^http://moyufed.com:3002/api/'users/cdkey',requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+memo-licenses/validate-moyufed.com = type=http-request,pattern=^http://moyufed.com:3002/api/licenses/validate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+memo-licenses/activate-moyufed.com = type=http-request,pattern=^http://moyufed.com:3002/api/licenses/activate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+memo-'users/cdkey'-license.memo.ac = type=http-request,pattern=^https://license.memo.ac/v1/'users/cdkey',requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+memo-licenses/validate-license.memo.ac = type=http-request,pattern=^https://license.memo.ac/v1/licenses/validate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
+memo-licenses/activate-license.memo.ac = type=http-request,pattern=^https://license.memo.ac/v1/licenses/activate,requires-body=1,max-size=0,debug=1,script-path=https://github.com/wibus-wee/activation-script/raw/gh-pages/activator.js,script-update-internal=86400
 
