@@ -123,7 +123,6 @@ C2BF5D3B-F4AC9F5F-A8EB4B9E-B8AA5E8D-E2CC5C8D
 -   [x] Alist Desktop `$9.99` <sup>***`401934ec-0a54-433c-a299-2a363501d4be`***</sup>
 -   [x] LookAway `$9.99`
 -   [x] ~~Kerlig `$39`~~ - <sup>***`Need to open Dev mode`***</sup>
--   [x] ~~bWVtbw== `$49.99`~~ - <sup>***`Disable SSL Pinning` & `beba1aac-8d65-4cb2-9a33-11ea55d1dcc4`***</sup>
 
 除了特别说明的激活码外，你可以使用以下激活码来激活 LemonSqueezy 的应用程序：
 
