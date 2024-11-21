@@ -25,7 +25,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/node": "^20.11.30",
-    "esno": "^0.17.0",
+    "esno": "^4.7.0",
     "lint-staged": "^15.2.7",
     "rollup": "^3.29.4",
     "rollup-plugin-esbuild": "^6.1.1",
