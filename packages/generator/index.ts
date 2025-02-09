@@ -43,7 +43,7 @@ function addConfig(module: string, base: string) {
 
   const url = new URL(base)
   const hostname = url.hostname
-  const regex = /(?:https?:\/\/)?(?:www\.)?([^\/]+)\/?.*/
+  const regex = /(?:https?:\/\/)?(?:www\.)?([^/]+).*/
   const mainDomain = hostname.match(regex)?.[1] || hostname
   // 检查一下 hostnames 里面有没有这个域名，没有的话就加进去
   if (!hostnames.includes(`${mainDomain}`))

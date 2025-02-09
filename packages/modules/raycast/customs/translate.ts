@@ -59,10 +59,12 @@ export async function raycastTranslate() {
   if (
     [0, 3].includes((requestParams.id + 5) % 29)
     || (requestParams.id + 3) % 13 === 0
-  )
+  ) {
     requestBody = requestBody.replace('"method":"', '"method" : "')
-  else
+  }
+  else {
     requestBody = requestBody.replace('"method":"', '"method": "')
+  }
 
   const translateResponse = await httpClient.post({
     url: endpoint,

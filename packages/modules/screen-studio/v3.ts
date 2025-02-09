@@ -1,5 +1,5 @@
 import { ResponseDone, destr } from '@as/shared'
-import { generateLemonSqueezyShare, getLemonSqueezyLicenseKeyFromRequest, lemonSqueezyInstance } from '../lemon-squeezy/share'
+import { getLemonSqueezyLicenseKeyFromRequest } from '../lemon-squeezy/share'
 
 export function screenStudioAuthorizeLicenseKeyInV3() {
   const body = destr($request.body) as {
