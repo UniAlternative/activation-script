@@ -1,4 +1,4 @@
-import type { Activator } from '@as/shared'
+import { type Activator, ResponseDone, base64Decode } from '@as/shared'
 import { GumroadValidate } from './gumroad/validate'
 import { lemonSqueezyActive } from './lemon-squeezy/activate'
 import { lemonsqueezyValidate } from './lemon-squeezy/validate'
@@ -18,6 +18,8 @@ import { kerLigActivate } from './kerlig/activate'
 import { screenStudioVerify } from './screen-studio/verify'
 import { screenStudioActivate } from './screen-studio/activate'
 import { screenStudioLicenseInfo } from './screen-studio/info'
+import { DuetValidateReceipt } from './duet/validateReceipt'
+import { screenStudioAuthorizeLicenseKeyInV3, screenStudioDeactivateLicenseKeyInV3 } from './screen-studio/v3'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -38,7 +40,10 @@ export const activator: Activator = {
     ],
   },
   paddle: {
-    base: 'https://v3.paddleapi.com/3.2/license',
+    base: [
+      'https://v3.paddleapi.com/3.2/license',
+      'https://api.getmedis.com/medis',
+    ],
     activate: paddleActivate,
     validate: {
       base: 'verify',
@@ -119,6 +124,7 @@ export const activator: Activator = {
     base: [
       'https://www.screen.studio/api/trpc',
       'https://screen.studio/api/trpc',
+      // https://screen.studio/api/trpc/auth.authorize.app.licenseKey
     ],
     customs: [
       {
@@ -132,6 +138,56 @@ export const activator: Activator = {
       {
         base: 'license.licenseInfo',
         func: screenStudioLicenseInfo,
+      },
+      {
+        base: 'auth.authorize.app.licenseKey',
+        func: screenStudioAuthorizeLicenseKeyInV3,
+      },
+      {
+        base: 'auth.authorize.app.deactivate',
+        func: screenStudioDeactivateLicenseKeyInV3,
+      },
+    ],
+  },
+  // export NODE_TLS_REJECT_UNAUTHORIZED="0"
+  [base64Decode('bWVtbw==')]: {
+    base: [
+      base64Decode('aHR0cDovL21veXVmZWQuY29tOjMwMDIvYXBp'),
+      base64Decode('aHR0cHM6Ly9saWNlbnNlLm1lbW8uYWMvdjE='),
+    ],
+    customs: [
+      {
+        base: 'users/cdkey',
+        func: () => {
+          return ResponseDone({
+            body: {
+              message: '',
+              success: true,
+              code: 200,
+            },
+          })
+        },
+      },
+      {
+        base: 'licenses/validate',
+        func: lemonsqueezyValidate,
+      },
+      {
+        base: 'licenses/activate',
+        func: lemonSqueezyActive,
+      },
+      {
+        base: 'licenses/deactivate',
+        func: lemonSqueezyDeactivate,
+      },
+    ],
+  },
+  duet: {
+    base: 'https://rdp.duetdisplay.com/v1',
+    customs: [
+      {
+        base: 'users/validateReceipt',
+        func: DuetValidateReceipt,
       },
     ],
   },
