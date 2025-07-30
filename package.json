@@ -33,6 +33,12 @@
     "simple-git-hooks": "^2.9.0",
     "toml": "^3.0.0"
   },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "simple-git-hooks"
+    ]
+  },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
   },

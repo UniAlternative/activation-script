@@ -19,6 +19,7 @@ import { screenStudioActivate } from './screen-studio/activate'
 import { screenStudioLicenseInfo } from './screen-studio/info'
 import { DuetValidateReceipt } from './duet/validateReceipt'
 import { screenStudioAuthorizeLicenseKeyInV3, screenStudioDeactivateLicenseKeyInV3 } from './screen-studio/v3'
+import { revenueCatActivate } from './revenuecat'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -81,18 +82,18 @@ export const activator: Activator = {
         base: 'me/trial_status',
         func: raycastTrialStatus,
       },
-      {
-        base: 'me/sync',
-        func: unblockRequest,
-      },
-      {
-        base: 'ai/models',
-        func: unblockRequest,
-      },
-      {
-        base: 'ai/chat_completions',
-        func: unblockRequest,
-      },
+      // {
+      //   base: 'me/sync',
+      //   func: unblockRequest,
+      // },
+      // {
+      //   base: 'ai/models',
+      //   func: unblockRequest,
+      // },
+      // {
+      //   base: 'ai/chat_completions',
+      //   func: unblockRequest,
+      // },
     ],
   },
   shottr: {
@@ -190,4 +191,11 @@ export const activator: Activator = {
       },
     ],
   },
+  // revenuecat: {
+  //   base: 'https://api.revenuecat.com/v1',
+  //   activate: {
+  //     base: 'subscribers/*',
+  //     func: revenueCatActivate,
+  //   },
+  // },
 }
