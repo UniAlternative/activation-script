@@ -9,9 +9,7 @@ import { iTunesVerifyReceipt } from './itunes/custom'
 import { shottrVerifyLicense } from './shottr/validate'
 import { shottrTelemetry } from './shottr/custom/telemetry'
 import { raycastActivate } from './raycast/activate'
-import { unblockRequest } from './raycast/universal'
 import { raycastTrialStatus } from './raycast/customs/custom'
-import { raycastTranslate } from './raycast/customs/translate'
 import { lemonSqueezyDeactivate } from './lemon-squeezy/deactivate'
 import { kerLigActivate } from './kerlig/activate'
 import { screenStudioVerify } from './screen-studio/verify'
@@ -19,7 +17,6 @@ import { screenStudioActivate } from './screen-studio/activate'
 import { screenStudioLicenseInfo } from './screen-studio/info'
 import { DuetValidateReceipt } from './duet/validateReceipt'
 import { screenStudioAuthorizeLicenseKeyInV3, screenStudioDeactivateLicenseKeyInV3 } from './screen-studio/v3'
-import { revenueCatActivate } from './revenuecat'
 
 // import { cleanshotUser } from './cleanshot/customs/user'
 
@@ -74,10 +71,10 @@ export const activator: Activator = {
       type: 'http-response',
     },
     customs: [
-      {
-        base: 'translations',
-        func: raycastTranslate,
-      },
+      // {
+      //   base: 'translations',
+      //   func: raycastTranslate,
+      // },
       {
         base: 'me/trial_status',
         func: raycastTrialStatus,

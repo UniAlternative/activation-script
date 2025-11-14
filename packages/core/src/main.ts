@@ -1,6 +1,8 @@
 import { ResponseDone, Timer } from '@as/shared'
 import { launch } from './launch'
 
+const CORE_VERSION = 'dev'
+const COMMIT_HASH = ''
 const timer = new Timer()
 timer.startTimer()
 console.log(`===== Activator Script Handler =====`)

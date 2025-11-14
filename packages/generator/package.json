@@ -7,7 +7,7 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.mjs && mv ../../dist/index.js ../../dist/generator.js",
+    "build": "tsdown && mv ../../dist/index.js ../../dist/generator.js",
     "start": "esno index.ts"
   },
   "dependencies": {

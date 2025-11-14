@@ -8,16 +8,12 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c && mv ../../dist/main.js ../../dist/activator.js"
+    "build": "tsdown && mv ../../dist/main.cjs ../../dist/activator.js"
   },
   "dependencies": {
     "@as/dashboard": "workspace:^",
     "@as/modules": "workspace:^",
     "@as/shared": "workspace:^"
   },
-  "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.8",
-    "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-terser": "^0.4.4"
-  }
+  "devDependencies": {}
 }
