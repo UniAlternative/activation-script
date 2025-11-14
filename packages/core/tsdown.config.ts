@@ -24,7 +24,7 @@ export default defineConfig({
   entry: ['src/main.ts'],
   outDir: '../../dist',
   format: ['cjs'],
-  clean: true,
+  clean: false,
   minify: true,
   noExternal: [
     '@as/dashboard',

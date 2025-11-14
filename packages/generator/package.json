@@ -7,7 +7,7 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "build": "tsdown && mv ../../dist/index.js ../../dist/generator.js",
+    "build": "tsdown && mv ../../dist/index.mjs ../../dist/generator.js",
     "start": "esno index.ts"
   },
   "dependencies": {
